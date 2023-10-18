@@ -11,5 +11,5 @@
 Я буду старатись записувати сюди якнайбільше інформації яку я вивчатиму та повторюватиму з теми кібербезпеки.
 ---
 # Зміст
--[Основи Linux](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
+- [Основи Linux](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
 ---
