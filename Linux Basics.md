@@ -1,33 +1,41 @@
+---
 # Зміст
-
-- [AWK](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#awk)
-- [SUDO](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#sudo)
-- [LESS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#less)
-- [TAIL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#tail)
-- [WGET](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#wget)
-- [GREP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#grep)
-- [SCP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#scp)
-- [FIND](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#find)
-- [PS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ps)
-- [CHOWN](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#chown)
-- [NSLOOKUP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#nslookup)
-- [DIG](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#dig)
-- [UNAME](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#uname)
-- [UNIQ](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#uniq)
-- [SORT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#sort)
-- [WHOIS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#whois)
-- [TAR](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#tar)
-- [SYSTEMCTL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#systemctl)
-- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
-- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
-- [Логічні оператори](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
-- [SSH тунелювання](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
-- [Права доступу](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
-- [Канали зв'язку, перенаправлення](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
-
 ---
 
-# AWK
+- [Команди та утиліти]()
+	- [AWK](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#awk)
+	- [SUDO](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#sudo)
+	- [LESS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#less)
+	- [TAIL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#tail)
+	- [WGET](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#wget)
+	- [GREP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#grep)
+	- [SCP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#scp)
+	- [FIND](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#find)
+	- [PS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ps)
+	- [CHOWN](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#chown)
+	- [NSLOOKUP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#nslookup)
+	- [DIG](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#dig)
+	- [UNAME](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#uname)
+	- [UNIQ](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#uniq)
+	- [SORT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#sort)
+	- [WHOIS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#whois)
+	- [TAR](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#tar)
+	- [SYSTEMCTL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#systemctl)
+	- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
+	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
+- [Теорія]()
+	- [Логічні оператори](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
+	- [SSH тунелювання](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
+	- [Права доступу](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
+	- [Канали зв'язку, перенаправлення](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
+
+
+---
+# Команди та утиліти
+---
+
+
+## AWK
 
 **Специфікована мова програмування, яку ми можемо пояснити в лінуксі**
 
@@ -48,7 +56,7 @@
 
 ---
 
-# SUDO
+## SUDO
 
 **Linux утиліта яка надає можливість виконувати команди з різними рівнями доступу, включаючи root**
 
@@ -63,7 +71,7 @@
 
 ---
 
-# LESS
+## LESS
 
 **Якщо файл дуже великий то ця утиліта не дає засирати всю строку терміналу, тобто вона скорочує вивід і дозволяє гортати вверх вниз**
 
@@ -76,7 +84,7 @@
 |`less -N` | Нумерувати рядки |
 
 ---
-# TAIL
+## TAIL
 
 **Команда, яка використовується для виведення вмісту файлу, зазвичай в кінці цього файлу**
 
@@ -91,7 +99,7 @@
 
 ---
 
-# WGET 
+## WGET 
 
 **Завантажити файли з сайтів**
 
@@ -104,7 +112,7 @@
 |`wget -i` | Завантажувати файл зі списку|
 
 ---
-# GREP
+## GREP
 
 **Команда в операційній системі Linux, яка використовується для пошуку текстових рядків в файлах або виводі інших команд.**
 
@@ -121,7 +129,7 @@
 ---
 
 
-# SCP
+## SCP
 
 **Команда в Unix-подібних операційних системах, таких як Linux, яка використовується для безпечного копіювання файлів і каталогів з одного комп'ютера на інший через мережу.**
 
@@ -134,7 +142,7 @@
 
 ---
 
-# FIND
+## FIND
 
 **Команда для Linux яка використовується для пошуку різної інформації в файловій системі**
 
@@ -151,7 +159,7 @@
 |`find . -type f -mtime -3`| використовується для пошуку файлів за часом їхньої зміни (modification time) Змінений файл менше ніж 3 дня назад|
 
 ---
-# PS
+## PS
 
 **Програма для Linux яка створена для пошуку різних системних процесів**
 
@@ -164,7 +172,7 @@
 |`ps -u shrek` | Доп інфа по процесам від користувача **shrek**|
 
 ---
-# CHOWN
+## CHOWN
 
 **Команда в операційній системі Linux, яка використовується для зміни власника або групи файлу або каталогу**
 
@@ -178,7 +186,7 @@
 |`chown --reference=greek1 greek2`| Змінити право власника з одного файлу на інший|
 
 ---
-# NSLOOKUP
+## NSLOOKUP
 
 **Команда в операційній системі, яка використовується для виконання DNS-запитів і отримання інформації про доменні імена, IP-адреси та інші DNS-записи.**
 
@@ -191,7 +199,7 @@
 |`A`, `MX`, `NS`, `TXT`, `SOA`, `AAAA`, `CNAME` |Типи DNS записів|
 
 ---
-# DIG
+## DIG
 
 **Команда яка схожа по сенсу та функціоналу за nslookup**
 
@@ -205,7 +213,7 @@
 |`dig site.com +trace` | Відслідкувати шлях DNS|
 
 ---
-# UNAME
+## UNAME
 
 **Команда в операційній системі Unix та подібних системах, яка виводить інформацію про систему та її ядро.**
 
@@ -219,7 +227,7 @@
 
 ---
 
-# UNIQ
+## UNIQ
 
 **Команда яка видаляє стрічки, які повторюються**
 
@@ -233,7 +241,7 @@
 
 ---
 
-# SORT
+## SORT
 
 **Команда Linux, яка сортує файли**
 
@@ -248,7 +256,7 @@
 | `sort -k 2n file.txt`|Сортування за другою колонкою числами|
 
 ---
-# WHOIS
+## WHOIS
 
 **Команда Linux, яка дістає інформацію про домени**
 
@@ -260,7 +268,7 @@
 |`whois 125.8.888.200`| Вивід інформації за ІР адресою|
 
 ---
-# TAR
+## TAR
 
 **Команда Linux, яка використовується для розархівування tar формату**
 
@@ -271,7 +279,7 @@
 |`tar -xvf file.tar`| Детальне розархівування|
 
 ---
-# SYSTEMCTL
+## SYSTEMCTL
 
 **Команда Linux, яка використовується для контролю різноманітними сервісами**
 
@@ -286,7 +294,7 @@
 
 ---
 
-# NETCAT
+## NETCAT
 
 **Універсальна утиліта для мережевого з'єднання в операційних системах Unix та подібних системах**
 
@@ -304,7 +312,7 @@
 ---
 
 
-# IP
+## IP
 
 **Команда Linux для контролю ІР. Старіший аналог ifconfig**
 
@@ -314,9 +322,16 @@
 |-|-|
 |`ip -4 addr`|Вивід IPv4 адрес|
 |`ip -6 addr`|Вивід IPv6 адрес|
+---
+
 
 ---
-# Логічні оператори
+# Теорія 
+---
+
+
+---
+## Логічні оператори
 
 **Cимволи або ключові слова в Linux, які використовуються для обробки та порівняння логічних значень.**
 
@@ -340,7 +355,8 @@
 ---
 
 
-# SSH Тунелювання
+
+## SSH Тунелювання
 
 **`SSH тунель (або SSH тунелювання)` - це механізм, який дозволяє безпечно передавати дані через незахищену мережу шляхом шифрування і захисту з'єднання між двома точками. 
 `SSH (Secure Shell)` - це протокол для захищеної віддаленої роботи з комп'ютером і передачі даних, і він використовується для створення цих захищених тунелів.**
@@ -354,12 +370,12 @@
 2.    **`Віддалений SSH тунель (Remote Port Forwarding)`**: В цьому випадку віддалений сервер використовується для передачі трафіку між віддаленим портом і локальним комп'ютером. Це корисно, коли вам потрібно забезпечити доступ до служб на вашому локальному комп'ютері через віддалений сервер.
 ---
 3.    **`Динамічний SSH тунель (Dynamic Port Forwarding)`**: Цей тип тунелювання дозволяє створити "проксі-сервер" на віддаленому сервері, через який можна маршрутизувати трафік з локального комп'ютера через віддалений сервер до різних інтернет-ресурсів. Це особливо корисно, коли вам потрібен анонімний доступ до Інтернету або коли вам потрібно обійти обмеження в мережі.
+
 ---
 
 
 
-
-# Права доступу
+## Права доступу
 
 **У Linux є своя схема показу прав доступу за допомогою цифр, щоб було швидко і легко показати які права де. Кожні три цифри відповідають трьом правам доступу (читання, запис, виконання) для трьох різних категорій користувачів (власник, група, інші).
 Кожна з цих цифр може мати значення від 0 до 7, де кожне значення представляє собою комбінацію трьох можливих прав доступу:**
@@ -371,7 +387,7 @@
 
 ---
 
-#### **Права файлу**
+### **Права файлу**
 
 Для встановлення прав доступу за допомогою цифр, ви просто додаєте значення цифр для кожної категорії разом:
 Наприклад, `chmod 755 file.txt` встановлює такі права:
@@ -381,7 +397,7 @@
 
 ---
 
-#### **Права директорій**
+### **Права директорій**
 
 Наприклад, в директорії вивело `drwxr-xr-x`.
 Перший символ `d` - це тип об'єкта. У даному випадку `d` вказує на те, що це каталог. Решта рядка `rwxr-xr-x` складається з **дев'яти** символів, які представляють права доступу для різних категорій користувачів (***власник, група та інші***). Ця частина рядка може розглядатися як три набори з трьох символів кожний.
@@ -404,7 +420,7 @@
 3. `x` ***Інші користувачі*** мають право виконувати файл (для каталогів).
 
 
-# Канали зв'язку, перенаправлення
+## Канали зв'язку, перенаправлення
 
 **В Linux є така річ як *канали зв'язку*, по яким передаються дані вводу/виводу в програмах. В кожного з них є свій *дескриптор*, це числовий ідентифікатор який допомагає легше з ними взаємодіяти
 `STDIN` - Дескриптор 0. Канал вводу
@@ -419,7 +435,7 @@
 *Reverse redirect ( < )* це переведення канала виводу через `stdin` щоб ввід був не через клавіатуру а через файл**
 
 ---
-#### ПРИКЛАДИ
+### ПРИКЛАДИ
 
 `2>&1` 
 *Якщо перекладати то вивід з `stderr` ми виводимо туди ж де і вивід з `stdout`. І за допомогою цього ми можемо вивести і простий вивід і помилки в один файл, один канал*
@@ -428,8 +444,6 @@
 *Використовуючи **0>&1**, ви фактично кажете оболонці читати `stdin` з того ж джерела, звідки виводиться `stdout`. Це може бути корисним у випадках, коли вам потрібно об'єднати або копіювати вхідні та вихідні потоки для інтерактивного вводу, наприклад в реверс шеллах*
 
 ---
-
-
 
 
 
