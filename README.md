@@ -2,16 +2,16 @@
   <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/coffee_in_rain_by_kirokaze-d98qb8z.gif">
 </p>
 
-# Про мене
+# About
 
 ---
-Я `carnifex17`, ентузіаст з кібербезпеки та це мої нотатки. В чому їх фішка? В тому що їх роблю я, і в тому що вони будуть українською мовою, оскільки мені так буде легше, та й іншим українцям які теж сюди якось забредуть теж буде легше. Тому надіюсь чимось вам допоможую
-> For Non-Ukrainians also greetings, I hope my choise of language in my repo don't make this very discomfort for you, hope you'll like my repo
+I am `carnifex17`, cybersecurity enthusiast, ethical hacker. I am active on platforms like [HackTheBox](https://app.hackthebox.com/profile/637180), [TryHackMe](https://tryhackme.com/p/carnifex17)
+> Also you could contact me with [Telegram](t.me/carnifex17) and [Discord](https://discordapp.com/users/761570103158243368)
 ---
 
-Я буду старатись записувати сюди якнайбільше інформації яку я вивчатиму та повторюватиму з теми кібербезпеки.
+I will write here all notes, writeups and info that I've been learning in my technical adventure. 
 
 ---
-# Зміст
-- [Основи Linux](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
+# Table of Contents
+- [Linux Basics](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
 ---
