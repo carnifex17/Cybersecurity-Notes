@@ -1,5 +1,5 @@
 ---
-# Зміст
+# Table of Contents
 ---
 
 - [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B8-%D1%82%D0%B0-%D1%83%D1%82%D0%B8%D0%BB%D1%96%D1%82%D0%B8)
@@ -25,9 +25,9 @@
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
 - [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D1%82%D0%B5%D0%BE%D1%80%D1%96%D1%8F)
 	- [Logical Operators](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
-	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
-	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#access-rights)
-	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#data-streams-redirects)
+	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
+	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
+	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
 
 ---
 ---
@@ -331,26 +331,26 @@
 
 
 ---
-## Logical Operators.
+## Logical Operators
 
-**Symbols or keywords in Linux that are used to process and compare logical values.
+**Symbols or keywords in Linux that are used to process and compare logical values.**
 
 ---
 
-||Syntax||Description||
+|`Syntax`|`Explanation`|
 |-|-|
-|&& |(І)|
-|`Command1 && Command2`| Executes Command2 only if Command1 succeeds (returns a zero exit code). If Command1 fails, Command2 is not executed.
-|II |(OR)|
-|`Command1 II Command2|| Executes Command2 only if Command1 fails (returns a non-zero exit code). If Command1 succeeds, Command2 is not executed.
-|;| (COLUMN).
-|`Command1 ; Command2`|Executes Command2 regardless of the success or failure of Command1. Use to execute commands in sequence.
+|**&&** |(AND)|
+|`Command1 && Command2`| Executes Command2 only if Command1 succeeds (returns a zero exit code). If Command1 fails, Command2 is not executed|
+|**II** |(OR)|
+|`Command1 II Command2`|Executes Command2 only if Command1 fails (returns a non-zero exit code). If Command1 succeeds, Command2 is not executed|
+|**;**| (Semicolon)|
+|`Command1 ; Command2`|Executes Command2 regardless of the success or failure of Command1. Used for sequential execution of commands|
  |**&** |(Background Execution)|
-|Command & Executes the command in the background, allowing you to continue working in the terminal without waiting for the command to complete. You can use the **bg** or **jobs** commands to control background processes.
+|`Command &`| Executes the command in the background, allowing you to continue working in the terminal without waiting for the command to complete. You can use the **bg** or **jobs** commands to control background processes|
 |**!**| (NOT)|
-|`! Command`| Executes the command and returns the reverse exit code. If Command succeeds, ! Command fails, and vice versa.
-| **I** | (Channel, or Pipe)|
-|Redirects the output of Command1 to the input of Command2. Used to transfer data between Commands and filter the output.
+|`! Command`| Executes the command and returns the reverse exit code. If Command succeeds, ! Command fails, and vice versa|
+| **I** | (PIPE)|
+|`Command1 I Command2`| Redirects the output of Command1 to the input of Command2. Used to transfer data between commands and filter the output|
 
 ---
 
@@ -422,7 +422,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ## Data Streams, Redirects
 
-**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily**
+**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily
 - `STDIN` - Descriptor 0. Input stream
 - `STDOUT` - Descriptor 1. Output stream
 - `STDERR` - Descriptor 2. Error stream
@@ -430,7 +430,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ---
 
-***REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
+** *REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
 `cat unexistedfile.txt 2> error.txt`
 *Reverse redirect ( < )* is redirect of the output stream through `stdin` so that the input is not through the keyboard but through the file**
 
