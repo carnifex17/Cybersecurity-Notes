@@ -359,18 +359,24 @@
 ## SSH Tunneling
 
 * `SSH Tunneling` - is a mechanism that allows you to securely transfer data over an unsecured network by encrypting and securing the connection between two points.  
-`SSH (Secure Shell)` -  is a protocol for secure remote computer operation and data transfer, and it is used to create these secure tunnels. *
+`SSH (Secure Shell)` -  is a protocol for secure remote computer operation and data transfer, and it is used to create these secure tunnels. Mostly we could do the same things with local and reverse tunneling, but it depends which things we are controlling, remote server or local computer. Also to not be confused, you should always remember that "local" is subjective term.*
 Also [this](https://youtu.be/AtuAdk4MwWw?si=85DZ-shYuHFJIqX2) video explains very well this topic
 ---
 
 The main types of SSH Tunneling include:
 
 1.    **`Local Port Forwarding`**: This type of tunneling allows you to pass traffic between your local computer and a remote server over SSH. So shortly we just communicate to some remote service, but in system level all requests to remote server will come through our our local port. It is pretty useful if we want to communicate to remote database as it is our local database. Useful stuff
+<p align="center">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/ssh-image1.jpg">
+</p>
 ```
 ssh -L local_port:destination_address:destination_port username@remote_server
 ```
 ---
-2.    **`Remote or Reverse Port Forwarding`**: In this case, the remote server is used to transfer traffic from the remote port to the local computer. For example if we want to bypass the firewall which blocks 1337 port, we could do remote port forwarding to 33 port, and then it would forward it to local (subjectively) port 1337, what we've needed 
+2.    **`Remote or Reverse Port Forwarding`**: In this case, the remote server is used to transfer traffic from the remote port to the local computer. 
+<p align="center">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/ssh-image2.jpg">
+</p> 
 ```
 ssh -R 33:localhost:1337 username@remote_server
 ```
