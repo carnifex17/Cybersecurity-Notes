@@ -378,7 +378,7 @@ ssh -L local_port:destination_address:destination_port username@remote_server
 <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/ssh-image2.jpg">
 
 ```
-ssh -R 33:localhost:1337 username@remote_server
+ssh -R remote_port:localhost:local_port username@local_machine_ip
 ```
 3.    **`Dynamic Port Forwarding`**: This type of tunneling allows you to create a "proxy" on a remote server through which you can route traffic from your local computer through the remote server to various Internet resources. This is especially useful when you need anonymous access to the Internet or when you need to bypass network restrictions.
 ```
