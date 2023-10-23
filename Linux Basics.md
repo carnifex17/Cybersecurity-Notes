@@ -320,8 +320,8 @@
 
 |Command|Explanation|
 |-|-|
-|`ip -4 addr`|Вивід IPv4 адрес|
-|`ip -6 addr`|Вивід IPv6 адрес|
+|`ip -4 addr`|Shows IPv4 address|
+|`ip -6 addr`|Shows IPv6 address|
 ---
 
 
@@ -358,19 +358,27 @@
 
 ## SSH Tunneling
 
-**`SSH тунель (або SSH тунелювання)` - це механізм, який дозволяє безпечно передавати дані через незахищену мережу шляхом шифрування і захисту з'єднання між двома точками. 
-`SSH (Secure Shell)` - це протокол для захищеної віддаленої роботи з комп'ютером і передачі даних, і він використовується для створення цих захищених тунелів.**
-
+**`SSH Tunneling` - is a mechanism that allows you to securely transfer data over an unsecured network by encrypting and securing the connection between two points.  
+`SSH (Secure Shell)` -  is a protocol for secure remote computer operation and data transfer, and it is used to create these secure tunnels.**
+Also [this](https://youtu.be/AtuAdk4MwWw?si=85DZ-shYuHFJIqX2) video explains very well this topic
 ---
 
-Основні види SSH тунелювання включають:
+The main types of SSH Tunneling include:
 
-1.    **`Локальний SSH тунель (Local Port Forwarding)`**: Цей тип тунелювання дозволяє вам передавати трафік між вашим локальним комп'ютером і віддаленим сервером через SSH. Наприклад, ви можете створити локальний SSH тунель для доступу до віддаленого веб-сервера через браузер на вашому локальному комп'ютері.
+1.    **`Local Port Forwarding`**: This type of tunneling allows you to pass traffic between your local computer and a remote server over SSH. So shortly we just communicate to some remote service, but in system level all requests to remote server will come through our our local port. It is pretty useful if we want to communicate to remote database as it is our local database. Useful stuff
+```
+ssh -L local_port:destination_address:destination_port username@remote_server
+```
 ---
-2.    **`Віддалений SSH тунель (Remote Port Forwarding)`**: В цьому випадку віддалений сервер використовується для передачі трафіку між віддаленим портом і локальним комп'ютером. Це корисно, коли вам потрібно забезпечити доступ до служб на вашому локальному комп'ютері через віддалений сервер.
+2.    **`Remote or Reverse Port Forwarding`**: In this case, the remote server is used to transfer traffic from the remote port to the local computer. For example if we want to connect from remote pc to our local pc, we could bind our 1337 port on remote server to our local machine 80 port, and now if we are using localhost:1337? it will connect to our local machine web server
 ---
-3.    **`Динамічний SSH тунель (Dynamic Port Forwarding)`**: Цей тип тунелювання дозволяє створити "проксі-сервер" на віддаленому сервері, через який можна маршрутизувати трафік з локального комп'ютера через віддалений сервер до різних інтернет-ресурсів. Це особливо корисно, коли вам потрібен анонімний доступ до Інтернету або коли вам потрібно обійти обмеження в мережі.
-
+```
+ssh -R remote_port:localhost:local_port username@remote_server
+```
+3.    **`Dynamic Port Forwarding`**: This type of tunneling allows you to create a "proxy" on a remote server through which you can route traffic from your local computer through the remote server to various Internet resources. This is especially useful when you need anonymous access to the Internet or when you need to bypass network restrictions.
+```
+ssh -D local_socks_port username@remote_server
+```
 ---
 
 
@@ -405,8 +413,8 @@ The first character `d` is the type of object. In this case, `d` indicates that 
 The first set `rwx` represents the access rights for the ***object owner***:
 
 1. `r` ***Owner*** has the right to read the file or view the contents of the directory. 
-2. The ***owner*** has the right to write or edit the file or create new files in the directory.
-3. The `x` ***Owner*** has the right to execute the file (for directories, this means the ability to access it as a directory).
+2. `-` ***Owner*** has the right to write or edit the file or create new files in the directory.
+3. `x` ***Owner*** has the right to execute the file (for directories, this means the ability to access it as a directory).
 
 The second set of `r-x` represents the access rights for a ***user group***:
 
@@ -422,7 +430,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ## Data Streams, Redirects
 
-**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily
+**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily**
 - `STDIN` - Descriptor 0. Input stream
 - `STDOUT` - Descriptor 1. Output stream
 - `STDERR` - Descriptor 2. Error stream
@@ -430,7 +438,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ---
 
-** *REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
+***REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
 `cat unexistedfile.txt 2> error.txt`
 *Reverse redirect ( < )* is redirect of the output stream through `stdin` so that the input is not through the keyboard but through the file**
 
