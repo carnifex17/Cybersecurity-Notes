@@ -370,10 +370,9 @@ The main types of SSH Tunneling include:
 ssh -L local_port:destination_address:destination_port username@remote_server
 ```
 ---
-2.    **`Remote or Reverse Port Forwarding`**: In this case, the remote server is used to transfer traffic from the remote port to the local computer. For example if we want to connect from remote pc to our local pc, we could bind our 1337 port on remote server to our local machine 80 port, and now if we are using localhost:1337? it will connect to our local machine web server
----
+2.    **`Remote or Reverse Port Forwarding`**: In this case, the remote server is used to transfer traffic from the remote port to the local computer. For example if we want to bypass the firewall which blocks 1337 port, we could do remote port forwarding to 33 port, and then it would forward it to local (subjectively) port 1337, what we've needed 
 ```
-ssh -R remote_port:localhost:local_port username@remote_server
+ssh -R 33:localhost:1337 username@remote_server
 ```
 3.    **`Dynamic Port Forwarding`**: This type of tunneling allows you to create a "proxy" on a remote server through which you can route traffic from your local computer through the remote server to various Internet resources. This is especially useful when you need anonymous access to the Internet or when you need to bypass network restrictions.
 ```
