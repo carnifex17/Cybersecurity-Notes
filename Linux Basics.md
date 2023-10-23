@@ -411,7 +411,7 @@ The first set `rwx` represents the access rights for the ***object owner***:
 The second set of `r-x` represents the access rights for a ***user group***:
 
 1. `r` ***Group*** has the right to read the file or view the contents of the directory.
-2. The ***group*** does not have the right to write the file or create new files in the directory.
+2. `-` ***Group*** does not have the right to write the file or create new files in the directory.
 3. `x` ***Group*** has the right to execute the file (for directories).
 
 The third set of `r-x` represents access rights for ***other users*** (users who are not owners and do not belong to the group):
@@ -424,7 +424,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 **In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily**
 - `STDIN` - Descriptor 0. Input stream
-- `STDOUT` - Descriptor 1. The output stream
+- `STDOUT` - Descriptor 1. Output stream
 - `STDERR` - Descriptor 2. Error stream
 - The output in the output streams is separate and in parallel.
 
