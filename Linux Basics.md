@@ -422,7 +422,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ## Data Streams, Redirects
 
-**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily
+**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily**
 - `STDIN` - Descriptor 0. Input stream
 - `STDOUT` - Descriptor 1. The output stream
 - `STDERR` - Descriptor 2. Error stream
@@ -430,7 +430,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ---
 
-** *REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
+***REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
 `cat unexistedfile.txt 2> error.txt`
 *Reverse redirect ( < )* is redirect of the output stream through `stdin` so that the input is not through the keyboard but through the file**
 
