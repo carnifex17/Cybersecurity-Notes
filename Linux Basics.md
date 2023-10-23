@@ -2,7 +2,7 @@
 # Зміст
 ---
 
-- [Команди та утиліти](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B8-%D1%82%D0%B0-%D1%83%D1%82%D0%B8%D0%BB%D1%96%D1%82%D0%B8)
+- [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B8-%D1%82%D0%B0-%D1%83%D1%82%D0%B8%D0%BB%D1%96%D1%82%D0%B8)
 	- [AWK](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#awk)
 	- [SUDO](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#sudo)
 	- [LESS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#less)
@@ -23,61 +23,61 @@
 	- [SYSTEMCTL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#systemctl)
 	- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
-- [Теорія](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D1%82%D0%B5%D0%BE%D1%80%D1%96%D1%8F)
-	- [Логічні оператори](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
-	- [SSH тунелювання](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
-	- [Права доступу](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
-	- [Канали зв'язку, перенаправлення](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
+- [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D1%82%D0%B5%D0%BE%D1%80%D1%96%D1%8F)
+	- [Logical Operators](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
+	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
+	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
+	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
 
 ---
 ---
-# Команди та утиліти
+# Commands and Utilities
 ---
 ---
 
 ## AWK
 
-**Специфікована мова програмування, яку ми можемо пояснити в лінуксі**
+**Specified Programming Language, which we could use for easy scripts**
 
 ---
 
-|Команда | Пояснення | 
+|Command | Explanation | 
 |----------|-------------|
-| `$1`  | Перший стовпець, 
-| `$0` | Всі стовпці | 
-| `$NF`  | Останній стовпець |
-| `awk '{print $1}'`  | Вивід першого стовпця |
-| `OFS="/"` | Замінити сепаратор на / |
-| `BEGIN {print "Kek"}` | Перед основною командою вивести Kek |
-| `-F:` | Показуємо що строка використовує сепаратор : |
-| `$3 >= 1000` | Значення третього стовпця менше більше за 1000 |
-| `/UUID/`  | Шукати паттерн UUID |
-| `/^UUID/` | Шукати паттерн який починається з UUID |
+| `$1`  | First column, 
+| `$0` | All columns | 
+| `$NF`  | Last colums |
+| `awk '{print $1}'`  | Output of the first column |
+| `OFS="/"` | Change separator to / |
+| `BEGIN {print "Kek"}` | Before the main command, display Kek |
+| `-F:` | We show that the string uses a separator: : |
+| `$3 >= 1000` | The value of the third column is less than more than 1000 |
+| `/UUID/`  | Look for UUID pattern |
+| `/^UUID/` | Look for pattern which begins with UUID |
 
 ---
 
 ## SUDO
 
-**Linux утиліта яка надає можливість виконувати команди з різними рівнями доступу, включаючи root**
+**Linux utility that provides the ability to execute commands with different levels of access, including root**
 
 ---
 
-| Команда | Пояснення |
+| Command | Explanation |
 | ------|-------|
-|`sudo -l` | Чекнути привілеї|
-|`sudo -u` | Робити щось від імені користувача |
-|`sudo su` | Змінити на рут користувача |
-|`sudo` | робити щось від імені рут користувача |
+|`sudo -l` | Check privileges|
+|`sudo -u` | Do smth on behalf of the user |
+|`sudo su` | Change to root user |
+|`sudo` | Do smth on behalf of root user|
 
 ---
 
 ## LESS
 
-**Якщо файл дуже великий то ця утиліта не дає засирати всю строку терміналу, тобто вона скорочує вивід і дозволяє гортати вверх вниз**
+**If the file is very large, this utility does not allow you to clog up the entire term of the terminal, that is, it shortens the output and allows you to scroll up and down**
 
 ---
 
-| Команда | Пояснення |
+| Command | Explanation |
 | ------|-------|
 |`less -F` | Слідкувати за змінами в файлі| 
 |`less -X` |Лишити те що було в файлі без видалення після вимкнення команди|
@@ -86,11 +86,11 @@
 ---
 ## TAIL
 
-**Команда, яка використовується для виведення вмісту файлу, зазвичай в кінці цього файлу**
+**Command used to output the contents of a file, usually at the end of that file**
 
 ---
 
-| Команда | Пояснення |
+| Command | Explanation |
 | ------|-------|
 |`tail -50` | Скільки рядків треба з кінця взяти|
 |`tail +50` | Скільки рядків треба взяти з початку|
@@ -101,11 +101,11 @@
 
 ## WGET 
 
-**Завантажити файли з сайтів**
+**Download files from sites**
 
 ---
 
-|Команда|Пояснення|
+|Command|Explanation|
 |-|-|
 |`wget IP`| Завантажити файл з сайту|
 |`wget -O` | Зберегти файл під новим іменем|
@@ -114,11 +114,11 @@
 ---
 ## GREP
 
-**Команда в операційній системі Linux, яка використовується для пошуку текстових рядків в файлах або виводі інших команд.**
+**Linux command used to search for text strings in files or other commands output**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`grep "text" file.txt` | Найти текст в файлі|
 |`grep -i` | Пошук незалежно від регістра|
@@ -131,11 +131,11 @@
 
 ## SCP
 
-**Команда в Unix-подібних операційних системах, таких як Linux, яка використовується для безпечного копіювання файлів і каталогів з одного комп'ютера на інший через мережу.**
+**Linux command, which is used to securely copy files and directories from one computer to another over a network**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`scp username@remote_server:/full/path/to/remote_file /local/path/to/local_directory/`|З віддаленого сервера на локальний|
 |`scp /local/path/to/local_file username@remote_server:/remote/path/to/destination/`|З локального сервера на віддалений|
@@ -144,10 +144,10 @@
 
 ## FIND
 
-**Команда для Linux яка використовується для пошуку різної інформації в файловій системі**
+**Linux command used to search for various information in the file system**
 
 ---
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`.`| Поточний каталог|
 |`./kek` | Відносний каталог|
@@ -165,7 +165,7 @@
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`ps aux` | Всі процеси |
 |`ps -p PID`| Доп інфа по PID|
@@ -174,11 +174,11 @@
 ---
 ## CHOWN
 
-**Команда в операційній системі Linux, яка використовується для зміни власника або групи файлу або каталогу**
+**Command в операційній системі Linux, яка використовується для зміни власника або групи файлу або каталогу**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`chown owner_name file_name`| Змінити власника|
 |`chown :group1 file1.txt`|Змінити групу файлу|
@@ -188,11 +188,11 @@
 ---
 ## NSLOOKUP
 
-**Команда в операційній системі, яка використовується для виконання DNS-запитів і отримання інформації про доменні імена, IP-адреси та інші DNS-записи.**
+**Command в операційній системі, яка використовується для виконання DNS-запитів і отримання інформації про доменні імена, IP-адреси та інші DNS-записи.**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`nslookup -type=any` | Пошук всіх DNS записів |
 |`nslookup -type={type of dns recording}` |Пошук конкретного DNS запиту|
@@ -201,11 +201,11 @@
 ---
 ## DIG
 
-**Команда яка схожа по сенсу та функціоналу за nslookup**
+**Command яка схожа по сенсу та функціоналу за nslookup**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`dig site.com +short` | A запис|
 |`dig site.com +nocomments` |Без коментарів|
@@ -215,11 +215,11 @@
 ---
 ## UNAME
 
-**Команда в операційній системі Unix та подібних системах, яка виводить інформацію про систему та її ядро.**
+**Command в операційній системі Unix та подібних системах, яка виводить інформацію про систему та її ядро.**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 | `uname -a` |Вся системна інформація|
 | `uname -s`|Назва ядра|
@@ -229,11 +229,11 @@
 
 ## UNIQ
 
-**Команда яка видаляє стрічки, які повторюються**
+**Command яка видаляє стрічки, які повторюються**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`uniq -c`| Рахує скільки раз повторюється|
 | `uniq -d`| Тільки виводить стрічки які повторювались|
@@ -243,11 +243,11 @@
 
 ## SORT
 
-**Команда Linux, яка сортує файли**
+**Command Linux, яка сортує файли**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 | `sort -o outputfile.txt inputfile.txt` |Сортування з виводом у вказаний файл|
 | `sort -r`|Сортування по порядку навпаки|
@@ -258,11 +258,11 @@
 ---
 ## WHOIS
 
-**Команда Linux, яка дістає інформацію про домени**
+**Command Linux, which looks for info about domains**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`whois site.com` | Вивід інформації за доменом|
 |`whois 125.8.888.200`| Вивід інформації за ІР адресою|
@@ -270,22 +270,22 @@
 ---
 ## TAR
 
-**Команда Linux, яка використовується для розархівування tar формату**
+**Command Linux, яка використовується для розархівування tar формату**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`tar -xvf file.tar`| Детальне розархівування|
 
 ---
 ## SYSTEMCTL
 
-**Команда Linux, яка використовується для контролю різноманітними сервісами**
+**Command Linux, яка використовується для контролю різноманітними сервісами**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`sudo systemctl restart service`| Перезавантажити сервіс|
 |`sudo systemctl status service`|Провірити стан сервісу|
@@ -300,7 +300,7 @@
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`nc host port`|Робить з'єднання до хоста на вказаний порт|
 |`nc -l -p port`|Запускає nc в режим слухання(listener) на вказаному порті|
@@ -314,11 +314,11 @@
 
 ## IP
 
-**Команда Linux для контролю ІР. Старіший аналог ifconfig**
+**Command Linux для контролю ІР. Старіший аналог ifconfig**
 
 ---
 
-|Приклад|Пояснення|
+|Command|Explanation|
 |-|-|
 |`ip -4 addr`|Вивід IPv4 адрес|
 |`ip -6 addr`|Вивід IPv6 адрес|
@@ -326,7 +326,7 @@
 
 
 ---
-# Теорія 
+# Theory 
 ---
 
 
@@ -340,23 +340,23 @@
 |`Синтаксис`|`Опис`|
 |-|-|
 |&& |(І)|
-|`команда1 && команда2`| Виконує команду2 лише в разі успіху команди1 (повернення нульового коду виходу). Якщо команда1 завершується невдачею, команда2 не виконується||
+|`Command1 && Command2`| Виконує команду2 лише в разі успіху команди1 (повернення нульового коду виходу). Якщо Command1 завершується невдачею, Command2 не виконується||
 |II |(АБО)|
-|`команда1 II команда2`|Виконує команду2 лише в разі невдачі команди1 (повернення ненульового коду виходу). Якщо команда1 завершується успіхом, команда2 не виконується|
+|`Command1 II Command2`|Виконує команду2 лише в разі невдачі команди1 (повернення ненульового коду виходу). Якщо Command1 завершується успіхом, Command2 не виконується|
 |;| (КОЛОНКА)|
-|`команда1 ; команда2`|Виконує команду2 незалежно від успіху або невдачі команди1. Використовується для послідовного виконання команд|
+|`Command1 ; Command2`|Виконує команду2 незалежно від успіху або невдачі команди1. Використовується для послідовного виконання команд|
  |**&** |(Фонове виконання)|
-|`команда &`| Виконує команду у фоновому режимі, дозволяючи продовжувати роботу в терміналі без очікування завершення команди. Ви можете використовувати команди **bg** або **jobs** для управління фоновими процесами|
+|`Command &`| Виконує команду у фоновому режимі, дозволяючи продовжувати роботу в терміналі без очікування завершення команди. Ви можете використовувати команди **bg** або **jobs** для управління фоновими процесами|
 |**!**| (НЕ)|
-|`! команда`| Виконує команду та повертає обернений код виходу. Якщо команда завершується успіхом, ! команда завершується невдачею, і навпаки|
+|`! Command`| Виконує команду та повертає обернений код виходу. Якщо Command завершується успіхом, ! Command завершується невдачею, і навпаки|
 | **I** | (Канал, або Pipe)|
-|`команда1 I команда2`| Перенаправляє вивід команди1 на вхід команди2. Використовується для передачі даних між командами та фільтрації виводу|
+|`Command1 I Command2`| Перенаправляє вивід команди1 на вхід команди2. Використовується для передачі даних між Commandми та фільтрації виводу|
 
 ---
 
 
 
-## SSH Тунелювання
+## SSH Tunneling
 
 **`SSH тунель (або SSH тунелювання)` - це механізм, який дозволяє безпечно передавати дані через незахищену мережу шляхом шифрування і захисту з'єднання між двома точками. 
 `SSH (Secure Shell)` - це протокол для захищеної віддаленої роботи з комп'ютером і передачі даних, і він використовується для створення цих захищених тунелів.**
@@ -375,7 +375,7 @@
 
 
 
-## Права доступу
+## Access Rights
 
 **У Linux є своя схема показу прав доступу за допомогою цифр, щоб було швидко і легко показати які права де. Кожні три цифри відповідають трьом правам доступу (читання, запис, виконання) для трьох різних категорій користувачів (власник, група, інші).
 Кожна з цих цифр може мати значення від 0 до 7, де кожне значення представляє собою комбінацію трьох можливих прав доступу:**
@@ -387,7 +387,7 @@
 
 ---
 
-### **Права файлу**
+### **File Rights**
 
 Для встановлення прав доступу за допомогою цифр, ви просто додаєте значення цифр для кожної категорії разом:
 Наприклад, `chmod 755 file.txt` встановлює такі права:
@@ -397,51 +397,51 @@
 
 ---
 
-### **Права директорій**
+### **Directory Rights**.
 
-Наприклад, в директорії вивело `drwxr-xr-x`.
-Перший символ `d` - це тип об'єкта. У даному випадку `d` вказує на те, що це каталог. Решта рядка `rwxr-xr-x` складається з **дев'яти** символів, які представляють права доступу для різних категорій користувачів (***власник, група та інші***). Ця частина рядка може розглядатися як три набори з трьох символів кожний.
+For example, in the directory, it displays `drwxr-xr-x`.
+The first character `d` is the type of object. In this case, `d` indicates that it is a directory. The rest of the `rwxr-xr-x` string consists of **nine** characters that represent access rights for different categories of users (***owner, group, and others***). This part of the string can be considered as three sets of three characters each.
 
-Перший набір `rwx` представляє права доступу для ***власника об'єкта***:
+The first set `rwx` represents the access rights for the ***object owner***:
 
-1. `r`  ***Власник*** має право читати файл або переглядати вміст каталогу. 
-2. `w`  ***Власник*** має право записувати або редагувати файл або створювати нові файли в каталозі.
-3. `x`  ***Власник*** має право виконувати файл (для каталогів це означає можливість звертатися до нього як до каталогу).
+1. `r` ***Owner*** has the right to read the file or view the contents of the directory. 
+2. The ***owner*** has the right to write or edit the file or create new files in the directory.
+3. The `x` ***Owner*** has the right to execute the file (for directories, this means the ability to access it as a directory).
 
-Другий набір `r-x` представляє права доступу для ***групи користувачів***:
+The second set of `r-x` represents the access rights for a ***user group***:
 
-1. `r`  ***Група*** має право читати файл або переглядати вміст каталогу.
-2. `-`  ***Група*** не має права записувати файл або створювати нові файли в каталозі.
-3. `x`  ***Група*** має право виконувати файл (для каталогів).
+1. `r` ***Group*** has the right to read the file or view the contents of the directory.
+2. The ***group*** does not have the right to write the file or create new files in the directory.
+3. `x` ***Group*** has the right to execute the file (for directories).
 
-Третій набір `r-x` представляє права доступу для ***інших користувачів*** (користувачів, які не є власниками і не належать до групи):
-1. `r` ***Інші користувачі*** мають право читати файл або переглядати вміст каталогу.
-2. `-` ***Інші користувачі*** не мають права записувати файл або створювати нові файли в каталозі.
-3. `x` ***Інші користувачі*** мають право виконувати файл (для каталогів).
+The third set of `r-x` represents access rights for ***other users*** (users who are not owners and do not belong to the group):
+1. `r` ***Other users*** have the right to read the file or view the contents of the directory.
+2. Other users do not have the right to write the file or create new files in the directory.
+3. x' ***Other users*** have the right to execute the file (for directories).
 
 
-## Канали зв'язку, перенаправлення
+## Data Streams, Redirects
 
-**В Linux є така річ як *канали зв'язку*, по яким передаються дані вводу/виводу в програмах. В кожного з них є свій *дескриптор*, це числовий ідентифікатор який допомагає легше з ними взаємодіяти
-- `STDIN` - Дескриптор 0. Канал вводу
-- `STDOUT` - Дескриптор 1. Канал виводу
-- `STDERR` - Дескриптор 2. Канал помилок
-- Вивід в каналах виводу відбувається окремо і паралельно.
+**In Linux, there is such a thing as *data streams*, which are used to transmit input/output data in programs. Each of them has its own *descriptor*, a numeric identifier that helps to interact with them more easily
+- `STDIN` - Descriptor 0. Input stream
+- `STDOUT` - Descriptor 1. The output stream
+- `STDERR` - Descriptor 2. Error stream
+- The output in the output streams is separate and in parallel.
 
 ---
 
-**Перенаправлення, або ж *REDIRECT( > )* це переведення виводу команди у файл `(ls > dirs.txt).` Переведення за замовчуванням відбувається через канал `stdout`, але його можна змінити. 
+** *REDIRECT( > )* is redirect of the command output to the file `(ls > dirs.txt).` Redirect by default is through the `stdout` stream, but it can be changed. 
 `cat unexistedfile.txt 2> error.txt`
-*Reverse redirect ( < )* це переведення канала виводу через `stdin` щоб ввід був не через клавіатуру а через файл**
+*Reverse redirect ( < )* is redirect of the output stream through `stdin` so that the input is not through the keyboard but through the file**
 
 ---
-### ПРИКЛАДИ
+### Examples
 
 `2>&1` 
-*Якщо перекладати то вивід з `stderr` ми виводимо туди ж де і вивід з `stdout`. І за допомогою цього ми можемо вивести і простий вивід і помилки в один файл, один канал*
+*If we redirect the output from `stderr`, we output to the same place as the output from `stdout`. And with this we can output both simple output and errors in one file, one stream*.
 
 `0>&1`
-*Використовуючи **0>&1**, ви фактично кажете оболонці читати `stdin` з того ж джерела, звідки виводиться `stdout`. Це може бути корисним у випадках, коли вам потрібно об'єднати або копіювати вхідні та вихідні потоки для інтерактивного вводу, наприклад в реверс шеллах*
+*By using **0>&1**, you are actually telling the shell to read `stdin` from the same source as `stdout`. This can be useful in cases where you need to merge or copy input and output streams for interactive input, for example in reverse shells*.
 
 ---
 
