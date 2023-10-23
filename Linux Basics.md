@@ -25,9 +25,9 @@
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
 - [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D1%82%D0%B5%D0%BE%D1%80%D1%96%D1%8F)
 	- [Logical Operators](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D1%96-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B8)
-	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-%D1%82%D1%83%D0%BD%D0%B5%D0%BB%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
-	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D1%83)
-	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8-%D0%B7%D0%B2%D1%8F%D0%B7%D0%BA%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)
+	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
+	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#access-rights)
+	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#data-streams-redirects)
 
 ---
 ---
@@ -331,26 +331,26 @@
 
 
 ---
-## Логічні оператори
+## Logical Operators.
 
-**Cимволи або ключові слова в Linux, які використовуються для обробки та порівняння логічних значень.**
+**Symbols or keywords in Linux that are used to process and compare logical values.
 
 ---
 
-|`Синтаксис`|`Опис`|
+||Syntax||Description||
 |-|-|
 |&& |(І)|
-|`Command1 && Command2`| Виконує команду2 лише в разі успіху команди1 (повернення нульового коду виходу). Якщо Command1 завершується невдачею, Command2 не виконується||
-|II |(АБО)|
-|`Command1 II Command2`|Виконує команду2 лише в разі невдачі команди1 (повернення ненульового коду виходу). Якщо Command1 завершується успіхом, Command2 не виконується|
-|;| (КОЛОНКА)|
-|`Command1 ; Command2`|Виконує команду2 незалежно від успіху або невдачі команди1. Використовується для послідовного виконання команд|
- |**&** |(Фонове виконання)|
-|`Command &`| Виконує команду у фоновому режимі, дозволяючи продовжувати роботу в терміналі без очікування завершення команди. Ви можете використовувати команди **bg** або **jobs** для управління фоновими процесами|
-|**!**| (НЕ)|
-|`! Command`| Виконує команду та повертає обернений код виходу. Якщо Command завершується успіхом, ! Command завершується невдачею, і навпаки|
-| **I** | (Канал, або Pipe)|
-|`Command1 I Command2`| Перенаправляє вивід команди1 на вхід команди2. Використовується для передачі даних між Commandми та фільтрації виводу|
+|`Command1 && Command2`| Executes Command2 only if Command1 succeeds (returns a zero exit code). If Command1 fails, Command2 is not executed.
+|II |(OR)|
+|`Command1 II Command2|| Executes Command2 only if Command1 fails (returns a non-zero exit code). If Command1 succeeds, Command2 is not executed.
+|;| (COLUMN).
+|`Command1 ; Command2`|Executes Command2 regardless of the success or failure of Command1. Use to execute commands in sequence.
+ |**&** |(Background Execution)|
+|Command & Executes the command in the background, allowing you to continue working in the terminal without waiting for the command to complete. You can use the **bg** or **jobs** commands to control background processes.
+|**!**| (NOT)|
+|`! Command`| Executes the command and returns the reverse exit code. If Command succeeds, ! Command fails, and vice versa.
+| **I** | (Channel, or Pipe)|
+|Redirects the output of Command1 to the input of Command2. Used to transfer data between Commands and filter the output.
 
 ---
 
@@ -416,8 +416,8 @@ The second set of `r-x` represents the access rights for a ***user group***:
 
 The third set of `r-x` represents access rights for ***other users*** (users who are not owners and do not belong to the group):
 1. `r` ***Other users*** have the right to read the file or view the contents of the directory.
-2. Other users do not have the right to write the file or create new files in the directory.
-3. x' ***Other users*** have the right to execute the file (for directories).
+2. `-` ***Other users*** do not have the right to write the file or create new files in the directory.
+3. `x` ***Other users*** have the right to execute the file (for directories).
 
 
 ## Data Streams, Redirects
