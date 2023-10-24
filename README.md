@@ -6,7 +6,7 @@
 
 ---
 I am `carnifex17`, cybersecurity enthusiast, ethical hacker. I am active on platforms like [HackTheBox](https://app.hackthebox.com/profile/637180), [TryHackMe](https://tryhackme.com/p/carnifex17)
-> Also you could contact me with [Telegram](t.me/carnifex17) and [Discord](https://discordapp.com/users/761570103158243368)
+> Also you could contact me with [Telegram](https://t.me/carnifex17) and [Discord](https://discordapp.com/users/761570103158243368)
 ---
 
 I will write here all notes, writeups and info that I've been learning in my technical adventure. 
