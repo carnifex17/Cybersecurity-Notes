@@ -320,6 +320,7 @@
 
 |Command|Explanation|
 |-|-|
+|`ip addr`|Shows all addresses|
 |`ip -4 addr`|Shows IPv4 address|
 |`ip -6 addr`|Shows IPv6 address|
 ---
