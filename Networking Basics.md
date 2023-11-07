@@ -1,8 +1,11 @@
 <p align="center">
   <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/cyberspace.gif">
 </p>
+
 ---
+
 # Table of Contents
+
 ---
 -[Commands and Utilities]()
 -[Theory]()
@@ -10,6 +13,7 @@
 ---
 # Commands and Utilities
 ---
+
 ## NETCAT
 
 **Universal utility for network connection in Unix and similar operating systems**
@@ -64,8 +68,10 @@
 
 |`sudo netstat -r`|Display kernel routing table|
 ---
-##TRACEROUTE
-*For understanding traceroute you should know what is TCP/IP suite of protocols, especially what is UDP or User Datagram Protocol. There are a lot of headers but we need TTL (Time to Live). It is a count how much routers, gateways could possibly pass this packet, each router decrements 1. When TTL reaches 0, router sends ICMP "Time Exceeded" message back to the origin of the packet. So traceroute first sends packet with ttl 1, then 2, then 3 etc. until destination is reached or maximum number of hops(30 by default) is tested.*
+## TRACEROUTE
+
+**For understanding traceroute you should know what is TCP/IP suite of protocols, especially what is UDP or User Datagram Protocol. There are a lot of headers but we need TTL (Time to Live). It is a count how much routers, gateways could possibly pass this packet, each router decrements 1. When TTL reaches 0, router sends ICMP "Time Exceeded" message back to the origin of the packet. So traceroute first sends packet with ttl 1, then 2, then 3 etc. until destination is reached or maximum number of hops(30 by default) is tested.**
+
 |Syntax|Explanation|
 |-|-|
 |`traceroute -l IP`|Use ICMP Echo requests instead of UDP packets|
@@ -78,9 +84,10 @@
 ---
 # Theory 
 ---
+
 ## Network Sockets
 
-*A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You coukd use [netstat]() command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.*
+**A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You coukd use [netstat]() command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
 
 ---
 **TCP Socket States**
@@ -100,28 +107,29 @@
 
 ---
 ## ARP
-*The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".*
-###ARP Spoofing && ARP DOS
+**The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".**
+
+### ARP Spoofing && ARP DOS
 **Coming soon...**
 
 ---
 ## OSI
-*The `OSI` (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a telecommunications or networking system into seven distinct layers:*
+**The `OSI` (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a telecommunications or networking system into seven distinct layers:**
 
 ---
-1. Physical Layer: This layer deals with the physical medium and hardware aspects of data transmission, such as cables, switches, and electrical signals.
+1. `Physical Layer`: This layer deals with the physical medium and hardware aspects of data transmission, such as cables, switches, and electrical signals.
 
-2. Data Link Layer: Responsible for the reliable transmission of data over a physical medium, it handles tasks like addressing, error detection, and framing.
+2. `Data Link Layer`: Responsible for the reliable transmission of data over a physical medium, it handles tasks like addressing, error detection, and framing.
 
-3. Network Layer: Focuses on routing and forwarding data packets between different networks, often using logical addressing (like IP addresses).
+3. `Network Layer`: Focuses on routing and forwarding data packets between different networks, often using logical addressing (like IP addresses).
 
-4. Transport Layer: Ensures end-to-end data transfer reliability and provides services like flow control, error detection and correction, and data segmentation.
+4. `Transport Layer`: Ensures end-to-end data transfer reliability and provides services like flow control, error detection and correction, and data segmentation.
 
-5. Session Layer: Manages the establishment, maintenance, and termination of communication sessions between devices, allowing for synchronization and organization of data exchange.
+5. `Session Layer`: Manages the establishment, maintenance, and termination of communication sessions between devices, allowing for synchronization and organization of data exchange.
 
-6. Presentation Layer: Responsible for data translation, encryption, and compression, making sure data is in a format that can be understood by both sender and receiver.
+6. `Presentation Layer`: Responsible for data translation, encryption, and compression, making sure data is in a format that can be understood by both sender and receiver.
 
-7. Application Layer: This is the topmost layer that interacts with end-user applications and provides network services like email, web browsing, and file transfer.
+7. `Application Layer`: This is the topmost layer that interacts with end-user applications and provides network services like email, web browsing, and file transfer.
 ---
 *But I think in this topic pictures are better explainers:*
 <p align="center">
