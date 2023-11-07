@@ -7,9 +7,16 @@
 # Table of Contents
 
 ---
--[Commands and Utilities]()
--[Theory]()
-
+- [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#commands-and-utilities)
+  - [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netcat)
+  - [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#ip)
+  - [NETSTAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netstat)
+  - [TRACEROUTE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#traceroute)  
+- [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#theory)
+  - [Network Sockets](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#network-sockets)
+  - [ARP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp)
+    - [ARP Spoofing & ARP DOS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp-spoofing--arp-dos)
+  - [OSI Model](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#osi)
 ---
 # Commands and Utilities
 ---
@@ -55,22 +62,17 @@
 |Syntax|Explanation|
 |-|-|
 |`netstat -at \| less` | Looks for all tcp sockets|
-
 |`netstat -au \| less`| Looks for all udp sockets|
-
 |`netstat -l \| less `| Looks for all listening sockets. We could combine with -t to make netstat -lt or -lu to search for listening tcp or udp sockets |
-
 |`netstat -p -at `| Shows all TCP sockets with PID|
-
 |`sudo netstat -anp \| grep ":22" `| Finds 22 port target string|
-
 |`sudo netstat -i `|Show network interfaces |
-
 |`sudo netstat -r`|Display kernel routing table|
+
 ---
 ## TRACEROUTE
 
-**For understanding traceroute you should know what is TCP/IP suite of protocols, especially what is UDP or User Datagram Protocol. There are a lot of headers but we need TTL (Time to Live). It is a count how much routers, gateways could possibly pass this packet, each router decrements 1. When TTL reaches 0, router sends ICMP "Time Exceeded" message back to the origin of the packet. So traceroute first sends packet with ttl 1, then 2, then 3 etc. until destination is reached or maximum number of hops(30 by default) is tested.**
+**For understanding traceroute you should know what is TCP/IP suite of protocols, especially what is UDP or User Datagram Protocol. There are a lot of headers but we need TTL (Time to Live). It is a count how much routers, gateways could possibly pass this packet, each router decrements 1. When TTL reaches 0, router sends ICMP "Time Exceeded" message back to the origin of the packet. So traceroute first sends packet with ttl 1, then 2, then 3 etc. until destination is reached or maximum number of hops (30 by default) is tested.**
 
 |Syntax|Explanation|
 |-|-|
@@ -87,7 +89,7 @@
 
 ## Network Sockets
 
-**A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You coukd use [netstat]() command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
+**A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You could use [netstat](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netstat) command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
 
 ---
 **TCP Socket States**
@@ -109,11 +111,11 @@
 ## ARP
 **The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".**
 
-### ARP Spoofing && ARP DOS
+### ARP Spoofing & ARP DOS
 **Coming soon...**
 
 ---
-## OSI
+## OSI model
 **The `OSI` (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a telecommunications or networking system into seven distinct layers:**
 
 ---
@@ -133,9 +135,9 @@
 ---
 *But I think in this topic pictures are better explainers:*
 <p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/cyberspace.gif">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI1.gif">
 </p>
 
 <p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/cyberspace.gif">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI2.gif">
 </p>
