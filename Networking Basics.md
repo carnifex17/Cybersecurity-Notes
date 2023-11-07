@@ -135,9 +135,9 @@
 ---
 *But I think in this topic pictures are better explainers:*
 <p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI1.gif">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI1.png">
 </p>
 
 <p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI2.gif">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI2.png">
 </p>
