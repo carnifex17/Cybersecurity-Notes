@@ -39,6 +39,7 @@
 |`ip addr`|Shows all addresses|
 |`ip -4 addr`|Shows IPv4 address|
 |`ip -6 addr`|Shows IPv6 address|
+
 ---
 
 ## NETSTAT
@@ -64,7 +65,7 @@
 |`sudo netstat -r`|Display kernel routing table|
 ---
 ##TRACEROUTE
-**For understanding traceroute you should know what is TCP/IP suite of protocols, especially what is UDP or User Datagram Protocol. There are a lot of headers but we need TTL (Time to Live). It is a count how much routers, gateways could possibly pass this packet, each router decrements 1. When TTL reaches 0, router sends ICMP "Time Exceeded" message back to the origin of the packet. So traceroute first sends packet with ttl 1, then 2, then 3 etc. until destination is reached or maximum number of hops(30 by default) is tested.**
+*For understanding traceroute you should know what is TCP/IP suite of protocols, especially what is UDP or User Datagram Protocol. There are a lot of headers but we need TTL (Time to Live). It is a count how much routers, gateways could possibly pass this packet, each router decrements 1. When TTL reaches 0, router sends ICMP "Time Exceeded" message back to the origin of the packet. So traceroute first sends packet with ttl 1, then 2, then 3 etc. until destination is reached or maximum number of hops(30 by default) is tested.*
 |Syntax|Explanation|
 |-|-|
 |`traceroute -l IP`|Use ICMP Echo requests instead of UDP packets|
@@ -79,9 +80,10 @@
 ---
 ## Network Sockets
 
-**A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You coukd use [netstat]() command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
+*A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You coukd use [netstat]() command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.*
+
 ---
-TCP Socket States
+**TCP Socket States**
 |Socket State|Explanation|
 |-|-|
 |`LISTEN`|Servers-side. Socket waiting for a connection request |
@@ -95,14 +97,17 @@ TCP Socket States
 |`LAST-ACK`|Server and Client. Socket is waiting ack of termination from remote socket|
 |`TIME-WAIT`| Server and Client. Server and Client. Checking if termination ack was received |
 |`CLOSED`|No connection, socket is terminated |
+
 ---
-##ARP
-**The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".**
+## ARP
+*The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".*
 ###ARP Spoofing && ARP DOS
 **Coming soon...**
+
 ---
-##OSI
-**The `OSI` (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a telecommunications or networking system into seven distinct layers:**
+## OSI
+*The `OSI` (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a telecommunications or networking system into seven distinct layers:*
+
 ---
 1. Physical Layer: This layer deals with the physical medium and hardware aspects of data transmission, such as cables, switches, and electrical signals.
 
@@ -118,7 +123,7 @@ TCP Socket States
 
 7. Application Layer: This is the topmost layer that interacts with end-user applications and provides network services like email, web browsing, and file transfer.
 ---
-**But I think in this topic pictures are better explainers:**
+*But I think in this topic pictures are better explainers:*
 <p align="center">
   <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/cyberspace.gif">
 </p>
