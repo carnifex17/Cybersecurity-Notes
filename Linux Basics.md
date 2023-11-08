@@ -331,7 +331,23 @@
 # Theory 
 ---
 
-# Regex Basics
+## Crontab
+---
+**`Cron` jobs in Linux allow users to run commands at the specific date and time.
+To list all scheduled tasks for the user**
+
+-  crontab -l
+**To create or edit existing command**
+
+-  crontab -e
+
+**If this command is run at the first time user will be asked to choose text editor for editing this file.
+To create a scheduled command user needs to create a records based on the following template**
+- m h dom mon dow command
+
+[Useful link to make date](https://crontab.guru/#25_18_8_11_0)
+
+## Regex Basics
 **Regular expressions, often referred to as regex or regexp, are a powerful tool for pattern matching and text manipulation. They provide a concise and flexible way to search for, match, and extract specific patterns in text data. Regex is supported in many programming languages and text editors. Here are some of the basics of regex with examples for each feature:**
 
 ---
