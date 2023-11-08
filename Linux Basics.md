@@ -337,10 +337,10 @@
 **`Cron` jobs in Linux allow users to run commands at the specific date and time.
 To list all scheduled tasks for the user**
 
--  crontab -l
+-  `crontab -l`
 **To create or edit existing command**
 
--  crontab -e
+-  `crontab -e`
 
 **If this command is run at the first time user will be asked to choose text editor for editing this file.
 To create a scheduled command user needs to create a records based on the following template**
