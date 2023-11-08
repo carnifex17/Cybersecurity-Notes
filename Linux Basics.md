@@ -330,6 +330,49 @@
 # Theory 
 ---
 
+# Regex Basics
+**Regular expressions, often referred to as regex or regexp, are a powerful tool for pattern matching and text manipulation. They provide a concise and flexible way to search for, match, and extract specific patterns in text data. Regex is supported in many programming languages and text editors. Here are some of the basics of regex with examples for each feature:**
+
+---
+- **Literal Characters:**
+	- A regex can represent literal characters. For example, the regex `cat` will match the word "cat" in a text.
+- **Character Classes:**
+	- Square brackets `[]` are used to define character classes. For example, `[aeiou]` matches any vowel, and `[0-9]` matches any digit.
+- **Quantifiers:**
+	- Quantifiers specify how many times a character or group of characters should be repeated.
+	- `*` matches zero or more of the preceding element. For example, `ca*t` matches "ct," "cat," "caat," and so on.
+	- `+` matches one or more of the preceding element. For example, `ca+t` matches "cat," "caat," and so on.
+	- `?` matches zero or one of the preceding element. For example, `colou?r` matches "color" and "colour."
+- **Wildcard:**
+	- The dot `.` represents any character (except a newline character). For example, `c.t` matches "cat," "cut," "c8t," etc.
+- **Anchors:**
+	- `^` matches the start of a line. For example, `^abc` matches "abc" only if it's at the beginning of a line.
+	- `$` matches the end of a line. For example, `xyz$` matches "xyz" only if it's at the end of a line.
+- **Groups and Alternation:**
+	- Parentheses `()` are used to create groups.
+	- `|` represents alternation (OR). For example, `(cat|dog)` matches either "cat" or "dog."
+- **Character Escapes:**
+	- Some characters have special meanings in regex and need to be escaped with a backslash. For example, `\.` matches a literal period.
+- **Quantifier Min and Max:**
+	- Curly braces `{}` allow you to specify the minimum and maximum number of repetitions. For example, `a{2,4}` matches "aa," "aaa," and "aaaa."
+- **Character Shorthands:**
+	- There are shorthands for common character classes:
+		- `\d` matches any digit (equivalent to `[0-9]`).
+		- `\w` matches any word character (equivalent to `[a-zA-Z0-9_]`).
+		- `\s` matches any whitespace character (spaces, tabs, line breaks, etc.).
+- **Negation:**
+	- You can use `^` inside a character class to negate it. For example, `[^0-9]` matches any character that is not a digit.
+- **Backreferences:**
+	- You can refer to matched groups later in the regex using backreferences. For example, `(abc)\1` matches "abcabc."
+- **Modifiers:**
+	- Flags like `i` (case-insensitive) can be added after the regex to change its behavior. For example, `/cat/i` matches "cat," "Cat," or "CAT."
+---
+Here are some examples of regular expressions and what they match:
+- `/^abc/` matches "abc" at the beginning of a line.
+- `/[0-9]+/` matches one or more digits.
+- `/colou?r/` matches "color" or "colour."
+- `/[A-Za-z]+/` matches one or more uppercase or lowercase letters.
+- `/[aeiou]{2,4}/` matches 2 to 4 consecutive vowels.
 
 ---
 ## Logical Operators
