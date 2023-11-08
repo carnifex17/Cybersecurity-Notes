@@ -24,6 +24,7 @@
 	- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
 - [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#theory)
+	- [Crontab](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#crontab)
 	- [Regex Basics](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#regex-basics)
 	- [Logical Operators](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#logical-operators)
 	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
@@ -346,6 +347,8 @@ To create a scheduled command user needs to create a records based on the follow
 - m h dom mon dow command
 
 [Useful link to make date](https://crontab.guru/#25_18_8_11_0)
+
+---
 
 ## Regex Basics
 **Regular expressions, often referred to as regex or regexp, are a powerful tool for pattern matching and text manipulation. They provide a concise and flexible way to search for, match, and extract specific patterns in text data. Regex is supported in many programming languages and text editors. Here are some of the basics of regex with examples for each feature:**
