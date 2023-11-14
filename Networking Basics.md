@@ -14,6 +14,7 @@
   - [TRACEROUTE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#traceroute)  
 - [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#theory)
   - [Network Sockets](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#network-sockets)
+  - [OpenSSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#openssl)
   - [ARP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp)
     - [ARP Spoofing & ARP DOS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp-spoofing--arp-dos)
   - [OSI Model](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#osi)
@@ -152,9 +153,9 @@ openssl x509 -in certificate.pem -text -noout
      openssl rsautl -encrypt -inkey public_key.pem -pubin -in plaintext.txt -out encrypted_data.bin
      ```
    - Decrypt:
-    ```
+     ```
      openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt
-    ```
+     ```
    
 7. Hashing:
    - Generate MD5 hash:
