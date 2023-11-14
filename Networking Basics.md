@@ -118,35 +118,53 @@
 ---
 
 1. Check OpenSSL Version:
-  ```openssl version```
+  ```
+openssl version
+```
    
 
-2. Generate a Private Key:
-   ```openssl genprsa -out private-key.pem 2048```
+3. Generate a Private Key:
+   ```
+   openssl genprsa -out private-key.pem 2048
+   ```
    
 
-3. Generate a Public Key from a Private Key:
- ```openssl rsa -in private-key.pem -pubout -out public-key.pem```
+5. Generate a Public Key from a Private Key:
+ ```
+openssl rsa -in private-key.pem -pubout -out public-key.pem
+```
    
 
-4. Generate a Self-Signed Certificate:
-  ```openssl req -x509 -newkey rsa:2048 -keyout private_key.pem -out certificate.pem -days 365```
+7. Generate a Self-Signed Certificate:
+  ```
+openssl req -x509 -newkey rsa:2048 -keyout private_key.pem -out certificate.pem -days 365
+```
 
-5. View Certificate Information:
-  ```openssl x509 -in certificate.pem -text -noout```
+9. View Certificate Information:
+  ```
+openssl x509 -in certificate.pem -text -noout
+```
    
 
-6. Encrypt/Decrypt a File using RSA:
+11. Encrypt/Decrypt a File using RSA:
    - Encrypt:
-     ```openssl rsautl -encrypt -inkey public_key.pem -pubin -in plaintext.txt -out encrypted_data.bin```
+     ```
+     openssl rsautl -encrypt -inkey public_key.pem -pubin -in plaintext.txt -out encrypted_data.bin
+     ```
    - Decrypt:
-    ```openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt```
+    ```
+      openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt
+    ```
    
-7. Hashing:
+11. Hashing:
    - Generate MD5 hash:
-      ```openssl md5 file.txt```
+      ```
+     openssl md5 file.txt
+      ```
    - Generate SHA-256 hash:
-      ```openssl sha256 file.txt```
+      ```
+     openssl sha256 file.txt
+      ```
 
 
 ---
