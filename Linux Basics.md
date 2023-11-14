@@ -313,6 +313,19 @@
 
 ---
 
+## SSH-KEYGEN
+
+**OpenSSH authentication key utility**
+
+---
+**Generate public and private key pair (id_rsa and id_rsa.pub)**
+
+```
+ssh-keygen -o
+```
+---
+
+
 
 ## IP
 
