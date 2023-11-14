@@ -153,7 +153,7 @@ openssl x509 -in certificate.pem -text -noout
      ```
    - Decrypt:
     ```
-      openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt
+    openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt
     ```
    
 7. Hashing:
