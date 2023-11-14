@@ -119,10 +119,16 @@
 
 **Example**
 *Ban the address 192.168.1.6 from the network:*
-```> set arp.spoof.targets 192.168.1.6; arp.ban on```
+
+```linux
+> set arp.spoof.targets 192.168.1.6; arp.ban on
+```
 
 *Spoof 192.168.1.2, 192.168.1.3 and 192.168.1.4:*
-```> set arp.spoof.targets 192.168.1.2-4; arp.spoof on```
+
+```linux
+> set arp.spoof.targets 192.168.1.2-4; arp.spoof on
+```
 **After spoofing or poisoning we could look or change traffic with wireshark**
 
 ---
