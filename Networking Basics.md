@@ -108,6 +108,48 @@
 |`CLOSED`|No connection, socket is terminated |
 
 ---
+
+## OpenSSL
+
+**`OpenSSL` is a widely-used open-source toolkit for implementing the `SSL (Secure Sockets Layer)` and `TLS (Transport Layer Security)` protocols. It provides a set of cryptographic functions and utilities that enable secure communication over a computer network. `OpenSSL` is commonly used for creating and managing `SSL/TLS` certificates, generating cryptographic keys, and performing various cryptographic operations.
+
+Here are some basic and common OpenSSL commands on Linux:**
+
+---
+
+1. Check OpenSSL Version:
+  ```openssl version```
+   
+
+2. Generate a Private Key:
+   ```openssl genprsa -out private-key.pem 2048```
+   
+
+3. Generate a Public Key from a Private Key:
+ ```openssl rsa -in private-key.pem -pubout -out public-key.pem```
+   
+
+4. Generate a Self-Signed Certificate:
+  ```openssl req -x509 -newkey rsa:2048 -keyout private_key.pem -out certificate.pem -days 365```
+
+5. View Certificate Information:
+  ```openssl x509 -in certificate.pem -text -noout```
+   
+
+6. Encrypt/Decrypt a File using RSA:
+   - Encrypt:
+     ```openssl rsautl -encrypt -inkey public_key.pem -pubin -in plaintext.txt -out encrypted_data.bin```
+   - Decrypt:
+    ```openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt```
+   
+7. Hashing:
+   - Generate MD5 hash:
+      ```openssl md5 file.txt```
+   - Generate SHA-256 hash:
+      ```openssl sha256 file.txt```
+
+
+---
 ## ARP
 **The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".**
 
@@ -162,3 +204,5 @@
 <p align="center">
   <img width="788" height="504" src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI2.png">
 </p>
+
+---
