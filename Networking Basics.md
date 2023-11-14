@@ -118,35 +118,35 @@
 ---
 
 1. Check OpenSSL Version:
-  ```
+```
 openssl version
 ```
    
 
-3. Generate a Private Key:
-   ```
-   openssl genprsa -out private-key.pem 2048
-   ```
+2. Generate a Private Key:
+```
+openssl genprsa -out private-key.pem 2048
+```
    
 
-5. Generate a Public Key from a Private Key:
- ```
+3. Generate a Public Key from a Private Key:
+```
 openssl rsa -in private-key.pem -pubout -out public-key.pem
 ```
    
 
-7. Generate a Self-Signed Certificate:
+4. Generate a Self-Signed Certificate:
   ```
 openssl req -x509 -newkey rsa:2048 -keyout private_key.pem -out certificate.pem -days 365
 ```
 
-9. View Certificate Information:
+5. View Certificate Information:
   ```
 openssl x509 -in certificate.pem -text -noout
 ```
    
 
-11. Encrypt/Decrypt a File using RSA:
+6. Encrypt/Decrypt a File using RSA:
    - Encrypt:
      ```
      openssl rsautl -encrypt -inkey public_key.pem -pubin -in plaintext.txt -out encrypted_data.bin
@@ -156,7 +156,7 @@ openssl x509 -in certificate.pem -text -noout
       openssl rsautl -decrypt -inkey private_key.pem -in encrypted_data.bin -out decrypted_data.txt
     ```
    
-11. Hashing:
+7. Hashing:
    - Generate MD5 hash:
       ```
      openssl md5 file.txt
