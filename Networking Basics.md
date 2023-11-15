@@ -118,7 +118,8 @@ Mask structure:
 
 Subnet mask could be shown with 2 types: decimal and prefix
 - Decimal: **255.255.255.0**
-- **Prefix: /24**. Prefix 24 means 24 bits of subnet address in IP address
+- **Prefix: /24**. Prefix 24 means 24 bits of subnet address in IP address.
+
 **The subnet mask does not have to end on an octet boundary**
 
 |Explanation|Number|
