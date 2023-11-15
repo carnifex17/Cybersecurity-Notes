@@ -106,6 +106,7 @@ Routers works with subnets, not just with certain computers.
 Mask structure:
 - 1 in position, specifying net number
 - 0 in position, specifying host number
+
 |Explanation|Number|
 |-|-|
 |`IP(Decimal):`| 213.180.193.3|
