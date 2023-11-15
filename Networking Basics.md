@@ -102,11 +102,11 @@
 Routers works with subnets, not just with certain computers.
 ---
 ### Subnet Mask
-**`Subnet mask` is 32-bit number, which shows us, where in IP address number of network, and where is host.**
+**`Subnet mask` is 32-bit number, which shows us, where in IP address number of network, and where is host. Previously, `Subnet Classes` were used to classify subnets, but this scheme is outdated, so they started using `CIDR`, which means `Classless Inter-Domain Routing`**
 
 Mask structure:
-- 1 in position, specifying net number
-- 0 in position, specifying host number
+- **1** in position, specifying net number
+- **0** in position, specifying host number
 
 |Explanation|Number|
 |-|-|
@@ -118,8 +118,8 @@ Mask structure:
 ---
 
 Subnet mask could be shown with 2 types: decimal and prefix
-- Decimal: **255.255.255.0**
-- **Prefix: /24**. Prefix 24 means 24 bits of subnet address in IP address.
+- **Decimal**: 255.255.255.0
+- **Prefix**: /24. Prefix 24 means 24 bits of subnet address in IP address.
 
 **The subnet mask does not have to end on an octet boundary**
 
@@ -133,6 +133,8 @@ Subnet mask could be shown with 2 types: decimal and prefix
 |`Host(Decimal):`| 0.0.1.3|
 
 So algoritm is that you should replace all `one's` in IP with `zero's` in mask at the same position.
+
+---
 
 ## Network Sockets
 
