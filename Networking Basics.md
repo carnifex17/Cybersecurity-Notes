@@ -128,7 +128,9 @@ One of the most important pieces of information in an `SSL` certificate is the w
 
 There are several different types of SSL certificates. One certificate can apply to a single website or several websites, depending on the type:
 
-  - 'Single-domain': A single-domain` SSL` certificate applies to only one domain (a "domain" is the name of a website, like www.cloudflare.com).
+---
+
+  - 'Single-domain': A single-domain `SSL` certificate applies to only one domain (a "domain" is the name of a website, like www.cloudflare.com).
 
 --- 
 
