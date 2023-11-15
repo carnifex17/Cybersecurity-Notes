@@ -108,10 +108,10 @@ Mask structure:
 - 0 in position, specifying host number
 |Explanation|Number|
 |-|-|
-|IP(Decimal):| 213.180.193.3|
-|IP:| 11010101.10110100.11000001.00000011|
-|Mask:| 11111111.11111111.11111111.00000000|
-|Subnet:| 11010101.10110100.11000001.00000000|
+|`IP(Decimal):`| 213.180.193.3|
+|`IP:`| 11010101.10110100.11000001.00000011|
+|`Mask:`| 11111111.11111111.11111111.00000000|
+|`Subnet:`| 11010101.10110100.11000001.00000000|
 
 ---
 
@@ -119,14 +119,15 @@ Subnet mask could be shown with 2 types: decimal and prefix
 - Decimal: **255.255.255.0**
 - **Prefix: /24**. Prefix 24 means 24 bits of subnet address in IP address
 **The subnet mask does not have to end on an octet boundary**
+
 |Explanation|Number|
 |-|-|
-|IP(Decimal): | 213.180.193.3 /20|
-|IP:| 11010101.10110100.11000001.00000011|
-|Mask:| 11111111.11111111.11110000.00000000|
-|Subnet:| 11010101.10110100.11000000.00000000|
-|Subnet(Decimal):| 213.180.192.0|
-|Host(Decimal):| 0.0.1.3|
+|`IP(Decimal):`| 213.180.193.3 /20|
+|`IP:`| 11010101.10110100.11000001.00000011|
+|`Mask:`| 11111111.11111111.11110000.00000000|
+|`Subnet:`| 11010101.10110100.11000000.00000000|
+|`Subnet(Decimal):`| 213.180.192.0|
+|`Host(Decimal):`| 0.0.1.3|
 
 So algoritm is that you should replace all `one's` in IP with `zero's` in mask at the same position.
 
