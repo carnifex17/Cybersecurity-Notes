@@ -110,13 +110,43 @@
 
 ---
 
+## SSL
+
+**`SSL`, or Secure Sockets Layer, is an encryption-based Internet security protocol. It was first developed by Netscape in 1995 for the purpose of ensuring privacy, authentication, and data integrity in Internet communications. SSL is the predecessor to the modern TLS encryption used today.**
+
+---
+
+### What is an `SSL` certificate?
+
+`SSL` can only be implemented by websites that have an SSL certificate (technically a "TLS certificate"). An `SSL` certificate is like an ID card or a badge that proves someone is who they say they are. `SSL` certificates are stored and displayed on the Web by a website's or application's server.
+
+One of the most important pieces of information in an `SSL` certificate is the website's public key. The public key makes encryption and authentication possible. A user's device views the public key and uses it to establish secure encryption keys with the web server. Meanwhile the web server also has a private key that is kept secret; the private key decrypts data encrypted with the public key.
+
+---
+ 
+### What are the types of SSL certificates?
+
+There are several different types of SSL certificates. One certificate can apply to a single website or several websites, depending on the type:
+
+  - 'Single-domain': A single-domain` SSL` certificate applies to only one domain (a "domain" is the name of a website, like www.cloudflare.com).
+
+--- 
+
+  - 'Wildcard': Like a single-domain certificate, a wildcard SSL certificate applies to only one domain. However, it also includes that domain's subdomains. For example, a wildcard certificate could cover www.cloudflare.com, blog.cloudflare.com, and developers.cloudflare.com, while a single-domain certificate could only cover the first.
+
+---
+
+  - 'Multi-domain': As the name indicates, multi-domain SSL certificates can apply to multiple unrelated domains.
+
+---
+
 ## OpenSSL
 
 **`OpenSSL` is a widely-used open-source toolkit for implementing the `SSL (Secure Sockets Layer)` and `TLS (Transport Layer Security)` protocols. It provides a set of cryptographic functions and utilities that enable secure communication over a computer network. `OpenSSL` is commonly used for creating and managing `SSL/TLS` certificates, generating cryptographic keys, and performing various cryptographic operations.**
 
-**Here are some basic and common OpenSSL commands on Linux:**
-
 ---
+
+**Here are some basic and common OpenSSL commands on Linux:**
 
 1. Check OpenSSL Version:
 ```
@@ -169,7 +199,9 @@ openssl x509 -in certificate.pem -text -noout
 
 
 ---
+
 ## ARP
+
 **The acronym `ARP` stands for `Address Resolution Protocol` which is one of the most important protocols of the Data link layer in the `OSI` model. It is responsible to find the hardware address of a host from a known `IP` address. So as I get we use ARP when we need to send some info on 2 level of `OSI`, which requires `MAC` address. Every machine has it's own `ARP` cache, where is table like IP-MAC data. So when we need to send some data on `Data Link` level, we broadcast request to entire network like "Hey, who is 10.10.10.10, I want to find his MAC". And if we found it address, it will tell us back with "Hi, you looking for 10.10.10.10? It's me, here's my MAC".**
 
 ### ARP Spoofing & ARP DOS
@@ -197,7 +229,9 @@ openssl x509 -in certificate.pem -text -noout
 **After spoofing or poisoning we could look or change traffic with wireshark**
 
 ---
+
 ## OSI model
+
 **The `OSI` (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a telecommunications or networking system into seven distinct layers:**
 
 ---
