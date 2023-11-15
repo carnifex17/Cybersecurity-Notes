@@ -30,6 +30,8 @@
 	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
 	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#access-rights)
 	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#data-streams-redirects)
+- [Useful Commands]()
+	-[SSH-Keygen]() 
 
 ---
 ---
@@ -313,19 +315,6 @@
 
 ---
 
-## SSH-KEYGEN
-
-**OpenSSH authentication key utility**
-
----
-**Generate public and private key pair (id_rsa and id_rsa.pub)**
-
-```
-ssh-keygen -o
-```
----
-
-
 
 ## IP
 
@@ -535,5 +524,13 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 
 ---
 
+# Useful Commands
 
+---
+**Generate public and private key pair (id_rsa and id_rsa.pub)**
+
+```
+ssh-keygen -o
+```
+---
 
