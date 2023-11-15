@@ -89,6 +89,45 @@
 # Theory 
 ---
 
+## IP and Subnetting
+
+**IP or Internet Protocol is Network OSI layers protocol, which is used for identifying devices in the Internet. For this it uses IP addresses. But there are billions of devices, so to communicate fast and easy with each of it, IP connects firstly not to devices itself, but to subnet, in which this device is located. This is called `Scaling`. Also IP address is 32 bit number, where every 8 bit is called `octet`**
+
+---
+
+**`Subnet` - is the set of computers, which older part of IP address is same:**
+- 312.245.10.1 
+- 312.245.10.2 
+- 312.245.10.3 
+Routers works with subnets, not just with certain computers.
+---
+### Subnet Mask
+**`Subnet mask` is 32-bit number, which shows us, where in IP address number of network, and where is host.**
+Mask structure:
+- 1 in position, specifying net number
+- 0 in position, specifying host number
+|-|-|
+|IP(Decimal): | 213.180.193.3|
+|IP: | 11010101.10110100.11000001.00000011|
+|Mask: | 11111111.11111111.11111111.00000000|
+|Subnet: | 11010101.10110100.11000001.00000000|
+
+---
+
+Subnet mask could be shown with 2 types: decimal and prefix
+- Decimal: **255.255.255.0**
+- **Prefix: /24**. Prefix 24 means 24 bits of subnet address in IP address
+**The subnet mask does not have to end on an octet boundary**
+
+|-|-|
+|IP(Decimal): | 213.180.193.3 /20|
+|IP: | 11010101.10110100.11000001.00000011|
+|Mask: | 11111111.11111111.11110000.00000000|
+|Subnet: | 11010101.10110100.11000000.00000000|
+|Subnet(Decimal): | 213.180.192.0|
+|Host(Decimal): | 0.0.1.3|
+So algoritm is that you should replace all `one's` in IP with `zero's` in mask at the same position.
+
 ## Network Sockets
 
 **A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You could use [netstat](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netstat) command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
@@ -110,6 +149,12 @@
 |`CLOSED`|No connection, socket is terminated |
 
 ---
+
+## DMZ
+
+**`DMZ`, or Demilitarized Zone, in the context of computer networks, is a segregated area that acts as a buffer between a trusted internal network and an untrusted external network, such as the internet. It typically contains servers that need to be accessible from the internet. like web servers or email servers. The `DMZ` helps enhance security by isolation these servers from the internal network, by reducing the risk of unauthorized access to sensitive information.**
+
+
 
 ## SSL
 
