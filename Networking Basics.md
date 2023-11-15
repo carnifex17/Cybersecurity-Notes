@@ -106,6 +106,7 @@ Routers works with subnets, not just with certain computers.
 Mask structure:
 - 1 in position, specifying net number
 - 0 in position, specifying host number
+|||
 |-|-|
 |IP(Decimal): | 213.180.193.3|
 |IP: | 11010101.10110100.11000001.00000011|
@@ -118,7 +119,7 @@ Subnet mask could be shown with 2 types: decimal and prefix
 - Decimal: **255.255.255.0**
 - **Prefix: /24**. Prefix 24 means 24 bits of subnet address in IP address
 **The subnet mask does not have to end on an octet boundary**
-
+|||
 |-|-|
 |IP(Decimal): | 213.180.193.3 /20|
 |IP: | 11010101.10110100.11000001.00000011|
