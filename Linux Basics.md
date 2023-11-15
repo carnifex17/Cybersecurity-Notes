@@ -30,8 +30,7 @@
 	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
 	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#access-rights)
 	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#data-streams-redirects)
-- [Useful Commands]()
-	-[SSH-Keygen]() 
+- [Useful Commands](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#useful-commands)
 
 ---
 ---
