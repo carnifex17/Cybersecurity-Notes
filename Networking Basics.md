@@ -103,6 +103,7 @@ Routers works with subnets, not just with certain computers.
 ---
 ### Subnet Mask
 **`Subnet mask` is 32-bit number, which shows us, where in IP address number of network, and where is host.**
+
 Mask structure:
 - 1 in position, specifying net number
 - 0 in position, specifying host number
