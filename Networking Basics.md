@@ -198,6 +198,24 @@ There are several different types of SSL certificates. One certificate can apply
 
 ---
 
+## SMB
+
+**`SMB` or `Server Message Block` is a network protocol used for file and printer sharing in a local area network (LAN). It allows computers to share files, printers, and other resources. SMB is often used in Windows-based environments, and it enables users to access files and resources on other computers within the same network.**
+
+---
+
+### Smb Enumeration
+
+**There are a good topic about this in [GeeksForGeeks](https://www.geeksforgeeks.org/smb-enumeration/) and in [HackTricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb#smb)** 
+
+---
+
+List SMB shares:
+
+```smbclient -L <target IP>```
+
+---
+
 ## OpenSSL
 
 **`OpenSSL` is a widely-used open-source toolkit for implementing the `SSL (Secure Sockets Layer)` and `TLS (Transport Layer Security)` protocols. It provides a set of cryptographic functions and utilities that enable secure communication over a computer network. `OpenSSL` is commonly used for creating and managing `SSL/TLS` certificates, generating cryptographic keys, and performing various cryptographic operations.**
