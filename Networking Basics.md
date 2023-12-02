@@ -17,6 +17,7 @@
   - [Network Sockets](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#network-sockets)
   - [DMZ](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#dmz)
   - [SSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#ssl)
+  - [SMB](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#smb)
   - [OpenSSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#openssl)
   - [ARP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp)
     - [ARP Spoofing & ARP DOS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp-spoofing--arp-dos)
@@ -212,7 +213,9 @@ There are several different types of SSL certificates. One certificate can apply
 
 List SMB shares:
 
-```smbclient -L <target IP>```
+```
+smbclient -L <target IP>
+```
 
 ---
 
