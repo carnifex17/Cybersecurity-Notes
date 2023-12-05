@@ -3,17 +3,19 @@
 # Table of Contents
 
 ---
-- [SSRF]()
-- [File Upload]()
+- [SSRF](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Web%20Security%20Basics.md#ssrf)
+- [File Upload](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Web%20Security%20Basics.md#file-upload-vulnerability)
 - []()
 - []()
 ---
-# Title
+# Web Security Basics
 ---
 
 ## SSRF
 
 **SSRF - Server-Side Request Forgery is the attack against the server, the attacker causes the application to make an HTTP request back to the server that is hosting the application**
+
+---
 
 ### Example
 An attacker can submit the following request to exploit the SSRF vulnerability, and access the administrative interface:
@@ -30,6 +32,8 @@ stockApi=http://192.168.0.68/admin
 ## File Upload Vulnerability
 
 **File upload vulnerabilities are when a web server allows users to upload files to its filesystem without sufficiently validating things like their name, type, contents, or size.**
+
+---
 
 ### Payloads
 
