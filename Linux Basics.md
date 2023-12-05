@@ -526,10 +526,19 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 # Useful Commands
 
 ---
-**Generate public and private key pair (id_rsa and id_rsa.pub)**
+
+**Generate public and private key pair (id_rsa and id_rsa.pub):**
 
 ```
 ssh-keygen -o
 ```
+---
+
+**[CeWL](https://www.geeksforgeeks.org/cewl-tool-creating-custom-wordlists-tool-in-kali-linux/) (pronounced "cool") is a custom word list generator tool that spiders websites to create word lists based on the site's content**
+```
+cewl -d 0 -m 5 -w usernames.txt http://MACHINE_IP/team.php --lowercase
+```
+---
+
 ---
 
