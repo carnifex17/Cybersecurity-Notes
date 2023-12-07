@@ -55,6 +55,8 @@ GET /example/exploit.php?command=id HTTP/1.1
 ### Security Bypass
 
 1. **MIME Type**. Your browser could check you file type with Content-Type header with different [MIME](https://www.sitepoint.com/mime-types-complete-list/) type value, but if you change it, you also could bypass it
+2. **Magic Bytes**. This is synonym for file signatures, and websites could verify file by them also. Shortly, it is first bytes in file, which shows us which filetype it is. List of all magic bytes are [here](https://en.wikipedia.org/wiki/List_of_file_signatures) and a little more about them is [here](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
+
 
 ---
 

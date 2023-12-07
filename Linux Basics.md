@@ -30,6 +30,7 @@
 	- [SSH Tunneling](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ssh-tunneling)
 	- [Access Rights](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#access-rights)
 	- [Data Streams, Redirects](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#data-streams-redirects)
+	- [File signatures](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#file-signatures)
 - [Useful Commands](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#useful-commands)
 
 ---
@@ -521,6 +522,7 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 `0>&1`
 *By using **0>&1**, you are actually telling the shell to read `stdin` from the same source as `stdout`. This can be useful in cases where you need to merge or copy input and output streams for interactive input, for example in reverse shells*.
 
+---
 
 ## File signatures
 
