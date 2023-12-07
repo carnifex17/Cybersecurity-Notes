@@ -521,6 +521,24 @@ The third set of `r-x` represents access rights for ***other users*** (users who
 `0>&1`
 *By using **0>&1**, you are actually telling the shell to read `stdin` from the same source as `stdout`. This can be useful in cases where you need to merge or copy input and output streams for interactive input, for example in reverse shells*.
 
+
+## File signatures
+
+File signatures, commonly referred to as "**magic bytes**", are specific byte sequences at the beginning of a file that identify or verify its content type and format. These bytes often have corresponding **ASCII** characters, allowing for easier human readability when inspected. The identification process helps software applications quickly determine whether a file is in a format they can handle, aiding operational functionality and security measures.
+
+- In cyber security, file signatures are crucial for identifying file types and formats. You'll encounter them in malware analysis, incident response, network traffic inspection, web security checks, and forensics. Knowing how to work with these magic bytes can help you quickly identify malicious or suspicious activity and choose the right tools for deeper analysis.
+
+**Here is a list of some of the most common files and their magic:**
+
+|File Format|Magic Bytes|ASCII|
+|-|-|-|
+|PNG image file|89 50 4E 47 0D 0A 1A 0A|%PNG|
+|GIF image file|47 49 46 38|GIF8|
+|Windows and DOS executables|4D 5A|MZ|
+|Linux ELF executables|7F 45 4C 46|.ELF|
+|MP3 audio file|49 44 33|ID3|
+
+- You could look all magic bytes [here](https://en.wikipedia.org/wiki/List_of_file_signatures)
 ---
 
 # Useful Commands
