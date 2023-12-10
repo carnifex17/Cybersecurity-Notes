@@ -559,6 +559,14 @@ ssh-keygen -o
 cewl -d 0 -m 5 -w usernames.txt http://MACHINE_IP/team.php --lowercase
 ```
 ---
+**The `cut` command allows you to extract specific sections (columns) of lines from a file or input stream by "cutting" the line into columns based on a delimiter and selecting which columns to display**
+
+```
+--> cut -d ' ' -f1,3,6 access.log
+[2023/10/25:15:42:02] sway.com:443 200
+[2023/10/25:15:42:02] sway.com:443 301
+```
+
 
 ---
 
