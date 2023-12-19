@@ -567,6 +567,10 @@ cewl -d 0 -m 5 -w usernames.txt http://MACHINE_IP/team.php --lowercase
 [2023/10/25:15:42:02] sway.com:443 301
 ```
 
+---
+**The [top](https://www.geeksforgeeks.org/top-command-in-linux-with-examples/) command shows you a list of processes in real time with their usage. It's a dynamic list, meaning it changes with the resource usage of each process.**
+
+---
 
 ---
 
