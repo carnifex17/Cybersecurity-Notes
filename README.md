@@ -16,3 +16,21 @@ I will write here all notes, writeups and info that I've been learning in my tec
 - [Linux Basics](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
 - [Networking Basics](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md)
 ---
+
+# Useful Links
+
+- [HackTheBox](https://www.hackthebox.com/)
+- [HTB Academy](https://academy.hackthebox.com)
+- [TryHackme](https://tryhackme.com/)
+- [PortSwigger](https://portswigger.net/)
+- [CyberChef](https://gchq.github.io/CyberChef/)
+- [GTFOBins](https://gtfobins.github.io/)
+- [Exploit-DB](https://www.exploit-db.com/)
+- [CrackStation](https://crackstation.net/)
+- [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+- [HackTricks](https://book.hacktricks.xyz/welcome/readme)
+- [LOLOL](https://lolol.farm/)
+- [TMUX Cheatsheet](https://tmuxcheatsheet.com/)
+- [ChatGPT](https://chat.openai.com/)
+- [Google Bard](https://bard.google.com/)
+- [Crontab Guru](https://crontab.guru/)
