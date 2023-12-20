@@ -572,5 +572,11 @@ cewl -d 0 -m 5 -w usernames.txt http://MACHINE_IP/team.php --lowercase
 
 ---
 
+**Look for an installed software**
+
+```magic
+dpkg -l
+```
+
 ---
 
