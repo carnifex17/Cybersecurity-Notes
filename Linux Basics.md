@@ -346,7 +346,12 @@ To list all scheduled tasks for the user**
 
 **If this command is run at the first time user will be asked to choose text editor for editing this file.
 To create a scheduled command user needs to create a records based on the following template**
-- m h dom mon dow command
+- `m h dom mon dow command`
+
+**Also you could check privileges for files like this, to locate cron jobs:**
+- `/etc/crontab`
+- `/etc/cron.d`
+- `/var/spool/cron/crontabs/root`
 
 [Useful link to make date](https://crontab.guru/#25_18_8_11_0)
 
