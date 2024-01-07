@@ -34,3 +34,4 @@ I will write here all notes, writeups and info that I've been learning in my tec
 - [ChatGPT](https://chat.openai.com/)
 - [Google Bard](https://bard.google.com/)
 - [Crontab Guru](https://crontab.guru/)
+- [Hash Identifier](https://hashes.com/en/tools/hash_identifier)
