@@ -23,6 +23,7 @@
 	- [SYSTEMCTL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#systemctl)
 	- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
+	- [TMUX](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#tmux)
 - [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#theory)
 	- [Crontab](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#crontab)
 	- [Regex Basics](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#regex-basics)
@@ -552,7 +553,7 @@ File signatures, commonly referred to as "**magic bytes**", are specific byte se
 
 ---
 
-**Generate public and private key pair (id_rsa and id_rsa.pub):**
+**Generate public and private key pair (id_rsa and id_rsa.pub). If you want to add your ssh key to some shell, just copy-paste id_rsa.pub contents into ~/.ssh/authorized_keys file**
 
 ```
 ssh-keygen -o
