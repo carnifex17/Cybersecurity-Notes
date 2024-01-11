@@ -417,9 +417,10 @@ fi [closing]
 To list all scheduled tasks for the user**
 
 -  `crontab -l`
-**To create or edit existing command**
+**Look for your crontab file**
 
--  `crontab -e`
+-  `crontab -e` 
+**To edit your crontab file**
 
 **If this command is run at the first time user will be asked to choose text editor for editing this file.
 To create a scheduled command user needs to create a records based on the following template**
