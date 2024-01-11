@@ -61,6 +61,22 @@
 
 ---
 
+## TEE
+
+**Command for Redirecting Output in Linux**
+
+| Command | Explanation |
+|-|-|
+|`command` | tee file` | Redirect output of command to file and display on the terminal |
+|`command` | tee -a file | Append output of command to file and display on the terminal |
+|`tee file1 file2` | Redirect output to multiple files simultaneously |
+|`tee -a file1 file2` | Append output to multiple files simultaneously |
+|`echo "Text" \| tee file ` | Display and save "Text" to file |
+|`command1 \| tee > (command2)` | Pipe output of command1 to command2 and display on the terminal |
+|`command \| tee /dev/tty` | Display output on the terminal, but not redirect to a file |
+
+
+
 ## SUDO
 
 **Linux utility that provides the ability to execute commands with different levels of access, including root**
@@ -68,7 +84,7 @@
 ---
 
 | Command | Explanation |
-| ------|-------|
+|-|-|
 |`sudo -l` | Check privileges|
 |`sudo -u` | Do smth on behalf of the user |
 |`sudo su` | Change to root user |
@@ -330,6 +346,83 @@
 |`ip -6 addr`|Shows IPv6 address|
 ---
 
+# Bash Scripting Basics
+
+**Bash is the scripting language we use to communicate with Unix-based OS and give commands to the system.**
+
+---
+
+#### Script Execution - Examples
+```bash
+carnifex17@kali[/kali]$ bash script.sh <optional arguments>
+carnifex17@kali[/kali]$ sh script.sh <optional arguments>
+carnifex17@kali[/kali]$ ./script.sh <optional arguments>
+```
+---
+
+#### Shebang
+The `#!/bin/bash` at the beginning of a Bash script is known as a shebang or hashbang. It serves as a directive to the operating system, indicating which interpreter should be used to execute the script.
+
+### Conditional Execution
+
+#### If-Else
+```bash
+if [condition]
+then [execution]
+else [what would be executed if condition would fail]
+fi [closing]
+```
+#### If-Only
+```bash
+if [condition]
+then [execution]
+fi [closing]
+```
+#### If-Elif-Else
+```bash
+if [first condition]
+then [execution]
+elif [second condition]
+then [execution]
+else [what would be executed if conditions would fail]
+fi [closing]
+```
+### Comparison Operators
+| Operator | Explanation |
+|-|-|
+| `-eq` | Equal to |
+| `-ne` | Not equal to |
+| `-lt` | Less than |
+| `-le` | Less than or equal to |
+| `-gt` | Greater than |
+| `-ge` | Greater than or equal to |
+
+### Special Variables
+| | |
+|-|-|
+|`$#`|Number of arguments passed to the script.|
+|`$@`|List of command-line arguments.|
+|`$n`|`n` is number of argument|
+|`$$`|Id of executing process|
+|`$?`|Success of command. `0` is success, `1` is a failure|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 # Theory 
@@ -584,5 +677,10 @@ cewl -d 0 -m 5 -w usernames.txt http://MACHINE_IP/team.php --lowercase
 dpkg -l
 ```
 
+**Base64 encode/decode**
+```bash
+base64 [encode]
+base64 -d [decode]
+```
 ---
 
