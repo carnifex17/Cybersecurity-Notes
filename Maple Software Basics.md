@@ -1,4 +1,4 @@
-Maple Software Basics
+# Maple Software Basics
 
 <p align="center">
   <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/math-calculate.gif">
