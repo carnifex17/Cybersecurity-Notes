@@ -1,5 +1,9 @@
 Maple Software Basics
 
+<p align="center">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/math-calculate.gif">
+</p>
+
 **Maple is a mathematical software that allows users to perform symbolic and numeric computations, including algebraic manipulation, calculus, and equation solving. It is widely used in academic, scientific, and engineering fields for its versatility in mathematical modeling and analysis.**
 
 ---
