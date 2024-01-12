@@ -391,12 +391,40 @@ fi [closing]
 ### Comparison Operators
 | Operator | Explanation |
 |-|-|
-| `-eq` | Equal to |
-| `-ne` | Not equal to |
-| `-lt` | Less than |
-| `-le` | Less than or equal to |
-| `-gt` | Greater than |
-| `-ge` | Greater than or equal to |
+| `-eq` | equal to |
+| `-ne` | not equal to |
+| `-lt` | less than |
+| `-le` | less than or equal to |
+| `-gt` | greater than |
+| `-ge` | greater than or equal to |
+
+### String Operators
+|Operator|Description|
+|-|-|
+|`==`|is equal to|
+|`!=`|is not equal to|
+|`<`| 	is less than in ASCII alphabetical order|
+|`>`| 	is greater than in ASCII alphabetical order|
+|`-z`|if the string is empty (null)|
+|`-n`|if the string is not null|
+
+### File Operators
+
+|Operator|Description|
+|-|-|
+|`-e `|if the file exist|
+|`-f `|tests if it is a file|
+|`-d `|tests if it is a directory|
+|`-L `|tests if it is if a symbolic link|
+|`-N `|checks if the file was modified after it was last read|
+|`-O `|if the current user owns the file|
+|`-G `|if the file’s group id matches the current user’s|
+|`-s `|tests if the file has a size greater than 0|
+|`-r `|tests if the file has read permission|
+|`-w `|tests if the file has write permission|
+|`-x `|tests if the file has execute permission|
+
+
 
 ### Special Variables
 | | |
@@ -407,14 +435,56 @@ fi [closing]
 |`$$`|Id of executing process|
 |`$?`|Success of command. `0` is success, `1` is a failure|
 
+### Regular Variables
+
+```bash
+> variable="Declared without an error."
+> echo $variable
+> Declared without an error.
+```
+### Arrays
+
+```bash
+> domains=(shadow wizard money gang)
+> echo ${domains[0]}
+> shadow
+```
+**OR**
+```bash
+> domains=(shadow wizard "money gang")
+> echo ${domains[2]}
+> money gang
+```
+
+### Script Termination
+
+|Exit Status|Explanation|
+|-|-|
+|`exit 0`|Succesful execution|
+|`exit 1`|General error condition|
+|`exit 2`|Specific error condition|
+
+### Wildcards
+**In Bash, a wildcard refers to a character or a set of characters that can be used to represent a group of filenames or strings. Wildcards are often used in commands to perform operations on multiple files or strings that match a specified pattern.**
+| Wildcard       | Example Usage                    | Explanation                                             |
+|-----------------|----------------------------------|---------------------------------------------------------|
+| `*` (Asterisk)  | `echo *.txt`                     | Matches all files ending with ".txt".                   |
+| `?` (Question Mark) | `ls file?.txt`                | Matches files like "file1.txt", "fileA.txt", etc.       |
+| `[ ]` (Square Brackets) | `ls [aeiou]*.txt`          | Matches any file starting with a vowel and ending with ".txt". |
+| `{ }` (Brace Expansion) | `cp file{1,2,3}.txt dest/` | Expands to "file1.txt", "file2.txt", and "file3.txt" and copies to the destination. |
+| `!(pattern)` (Extended Pattern Matching) | `ls !(file*.txt)`    | Matches all files except those starting with "file" and ending with ".txt". |
+| `?(pattern)` (Zero or One Occurrence) | `ls file?(1).txt`   | Matches "file.txt" or "file1.txt".                      |
+| `+(pattern)` (One or More Occurrences) | `ls file+(1).txt`  | Matches "file1.txt", "file11.txt", etc.                 |
+| `*(pattern)` (Zero or More Occurrences) | `ls file*(1).txt` | Matches "file.txt", "file1.txt", "file11.txt", etc.    |
+
+
 ---
 # Theory 
 ---
 
 ## Crontab
 ---
-**`Cron` jobs in Linux allow users to run commands at the specific date and time.
-To list all scheduled tasks for the user**
+**`Cron` jobs in Linux allow users to run commands at the specific date and time. To list all scheduled tasks for the user**
 
 -  `crontab -l`
 **Look for your crontab file**
@@ -422,8 +492,7 @@ To list all scheduled tasks for the user**
 -  `crontab -e` 
 **To edit your crontab file**
 
-**If this command is run at the first time user will be asked to choose text editor for editing this file.
-To create a scheduled command user needs to create a records based on the following template**
+**If this command is run at the first time user will be asked to choose text editor for editing this file.To create a scheduled command user needs to create a records based on the following template**
 - `m h dom mon dow command`
 
 **Also you could check privileges for files like this, to locate cron jobs:**
