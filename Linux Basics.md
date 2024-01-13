@@ -364,7 +364,7 @@ carnifex17@kali[/kali]$ ./script.sh <optional arguments>
 #### Shebang
 The `#!/bin/bash` at the beginning of a Bash script is known as a shebang or hashbang. It serves as a directive to the operating system, indicating which interpreter should be used to execute the script.
 
-### Conditional Execution
+## Conditional Execution
 
 #### If-Else
 ```bash
@@ -442,7 +442,7 @@ fi [closing]
 > echo $variable
 > Declared without an error.
 ```
-### Arrays
+## Arrays
 
 ```bash
 > domains=(shadow wizard money gang)
@@ -455,6 +455,59 @@ fi [closing]
 > echo ${domains[2]}
 > money gang
 ```
+
+## Loops
+
+### For 
+```bash
+for variable in list
+do
+    # Commands to be executed for each item in the list
+done
+```
+**Example:**
+```bash
+fruits=("apple" "orange" "banana")
+for fruit in "${fruits[@]}"
+do
+    echo "I like $fruit"
+done
+```
+---
+### While
+```bash
+while [ condition ]
+do
+    # Commands to be executed while the condition is true
+done
+```
+**Example:**
+```bash
+count=1 # Count from 1 to 5
+while [ $count -le 5 ]
+do
+    echo $count
+    ((count++))
+done
+```
+---
+### Until
+```bash
+until [ condition ]
+do
+    # Commands to be executed until the condition becomes true
+done
+```
+**Example:**
+```bash
+count=1 # Count from 1 to 5
+until [ $count -gt 5 ]
+do
+    echo $count
+    ((count++))
+done
+```
+
 
 ### Script Termination
 
@@ -477,6 +530,9 @@ fi [closing]
 | `+(pattern)` (One or More Occurrences) | `ls file+(1).txt`  | Matches "file1.txt", "file11.txt", etc.                 |
 | `*(pattern)` (Zero or More Occurrences) | `ls file*(1).txt` | Matches "file.txt", "file1.txt", "file11.txt", etc.    |
 
+### Tips & Tricks
+
+1. You Could use `tee` command for writing output to both standard output and file. If you would use `tee -a`, it would
 
 ---
 # Theory 
