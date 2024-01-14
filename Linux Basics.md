@@ -388,6 +388,33 @@ then [execution]
 else [what would be executed if conditions would fail]
 fi [closing]
 ```
+#### Case
+```bash
+case $variable in
+    pattern1)
+        # Code block to execute when pattern1 matches
+        ;;
+    pattern2)
+        # Code block to execute when pattern2 matches
+        ;;
+    pattern3)
+        # Code block to execute when pattern3 matches
+        ;;
+    *)
+        # Code block to execute if none of the patterns match
+        ;;
+esac
+```
+**Example::**
+```bash
+case $opt in 
+	"1") network_range ;;
+	"2") ping_host ;;
+	"3") network_range && ping_host ;;
+	"*") exit 0 ;;
+esac
+```
+---
 ### Comparison Operators
 | Operator | Explanation |
 |-|-|
@@ -533,6 +560,7 @@ done
 ### Tips & Tricks
 
 1. You Could use `tee` command for writing output to both standard output and file. If you would use `tee -a`, it would
+2. Use `bash -x -v` to verbose debugging
 
 ---
 # Theory 
