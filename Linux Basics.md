@@ -390,20 +390,12 @@ fi [closing]
 ```
 #### Case
 ```bash
-case $variable in
-    pattern1)
-        # Code block to execute when pattern1 matches
-        ;;
-    pattern2)
-        # Code block to execute when pattern2 matches
-        ;;
-    pattern3)
-        # Code block to execute when pattern3 matches
-        ;;
-    *)
-        # Code block to execute if none of the patterns match
-        ;;
+case <expression> in
+	pattern_1 ) statements ;;
+	pattern_2 ) statements ;;
+	pattern_3 ) statements ;;
 esac
+
 ```
 **Example::**
 ```bash
