@@ -395,7 +395,6 @@ case <expression> in
 	pattern_2 ) statements ;;
 	pattern_3 ) statements ;;
 esac
-
 ```
 **Example::**
 ```bash
