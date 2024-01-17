@@ -810,5 +810,12 @@ dpkg -l
 base64 [encode]
 base64 -d [decode]
 ```
+
+**Grab banner**
+```bash
+nc -nv 10.129.2.28 25
+sudo tcpdump -i eth0 host 10.10.14.2 and 10.129.2.28
+```
+
 ---
 
