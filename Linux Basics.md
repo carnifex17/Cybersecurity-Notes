@@ -817,5 +817,10 @@ nc -nv 10.129.2.28 25
 sudo tcpdump -i eth0 host 10.10.14.2 and 10.129.2.28
 ```
 
+**Make wordlist from website crawling**
+```bash
+cewl
+```
+
 ---
 
