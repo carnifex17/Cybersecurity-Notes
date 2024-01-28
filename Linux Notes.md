@@ -24,7 +24,7 @@
 	- [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#netcat)
 	- [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#ip)
 	- [TMUX](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#tmux)
-- [Bash Scripting](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#bash-scripting-basics) 
+- [Bash Scripting](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Notes.md#bash-scripting-basics) 
 - [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#theory)
 	- [Crontab](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#crontab)
 	- [Regex Basics](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md#regex-basics)
