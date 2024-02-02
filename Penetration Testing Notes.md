@@ -392,7 +392,7 @@ sudo nmap {IP} -sV -sC -p3306 --script mysql*
 ---
 
 ## MSSQL
-**Microsoft SQL (MSSQL) is Microsoft's SQL-based relational database management system.**It is popular among database administrators and developers when building applications that run on Microsoft's .NET framework due to its strong native support for .NET. MSSQL have a lot of different targets. Default port is 1433
+**Microsoft SQL (MSSQL) is Microsoft's SQL-based relational database management system.** It is popular among database administrators and developers when building applications that run on Microsoft's .NET framework due to its strong native support for .NET. MSSQL have a lot of different targets. Default port is 1433
 
 ### Databases
 MSSQL has default system databases that can help us understand the structure of all the databases that may be hosted on a target server. 
