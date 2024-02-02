@@ -822,5 +822,9 @@ sudo tcpdump -i eth0 host 10.10.14.2 and 10.129.2.28
 cewl
 ```
 
+**Use pspy64 script to monitor Linux processes**
+```bash
+./pspy64
+```
 ---
 
