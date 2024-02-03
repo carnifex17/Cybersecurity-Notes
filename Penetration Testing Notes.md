@@ -1,7 +1,26 @@
 ---
 # Penetration Testing Notes
 ---
-# Theory
+---
+# Table of Contents
+---
+- [FOOTPRINTING](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#footprinting)
+- [Domain Information](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#domain-information)
+- [PROTOCOLS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#protocols)
+	-[FTP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ftp)
+	-[SMB](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#smb)
+	-[NFS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#nfs)
+	-[SMTP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#smtp)
+	-[IMAP/POP3](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#imap--pop3)
+	-[DNS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#dns)
+	-[SNMP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#snmp)
+	-[MySQL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#mysql)
+	-[MSSQL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#mssql)
+	-[Oracle TNS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#oracle-tns)
+	-[IPMI](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ipmi)
+  	-[PostgreSQL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#postgresql)
+	-[LDAP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ldap)
+
 ---
 ## Footprinting
 ---
@@ -57,6 +76,9 @@ The other part we could gather info about is DNS Records by using as example
 dig any inlanefreight.com
 ```
 ---
+# Protocols
+---
+
 ## FTP
 **The File Transfer Protocol is a standard communication protocol used for the transfer of computer files from a server to a client on a computer network. FTP is built on a client–server model architecture using separate control and data connections between the client and the server.**
 ### TFTP
@@ -501,6 +523,44 @@ curl -X GET http://{IP}/testing.txt
 Hello There Adventurer!
 ```
 
+## PostgreSQL
+<!--- Used https://gist.github.com/Kartones cheetsheet for this Postgres section --->
+**Connect to database**
+```bash
+psql -U postgres
+```
+### Basic Commands:
+- `\?`: Show help
+- `\q`: Quit
+- `\c __database__`: Connect to a database
+- `\d __table__`: Show table definition (columns, etc.) including triggers
+- `\d+ __table__`: More detailed table definition including description and physical disk size
+- `\l`: List databases
+- `\dy`: List events
+- `\df`: List functions
+- `\di`: List indexes
+- `\dn`: List schemas
+- `\dt *.*`: List tables from all schemas (if `*.*` is omitted will only show SEARCH_PATH ones)
+- `\dT+`: List all data types
+- `\dv`: List views
+- `\dx`: List all extensions installed
+- `\df+ __function__` : Show function SQL code. 
+- `\x`: Pretty-format query results instead of the not-so-useful ASCII tables
+- `\copy (SELECT * FROM __table_name__) TO 'file_path_and_name.csv' WITH CSV`: Export a table as CSV
+- `\des+`: List all foreign servers
+- `\dE[S+]`: List all foreign tables
+- `\! __bash_command__`: execute `__bash_command__` (e.g. `\! ls`)
+
+#### User Related:
+- `\du`: List users
+- `\du __username__`: List a username if present.
+- `create role __test1__`: Create a role with an existing username.
+- `create role __test2__ noinherit login password __passsword__;`: Create a role with username and password.
+- `set role __test__;`: Change role for current session to `__test__`.
+- `grant __test2__ to __test1__;`: Allow `__test1__` to set its role as `__test2__`.
+- `\deu+`: List all user mapping on server
+---
+
 ## IPMI
 
 **Intelligent Platform Management Interface (IPMI) is a set of standardized specifications for hardware-based host management systems used for system management and monitoring. It acts as an autonomous subsystem and works independently of the host's BIOS, CPU, firmware, and underlying operating system. IPMI provides sysadmins with the ability to manage and monitor systems even if they are powered off or in an unresponsive state. It operates using a direct network connection to the system's hardware and does not require access to the operating system via a login shell. IPMI communicates over port `623 UDP`. Systems that use the IPMI protocol are called Baseboard Management Controllers (`BMCs`).** If we can access a BMC during an assessment, we would gain full access to the host motherboard and be able to monitor, reboot, power off, or even reinstall the host operating system. Gaining access to a BMC is nearly equivalent to physical access to a system.
@@ -561,41 +621,4 @@ msf6 > run
 - `o` - o subclass is one of the most general subclasses listed in the DN, and it is usually where LDAP starts when it runs a search
 - `ou` - Organizational Unit. Subclass of o. Mostly seen as ou=users or/and ou=group, with each containing a list of user accounts or groups. 
 - `cn` - Common Name. Used to identify the name of a group or user account.
----
-## PostgreSQL
-<!--- Used https://gist.github.com/Kartones cheetsheet for this Postgres section --->
-**Connect to database**
-```bash
-psql -U postgres
-```
-### Basic Commands:
-- `\?`: Show help
-- `\q`: Quit
-- `\c __database__`: Connect to a database
-- `\d __table__`: Show table definition (columns, etc.) including triggers
-- `\d+ __table__`: More detailed table definition including description and physical disk size
-- `\l`: List databases
-- `\dy`: List events
-- `\df`: List functions
-- `\di`: List indexes
-- `\dn`: List schemas
-- `\dt *.*`: List tables from all schemas (if `*.*` is omitted will only show SEARCH_PATH ones)
-- `\dT+`: List all data types
-- `\dv`: List views
-- `\dx`: List all extensions installed
-- `\df+ __function__` : Show function SQL code. 
-- `\x`: Pretty-format query results instead of the not-so-useful ASCII tables
-- `\copy (SELECT * FROM __table_name__) TO 'file_path_and_name.csv' WITH CSV`: Export a table as CSV
-- `\des+`: List all foreign servers
-- `\dE[S+]`: List all foreign tables
-- `\! __bash_command__`: execute `__bash_command__` (e.g. `\! ls`)
-
-#### User Related:
-- `\du`: List users
-- `\du __username__`: List a username if present.
-- `create role __test1__`: Create a role with an existing username.
-- `create role __test2__ noinherit login password __passsword__;`: Create a role with username and password.
-- `set role __test__;`: Change role for current session to `__test__`.
-- `grant __test2__ to __test1__;`: Allow `__test1__` to set its role as `__test2__`.
-- `\deu+`: List all user mapping on server
 ---
