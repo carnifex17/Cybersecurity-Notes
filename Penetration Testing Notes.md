@@ -521,6 +521,7 @@ curl -X GET http://{IP}/testing.txt
 
 Hello There Adventurer!
 ```
+---
 
 ## PostgreSQL
 <!--- Used https://gist.github.com/Kartones cheetsheet for this Postgres section --->
@@ -610,6 +611,7 @@ msf6 > use auxiliary/scanner/ipmi/ipmi_dumphashes
 msf6 > set rhosts {IP}
 msf6 > run
 ```
+---
 
 ## LDAP
 **Lightweight directory access protocol (LDAP) is a protocol that helps users find data about organizations, persons, and more.** LDAP has two main goals: to store data in the LDAP directory and authenticate users to access the directory. It also provides the communication language that applications require to send and receive information from directory services. A directory service provides access to *where* information on organizations, individuals, and other data is located within a network.
