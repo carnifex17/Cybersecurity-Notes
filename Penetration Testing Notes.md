@@ -269,6 +269,38 @@ sudo nmap {IP} -p25 --script smtp-open-relay -v
 ```bash
 sudo nmap {IP} -p25 -sV -sC --script smtp* -v
 ```
+
+---
+
+## Rsync
+**`Rsync` is a fast and efficient tool for locally and remotely copying files.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 ## IMAP / POP3
