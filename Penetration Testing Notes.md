@@ -212,24 +212,23 @@ OpenSSH has six different authentification methods:
 ### Public Key Authentification
 
 In a first step, the SSH server and client authenticate themselves to each other. The server sends a certificate to the client to verify that it is the correct server. After server authentication, however, the client must also prove to the server that it has access authorization. However, the SSH server is already in possession of the encrypted hash value of the password set for the desired user. As a result, users have to enter the password every time they log on to another server during the same session. To make all this process easier, there is ability to use `public` and `private key`. The private key is created individually for the user's own computer and secured with a passphrase that should be longer than a typical password. The private key is stored exclusively on our own computer and always remains secret. Public keys are also stored on the server. The server creates a cryptographic problem with the client's public key and sends it to the client. The client, in turn, decrypts the problem with its own private key, sends back the solution, and thus informs the server that it may establish a legitimate connection. Config file is sshd_config, and located in /etc/ssh/sshd_config, also could be found via command:
+
 ```bash
 cat /etc/ssh/sshd_config  | grep -v "#" | sed -r '/^\s*$/d'
 ```
 
 ### Dangerous Settings
 
-|||
-|-|-|
-|Setting |Description|
-|`PasswordAuthentication yes` |	Allows password-based authentication.|
-|`PermitEmptyPasswords yes` |	Allows the use of empty passwords.|
-|`PermitRootLogin yes` |	Allows to log in as the root user.|
-|`Protocol 1` |	Uses an outdated version of encryption.|
-| `X11Forwarding yes`| 	Allows X11 forwarding for GUI applications.|
-| `AllowTcpForwarding yes` |	Allows forwarding of TCP ports.|
-| `PermitTunnel` |	Allows tunneling.|
-|`DebianBanner yes`| 	Displays a specific banner when logging in.|
-
+| Setting | Description |
+| ---- | ---- |
+| `PasswordAuthentication yes` | Allows password-based authentication. |
+| `PermitEmptyPasswords yes` | Allows the use of empty passwords. |
+| `PermitRootLogin yes` | Allows to log in as the root user. |
+| `Protocol 1` | Uses an outdated version of encryption. |
+| `X11Forwarding yes` | Allows X11 forwarding for GUI applications. |
+| `AllowTcpForwarding yes` | Allows forwarding of TCP ports. |
+| `PermitTunnel` | Allows tunneling. |
+| `DebianBanner yes` | Displays a specific banner when logging in. |
 ### Tips2Hack
 
 1. SSH-Audit
@@ -273,33 +272,21 @@ sudo nmap {IP} -p25 -sV -sC --script smtp* -v
 ---
 
 ## Rsync
-**`Rsync` is a fast and efficient tool for locally and remotely copying files.**
+**`Rsync` is a fast and efficient tool for locally and remotely copying files.** Rsync reduces the amount of data transmitted over the network when a version of the file already exists on the destination host. It does this by sending only the differences between the source files and the older version of the files that reside on the destination server. It is often used for backups and mirroring. You could use [that](https://book.hacktricks.xyz/network-services-pentesting/873-pentesting-rsync) page to view more ways to abuse Rsync. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Tips2Hack
+1. Scanning for Rsync
+```bash
+sudo nmap -sV -p 873 127.0.0.1
+```
+2. Probing for `Accessible Share`
+```bash
+nc -nv 127.0.0.1 873
+```
+3. Enumerating an Open Share
+```bash
+rsync -av --list-only rsync://127.0.0.1/dev
+```
 
 ---
 
@@ -689,6 +676,43 @@ msf6 > use auxiliary/scanner/ipmi/ipmi_dumphashes
 msf6 > set rhosts {IP}
 msf6 > run
 ```
+
+---
+
+## R-Services
+**R-Services are a suite of services hosted to enable remote access or issue commands between Unix hosts over TCP/IP.** Much like telnet, r-services transmit information from client to server(and vice versa.) over the network in an unencrypted format, making it possible for attackers to intercept network traffic (passwords, login information, etc.) by performing man-in-the-middle (`MITM`) attacks. R-Services mostly using ports `512, 513, 514` and only accessible via suite of programs known as `r-commands`. 
+The R-commands suite contains:
+- rcp (`remote copy`)
+- rexec (`remote execution`)
+- rlogin (`remote login`)
+- rsh (`remote shell`)
+- rstat
+- ruptime
+- rwho (`remote who`)
+### Quick Overview
+
+|Command|Service Daemon|Port|Transport Protocol|Description|
+|-|-|-|-|-|
+|`rcp`|`rshd`|514|TCP|Copy a file from the local system to remote (or vice versa). Works like `cp` but don't provide warning for overwriting files.|
+|`rsh`|`rshd`|514|TCP|Opens a shell on remote machine without login. Relies upon trusted entries in the `/etc/hosts/equiv` and `.rhosts` files for validation|
+|`rexec`|`rexecd`|512|TCP|Enables to run shell command on remote machine. Requires authentification with `username:password` or with `/etc/hosts/equiv` and `.rhosts` files |
+|`rlogin`|`rlogind`|513|TCP|Enables a user log in to a remote host over the network. Unix-only. Use `/etc/hosts/equiv` and `.rhosts` files to authentification|
+
+### Tips2Hack
+1. Logging in Using Rlogin
+```bash
+rlogin {IP} -l htb-student
+```
+2. Listing Authenticated Users Using Rwho
+```bash
+rwho
+```
+3. Listing Authenticated Users Using Rusers
+```bash
+rusers -al {IP}
+```
+
+---
 
 ## LDAP
 **Lightweight directory access protocol (LDAP) is a protocol that helps users find data about organizations, persons, and more.** LDAP has two main goals: to store data in the LDAP directory and authenticate users to access the directory. It also provides the communication language that applications require to send and receive information from directory services. A directory service provides access to *where* information on organizations, individuals, and other data is located within a network.
