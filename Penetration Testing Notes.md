@@ -197,6 +197,52 @@ showmount -e {IP}
 ```
 ---
 
+## SSH
+
+**Secure Shell (SSH) enables two computers to establish an encrypted and direct connection within a possibly insecure network on the standard port `TCP 22`.**
+
+OpenSSH has six different authentification methods:
+1. Password authentification
+2. Public-key authentification
+3. Host-based authentification
+4. Keyboard authentification
+5. Challenge-response authentification
+6. GSSAPI authentification
+
+### Public Key Authentification
+
+In a first step, the SSH server and client authenticate themselves to each other. The server sends a certificate to the client to verify that it is the correct server. After server authentication, however, the client must also prove to the server that it has access authorization. However, the SSH server is already in possession of the encrypted hash value of the password set for the desired user. As a result, users have to enter the password every time they log on to another server during the same session. To make all this process easier, there is ability to use `public` and `private key`. The private key is created individually for the user's own computer and secured with a passphrase that should be longer than a typical password. The private key is stored exclusively on our own computer and always remains secret. Public keys are also stored on the server. The server creates a cryptographic problem with the client's public key and sends it to the client. The client, in turn, decrypts the problem with its own private key, sends back the solution, and thus informs the server that it may establish a legitimate connection. Config file is sshd_config, and located in /etc/ssh/sshd_config, also could be found via command:
+```bash
+cat /etc/ssh/sshd_config  | grep -v "#" | sed -r '/^\s*$/d'
+```
+
+### Dangerous Settings
+
+|||
+|-|-|
+|Setting |Description|
+|`PasswordAuthentication yes` |	Allows password-based authentication.|
+|`PermitEmptyPasswords yes` |	Allows the use of empty passwords.|
+|`PermitRootLogin yes` |	Allows to log in as the root user.|
+|`Protocol 1` |	Uses an outdated version of encryption.|
+| `X11Forwarding yes`| 	Allows X11 forwarding for GUI applications.|
+| `AllowTcpForwarding yes` |	Allows forwarding of TCP ports.|
+| `PermitTunnel` |	Allows tunneling.|
+|`DebianBanner yes`| 	Displays a specific banner when logging in.|
+
+### Tips2Hack
+
+1. SSH-Audit
+```bash
+> git clone https://github.com/jtesta/ssh-audit.git && cd ssh-audit
+> ./ssh-audit.py {IP}
+```
+2. Change Auth Method
+```bash
+ssh -v carnifex17@{IP} -o PreferredAuthentications=password
+```
+---
+
 ## SMTP
 **The Simple Mail Transfer Protocol (SMTP) is a protocol for sending emails in an IP network.** It can be used between an email client and an outgoing mail server or between two SMTP servers. SMTP is often combined with the `IMAP` or `POP3` protocols, which can fetch emails and send emails. In principle, it is a client-server-based protocol, although SMTP can be used between a client and a server and between two SMTP servers.
 ### SMTP Servers
@@ -611,7 +657,6 @@ msf6 > use auxiliary/scanner/ipmi/ipmi_dumphashes
 msf6 > set rhosts {IP}
 msf6 > run
 ```
----
 
 ## LDAP
 **Lightweight directory access protocol (LDAP) is a protocol that helps users find data about organizations, persons, and more.** LDAP has two main goals: to store data in the LDAP directory and authenticate users to access the directory. It also provides the communication language that applications require to send and receive information from directory services. A directory service provides access to *where* information on organizations, individuals, and other data is located within a network.
