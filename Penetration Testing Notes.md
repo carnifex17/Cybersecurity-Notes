@@ -211,7 +211,7 @@ OpenSSH has six different authentification methods:
 
 ### Public Key Authentification
 
-In a first step, the SSH server and client authenticate themselves to each other. The server sends a certificate to the client to verify that it is the correct server. After server authentication, however, the client must also prove to the server that it has access authorization. However, the SSH server is already in possession of the encrypted hash value of the password set for the desired user. As a result, users have to enter the password every time they log on to another server during the same session. To make all this process easier, there is ability to use `public` and `private key`. The private key is created individually for the user's own computer and secured with a passphrase that should be longer than a typical password. The private key is stored exclusively on our own computer and always remains secret. Public keys are also stored on the server. The server creates a cryptographic problem with the client's public key and sends it to the client. The client, in turn, decrypts the problem with its own private key, sends back the solution, and thus informs the server that it may establish a legitimate connection. Config file is sshd_config, and located in /etc/ssh/sshd_config, also could be found via command:
+In a first step, the SSH server and client authenticate themselves to each other. The server sends a certificate to the client to verify that it is the correct server. After server authentication, however, the client must also prove to the server that it has access authorization. However, the SSH server is already in possession of the encrypted hash value of the password set for the desired user. As a result, users have to enter the password every time they log on to another server during the same session. To make all this process easier, there is ability to use `public` and `private key`. The **private key** is created individually for the user's own computer and secured with a passphrase that should be longer than a typical password. The private key is stored exclusively on our own computer and always remains secret. **Public keys** are also stored on the server. The server creates a cryptographic problem with the client's public key and sends it to the client. The client, in turn, decrypts the problem with its own private key, sends back the solution, and thus informs the server that it may establish a legitimate connection. Config file is sshd_config, and located in /etc/ssh/sshd_config, also could be found via command:
 
 ```bash
 cat /etc/ssh/sshd_config  | grep -v "#" | sed -r '/^\s*$/d'
@@ -306,7 +306,9 @@ rsync -av --list-only rsync://127.0.0.1/dev
 |`FETCH <ID> all`| Retrieves data associated with a message in the mailbox|
 |`CLOSE`| Removes all messages with the Deleted flag set|
 |`LOGOUT`|Closes the connection with the IMAP server|
+
 ---
+
 ### POP3 Commands
 |Command|Description|
 |-|-|
@@ -711,6 +713,77 @@ rwho
 ```bash
 rusers -al {IP}
 ```
+
+---
+
+## RDP
+**The Remote Desktop Protocol (RDP) is a protocol developed by Microsoft for remote access to a computer running the Windows operating system. This protocol allows display and control commands to be transmitted via the GUI encrypted over IP networks. Works at `Application Layer` of TCP/IP model, typically using `TCP port 3389`. If Network Address Translation (NAT) is used on the route between client and server, as is often the case with Internet connections, the remote computer needs the public IP address to reach the server. It uses `TLS/SSL`**
+
+
+### TIps2Hack
+1. Nmap
+```bash
+nmap -sV -sC {IP} -p3389 --script rdp*
+```
+2. [RDP Security Check](https://github.com/CiscoCXSecurity/rdp-sec-check)
+```bash
+./rdp-sec-check.pl {IP}
+```
+3. Initiate an RDP Session via xfreerdp(or Reminna with GUI)
+```bash
+xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:{IP}
+```
+
+---
+
+## WinRM
+
+**The Windows Remote Management (WinRM) is a simple Windows integrated remote management protocol based on the command line.** WinRM uses the Simple Object Access Protocol (`SOAP`) to establish connections to remote hosts and their applications. WinRM relies on TCP ports `5985` and `5986` for communication, with the last port 5986 using HTTPS. Services like remote sessions using PowerShell and event log merging require WinRM.
+### Tips2Hack
+1. Nmap WinRM
+```bash
+nmap -sV -sC {IP} -p5985,5986 --disable-arp-ping -n
+```
+2. Evil-WinRM
+```bash
+evil-winrm -i {IP} -u carnifex17 -p S3cr3t!
+```
+
+## WMI
+**Windows Management Instrumentation (`WMI`) is Microsoft's implementation and also an extension of the Common Information Model (`CIM`), core functionality of the standardized Web-Based Enterprise Management (`WBEM`) for the Windows platform.** WMI allows read and write access to almost all settings on Windows systems. Mostly uses `TCP port 135`
+### Tips2Hack
+1. WMIexec.py
+```bash
+/usr/share/doc/python3-impacket/examples/wmiexec.py carnifex17:"S3cr3t!"@{IP} "hostname"
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
