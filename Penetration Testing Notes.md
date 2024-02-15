@@ -1,6 +1,10 @@
 ---
 # Penetration Testing Notes
 ---
+<p align="center">
+  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/hacking-is-our-weapon.jpg">
+</p>
+
 # Table of Contents
 ---
 - [FOOTPRINTING](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#footprinting)
@@ -25,11 +29,11 @@
 	- [WinRM](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#winrm)
 	- [WMI](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#wmi)
 	- [LDAP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ldap)
-- [FILE TRANSFERS]()
-	- [Windows File Transfer]()
-	- [Linux File Transfer]()
-	- [Code File Transfer]()
-	- [Miscellaneous File Transfer Methods]()
+- [FILE TRANSFERS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#file-transfers)
+	- [Windows File Transfer](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#windows-file-transfers)
+	- [Linux File Transfer](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#linux-file-transfers)
+	- [Code File Transfer](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#code-file-transfers)
+	- [Miscellaneous File Transfer Methods](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#miscellaneous-file-transfer-methods)
 	
 	
 ---
