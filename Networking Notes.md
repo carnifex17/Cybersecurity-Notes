@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/cyberspace.gif">
-</p>
+![image info](./images/cyberspace.gif)
 
 ---
 
@@ -329,12 +327,8 @@ openssl x509 -in certificate.pem -text -noout
 7. `Application Layer`: This is the topmost layer that interacts with end-user applications and provides network services like email, web browsing, and file transfer.
 ---
 *But I think in this topic pictures are better explainers:*
-<p align="center">
-  <img width="788" height="584" src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI1.png">
-</p>
+![image info](./images/OSI1.png)
 
-<p align="center">
-  <img width="788" height="504" src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/OSI2.png">
-</p>
+![image info](./images/OSI2.png)
 
 ---

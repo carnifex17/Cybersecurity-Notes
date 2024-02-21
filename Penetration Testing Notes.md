@@ -38,9 +38,6 @@
 ---
 
 
-
-
-
 # Reconnaissance
 ---
 ### Our goal is not to get at the systems but to find all the ways to get there. 
@@ -54,13 +51,9 @@ This methodology of footprinting is nested in 6 layers and represents, metaphori
 - Infrastructure-based enumeration
 - Host-based enumeration
 - OS-based enumeration
-<p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/pentesting-image-1.png">
-</p>
+![image info](./images/pentesting-image-1.png)
 So basically our hacking process should look like this (squares is our gaps in security):
-<p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/pentesting-image-2.png">
-</p>
+![image info](./images/pentesting-image-2.png)
 Let's look more about our goals in each layer of this labyrinth:
 
 - Layer No.1: **Internet Presence**
@@ -480,9 +473,7 @@ openssl s_client -connect 137.137.137.137:pop3s
 | `Caching DNS Server` | Caching DNS servers cache information from other name servers for a specified period. The authoritative name server determines the duration of this storage.|
 | `Forwarding Server`| Forwarding servers perform only one function: they forward DNS queries to another DNS server. |
 | `Resolver` | Resolvers are not authoritative DNS servers but perform name resolution locally in the computer or router.|
-<p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/pentesting-image-3.png">
-</p>
+![image info](./images/pentesting-image-3.png)
 There are many useful and not DNS records:
 
 - `A`:  Returns an IPv4 address of the requested domain as a result.

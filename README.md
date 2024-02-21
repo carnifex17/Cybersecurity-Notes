@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/coffee_in_rain_by_kirokaze-d98qb8z.gif">
-</p>
+![image info](./images/cyberpunk-cafe.gif)
 
 # About
 
