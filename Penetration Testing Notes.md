@@ -4,6 +4,9 @@
 
 ![image info](./images/hacking-is-our-weapon.jpg)
 
+> Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look here:
+![<< Linux Notes](./Linux%20Notes.md)| ![Networking Notes>>](./Networking%20Notes.md)
+
 # Table of Contents
 ---
 - [RECONNAISSANCE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#reconnaissance)
@@ -141,10 +144,18 @@ dig any inlanefreight.com
 | --min-rate 300 | Sets the number of packets that will be sent simultaneously. |
 | -T <0-5> | Specifies the specific timing template. |
 
-## Subdomain enumeration
+## Subdomain and Directory Enum
 - **Gobuster DNS**
 ```bash
 gobuster dns -d superkek.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -t 20
+```
+- **Gobuster VHOST**
+```bash
+gobuster vhost -u superkek.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+```
+- **Dirsearch**
+```bash
+dirsearch -u superkek.com
 ```
 
 ## Fuzzing
