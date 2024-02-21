@@ -4,12 +4,13 @@
 
 ![image info](./images/hacking-is-our-weapon.jpg)
 
-> Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look here:
+> Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look to my other repositories:
+- ![Linux Notes](./Linux%20Notes.md)
+- ![Networking Notes](./Networking%20Notes.md)
+- ![Web Security Notes (Coming Soon)](./Web%20Security%20Notes.md)
 
-> ![**<< Linux Notes**](./Linux%20Notes.md) **|** ![**Networking Notes>>**](./Networking%20Notes.md)
-
+<!-- >> ![**<< Linux Notes**](./Linux%20Notes.md) **|** ![**Networking Notes>>**](./Networking%20Notes.md) -->
 # Table of Contents
----
 - [RECONNAISSANCE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#reconnaissance)
 - [Domain Information](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#domain-information)
 - [PROTOCOLS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#protocols)
