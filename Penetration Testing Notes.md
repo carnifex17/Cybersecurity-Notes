@@ -5,6 +5,7 @@
 ![image info](./images/hacking-is-our-weapon.jpg)
 
 > Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look here:
+
 > ![**<< Linux Notes**](./Linux%20Notes.md) **|** ![**Networking Notes>>**](./Networking%20Notes.md)
 
 # Table of Contents
