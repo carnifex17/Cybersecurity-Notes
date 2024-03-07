@@ -1,25 +1,34 @@
+
 ![image info](./images/cyberspace.gif)
+
+> Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look to my other repositories:
+- **[Linux Notes](./Linux%20Notes.md)**
+- **[Penetration Testing Notes](./Penetration%20Testing%20Notes.md)**
+- **Web Security Notes (Coming Soon)**
+- **Active Directory Notes (Coming Not So Soon)**
+- **Windows Notes (Coming Not So Soon)**
+
 
 ---
 
 # Table of Contents
 
 ---
-- [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#commands-and-utilities)
-  - [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netcat)
-  - [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#ip)
-  - [NETSTAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netstat)
-  - [TRACEROUTE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#traceroute)  
-- [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#theory)
-  - [IP and Subnetting](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#ip-and-subnetting)
-  - [Network Sockets](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#network-sockets)
-  - [DMZ](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#dmz)
-  - [SSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#ssl)
-  - [SMB](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#smb)
-  - [OpenSSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#openssl)
-  - [ARP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp)
-    - [ARP Spoofing & ARP DOS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#arp-spoofing--arp-dos)
-  - [OSI Model](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#osi)
+- [Commands and Utilities](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#commands-and-utilities)
+  - [NETCAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#netcat)
+  - [IP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#ip)
+  - [NETSTAT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#netstat)
+  - [TRACEROUTE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#traceroute)  
+- [Theory](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#theory)
+  - [IP and Subnetting](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#ip-and-subnetting)
+  - [Network Sockets](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#network-sockets)
+  - [DMZ](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#dmz)
+  - [SSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#ssl)
+  - [SMB](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#smb)
+  - [OpenSSL](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#openssl)
+  - [ARP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#arp)
+    - [ARP Spoofing & ARP DOS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#arp-spoofing--arp-dos)
+  - [OSI Model](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#osi)
 ---
 # Commands and Utilities
 ---
@@ -139,7 +148,7 @@ So algoritm is that you should replace all `one's` in IP with `zero's` in mask a
 
 ## Network Sockets
 
-**A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You could use [netstat](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md#netstat) command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
+**A `socket` - is one endpoint of a two way communication link between two programs running on the network. Sockets have two main states: They are either connected and facilitating an ongoing network communication, or they are waiting for an incoming connection to connect to them. The listening socket is called the server, and the socket that requests a connection with the listening socket is called a client. You could use [netstat](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Notes.md#netstat) command to manage and discover your own sockets, for what and where are they used. The "Active Internet" section lists the network connections that are (or will be) established to external devices. The "UNIX domain" section lists  the connections that have been established within your computer between different applications, processes, and elements of the operating system.**
 
 ---
 **TCP Socket States**

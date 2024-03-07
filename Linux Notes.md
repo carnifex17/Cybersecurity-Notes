@@ -1,3 +1,13 @@
+
+![image info](./images/linux-penguin.jpg)
+
+> Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look to my other repositories:
+- **[Penetration Testing Notes](./Penetration%20Testing%20Notes.md)**
+- **[Networking Notes](./Networking%20Notes.md)**
+- **Web Security Notes (Coming Soon)**
+- **Active Directory Notes (Coming Not So Soon)**
+- **Windows Notes (Coming Not So Soon)**
+
 ---
 # Table of Contents
 ---
@@ -660,7 +670,7 @@ The main types of SSH Tunneling include:
 
 1.    **`Local Port Forwarding`**: This type of tunneling allows you to pass traffic between your local computer and a remote server over SSH. So shortly we just communicate to some remote service, but in system level all requests to remote server will come through our our local port. It is pretty useful if we want to communicate to remote database as it is our local database. Useful stuff
 
-<img width="500" height="500" src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/ssh-image1.jpg">
+![image info](./images/ssh-image1.jpg)
 
 ```
 ssh -L local_port:destination_address:destination_port username@remote_server
@@ -668,7 +678,7 @@ ssh -L local_port:destination_address:destination_port username@remote_server
 ---
 2.    **`Remote or Reverse Port Forwarding`**: In this case, the remote server is used to transfer traffic from the remote port to the local computer. 
 
-<img width="500" height="500" src="https://github.com/carnifex17/Cybersecurity-Notes/blob/main/images/ssh-image2.jpg">
+![image info](./images/ssh-image2.jpg)
 
 ```
 ssh -R remote_port:localhost:local_port username@local_machine_ip

