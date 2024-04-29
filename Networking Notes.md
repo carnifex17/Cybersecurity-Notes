@@ -152,6 +152,7 @@ So algoritm is that you should replace all `one's` in IP with `zero's` in mask a
 
 ---
 **TCP Socket States**
+
 |Socket State|Explanation|
 |-|-|
 |`LISTEN`|Servers-side. Socket waiting for a connection request |

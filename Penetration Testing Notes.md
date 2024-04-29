@@ -266,6 +266,7 @@ smbclient -U username \\\\13.13.13.13\\share
 rpcclient -U "" 10.129.14.128
 ```
 With connected RPC clietn we could use many different functions as:
+
 |Function|Description|
 |-|-|
 |`srvinfo`|Server information|
@@ -437,6 +438,7 @@ rsync -av --list-only rsync://127.0.0.1/dev
 ## IMAP / POP3
 **With the help of the Internet Message Access Protocol (IMAP), access to emails from a mail server is possible. Unlike the Post Office Protocol (POP3), IMAP allows online management of emails directly on the server and supports folder structures.** Thus, it is a network protocol for the online management of emails on a remote server. The protocol is client-server-based and allows synchronization of a local email client with the mailbox on the server, providing a kind of network file system for emails, allowing problem-free synchronization across several independent clients. POP3, on the other hand, does not have the same functionality as IMAP, and it only provides listing, retrieving, and deleting emails as functions at the email server. Therefore, protocols such as IMAP must be used for additional functionalities such as hierarchical mailboxes directly at the mail server, access to multiple mailboxes during a session, and preselection of emails. Clients access these structures online and can create local copies. Emails remain on the server until they are deleted. It is also possible for several users to access the email server simultaneously. Without an active connection to the server, managing emails is impossible. However, some clients offer an offline mode with a local copy of the mailbox. The client synchronizes all offline local changes when a connection is reestablished. The client establishes the connection to the server via port 143.
 ### IMAP Commands
+
 |Command|Description|
 |-|-|
 |`LOGIN username password`|User's login|
@@ -770,7 +772,7 @@ psql -U postgres
 
 ## IPMI
 
-**Intelligent Platform Management Interface (IPMI) is a set of standardized specifications for hardware-based host management systems used for system management and monitoring. It acts as an autonomous subsystem and works independently of the host's BIOS, CPU, firmware, and underlying operating system. IPMI provides sysadmins with the ability to manage and monitor systems even if they are powered off or in an unresponsive state. It operates using a direct network connection to the system's hardware and does not require access to the operating system via a login shell. IPMI communicates over port `623 UDP`. Systems that use the IPMI protocol are called Baseboard Management Controllers (`BMCs`).** If we can access a BMC during an assessment, we would gain full access to the host motherboard and be able to monitor, reboot, power off, or even reinstall the host operating system. Gaining access to a BMC is nearly equivalent to physical access to a system.
+**Intelligent Platform Management Interface (IPMI) is a set of standardized specifications for hardware-based host management systems used for system management and monitoring.** It acts as an autonomous subsystem and works independently of the host's BIOS, CPU, firmware, and underlying operating system. IPMI provides sysadmins with the ability to manage and monitor systems even if they are powered off or in an unresponsive state. It operates using a direct network connection to the system's hardware and does not require access to the operating system via a login shell. IPMI communicates over port `623 UDP`. Systems that use the IPMI protocol are called Baseboard Management Controllers (`BMCs`). If we can access a BMC during an assessment, we would gain full access to the host motherboard and be able to monitor, reboot, power off, or even reinstall the host operating system. Gaining access to a BMC is nearly equivalent to physical access to a system.
 
 `IPMI` us typically used in three ways:
 - Before the OS has booted to modify BIOS settings
@@ -878,7 +880,7 @@ xfreerdp /u:carnifex17 /p:"S3cr3t!" /v:13.13.13.13 /cert:ignore /d:DOMAIN
 
 ## WinRM
 
-**The Windows Remote Management (WinRM) is a simple Windows integrated remote management protocol based on the command line.** WinRM uses the Simple Object Access Protocol (`SOAP`) to establish connections to remote hosts and their applications. WinRM relies on TCP ports `5985` and `5986` for communication, with the last port 5986 using HTTPS. Services like remote sessions using PowerShell and event log merging require WinRM.
+**The Windows Remote Management (WinRM) is a simple Windows integrated remote management protocol based on the command line.** WinRM uses the **Simple Object Access Protocol (`SOAP`)** to establish connections to remote hosts and their applications. WinRM relies on TCP ports `5985` and `5986` for communication, with the last port 5986 using HTTPS. Services like remote sessions using PowerShell and event log merging require WinRM.
 ### Tips2Hack
 1. Nmap WinRM
 ```bash
@@ -888,6 +890,10 @@ nmap -sV -sC 13.13.13.13 -p5985,5986 --disable-arp-ping -n
 ```bash
 evil-winrm -i 13.13.13.13 -u carnifex17 -p S3cr3t!
 ```
+3. CrackMapExec
+```bash
+crackmapexec winrm 10.129.42.197 -u user.list -p password.list
+```
 
 ## WMI
 **Windows Management Instrumentation (`WMI`) is Microsoft's implementation and also an extension of the Common Information Model (`CIM`), core functionality of the standardized Web-Based Enterprise Management (`WBEM`) for the Windows platform.** WMI allows read and write access to almost all settings on Windows systems. Mostly uses `TCP port 135`
@@ -895,7 +901,6 @@ evil-winrm -i 13.13.13.13 -u carnifex17 -p S3cr3t!
 1. WMIexec.py
 ```bash
 /usr/share/doc/python3-impacket/examples/wmiexec.py carnifex17:"S3cr3t!"@13.13.13.13 "hostname"
-
 ```
 
 ---
@@ -1388,6 +1393,50 @@ PS C:\htb> Copy-Item -Path C:\samplefile.txt -ToSession $Session -Destination C:
 ```powershell
 PS C:\htb> Copy-Item -Path "C:\Users\Administrator\Desktop\DATABASE.txt" -Destination C:\ -FromSession $Session
 ```
+
+
+# Password Attacks
+## Credential Storage
+### Linux Shadow File
+- **/etc/shadows structure**
+
+|`guest:`|`$y$j9T$3QSBB6CbHEu...SNIP...f8Ms:`|`18955:`|`0:`|`99999:`|`7:`|`:`|`:`|`:`|
+|-|-|-|-|-|-|-|-|-|
+|`<username>:`|`<encrypted password>:`|`<day of last change>:`|`<min age>:`|`<max age>:`|`<warning period>:`|`<inactivity period>:`|`<expiration date>:`|`<reserved field>`|
+
+## John The Ripper
+**`John the Ripper (JTR or john)` is an essential pentesting tool used to check the strength of passwords and crack encrypted (or hashed) passwords using either brute force or dictionary attacks. It is open-source software initially developed for UNIX-based systems and first released in 1996.**
+### Cracking Modes
+- **Single Crack Mode** is one of the most common John modes used when attempting to crack passwords using a single password list. It is a brute-force attack which use single password list, meaning all passwords on the list are tried, one by one, until the correct one is found.
+```bash
+$ john --format=sha256 hashes_to_crack.txt
+```
+- **Wordlist Mode** is used to crack passwords using multiple lists of words. It is a dictionary attack which means it will try all the words in the lists one by one until it finds the right one. It is almost same with Single Crack Mode, just uses custom wordlists.
+```bash
+$ john --wordlist=<wordlist_file> --rules <hash_file>
+```
+- **Incremental Mode** is an advanced John mode used to crack passwords using a character set. It is a hybrid attack, which means it will attempt to match the password by trying all possible combinations of characters from the character set. 
+```bash
+$ john --incremental <hash_file>
+```
+- **Cracking Files**
+```bash
+<tool> <file_to_crack> > file.hash
+$ pdf2john server_doc.pdf > server_doc.hash
+$ john server_doc.hash
+$ john --wordlist=<wordlist.txt> server_doc.hash 
+```
+
+
+
+
+# Wireless Attacks
+- **Check available network interfaces**
+```bash
+iwconfig
+```
+
+
 
 # Detection and Evasion
 ## File Transfer DaE
