@@ -11,9 +11,9 @@ I will write here all notes, writeups and info that I've been learning in my tec
 
 ---
 # Table of Contents
-- **[Linux Notes](./Linux%20Notes.md)**
-- **[Penetration Testing Notes](./Penetration%20Testing%20Notes.md)**
-- **[Networking Notes](./Networking%20Notes.md)**
+- **[Linux Notes](./Linux/)**
+- **[Penetration Testing Notes](./Penetration%20Testing/)**
+- **[Networking Notes](./Networking/)**
 ---
 
 # Useful Links
